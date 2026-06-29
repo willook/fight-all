@@ -1,14 +1,34 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it } from "vitest";
 import App from "./App";
+import type { LeagueData } from "./domain/types";
 import sampleData from "../public/data/fightall.sample.json";
 
 function renderApp(route = "/") {
   return render(
     <MemoryRouter initialEntries={[route]}>
       <App initialData={sampleData} />
+    </MemoryRouter>,
+  );
+}
+
+function loadGeneratedData(): LeagueData {
+  return JSON.parse(
+    readFileSync(
+      resolve(process.cwd(), "public/data/fightall.generated.json"),
+      "utf8",
+    ),
+  ) as LeagueData;
+}
+
+function renderAppWithData(route: string, data: LeagueData) {
+  return render(
+    <MemoryRouter initialEntries={[route]}>
+      <App initialData={data} />
     </MemoryRouter>,
   );
 }
@@ -25,7 +45,7 @@ describe("FightAll app", () => {
     expect(
       screen.getByRole("heading", { name: /fightall/i }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/sample league data/i)).toBeInTheDocument();
+    expect(screen.getByText(/generated league data/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /all league/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
@@ -54,6 +74,21 @@ describe("FightAll app", () => {
     expect(screen.queryByRole("link", { name: /game arena/i })).not.toBeInTheDocument();
   });
 
+  it("renders AI Players as a model roster backed by generated match records", () => {
+    renderAppWithData("/players", loadGeneratedData());
+
+    expect(screen.getByRole("link", { name: /AI Players/i })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /AI Players/i })).toBeInTheDocument();
+    expect(screen.getAllByText(/Solar Pro 3/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Upstage/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/늑대인간 - 한국어/i).length).toBeGreaterThan(0);
+    expect(screen.getByRole("link", { name: /View Solar Pro 3/i })).toHaveAttribute(
+      "href",
+      "/models/solar-pro-3",
+    );
+  });
+
   it("persists the selected theme mode", async () => {
     renderApp("/");
 
@@ -68,13 +103,13 @@ describe("FightAll app", () => {
   it("switches the UI between English and Korean while preserving data names", async () => {
     renderApp("/");
 
-    expect(screen.getByText(/Sample league data/i)).toBeInTheDocument();
+    expect(screen.getByText(/Generated league data/i)).toBeInTheDocument();
 
     await userEvent.click(screen.getByRole("button", { name: /한국어로 보기/i }));
 
-    expect(screen.getByText(/샘플 리그 데이터/i)).toBeInTheDocument();
+    expect(screen.getByText(/생성 리그 데이터/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /리그 범위/i })).toBeInTheDocument();
-    expect(screen.queryByText(/Sample league data/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Generated league data/i)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
     expect(localStorage.getItem("fightall-language")).toBe("ko");

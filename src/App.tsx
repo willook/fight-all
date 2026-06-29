@@ -12,6 +12,7 @@ import {
   Sun,
   Swords,
   Trophy,
+  Users,
 } from "lucide-react";
 import { Link, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -58,7 +59,13 @@ const translations = {
   en: {
     appNav: "Main",
     leaderboard: "Leaderboard",
-    sampleLeagueData: "Sample league data",
+    aiPlayers: "AI Players",
+    playersEyebrow: "Model roster",
+    playersCopy:
+      "Browse FightAll models as league players with form, language records, and cost efficiency from generated match history.",
+    languageRecords: "Language records",
+    viewPlayer: "View",
+    sampleLeagueData: "Generated league data",
     heroCopy:
       "A record-first AI model arena MVP for comparing Werewolf ratings, opponent records, and cost efficiency across English and Korean sample leagues.",
     leader: "Leader",
@@ -157,7 +164,13 @@ const translations = {
   ko: {
     appNav: "주요 메뉴",
     leaderboard: "리더보드",
-    sampleLeagueData: "샘플 리그 데이터",
+    aiPlayers: "AI 선수",
+    playersEyebrow: "모델 선수 명단",
+    playersCopy:
+      "생성된 경기 기록에서 계산한 최근 흐름, 언어별 전적, 비용 효율을 기준으로 FightAll 모델을 리그 선수처럼 살펴봅니다.",
+    languageRecords: "언어별 전적",
+    viewPlayer: "보기",
+    sampleLeagueData: "생성 리그 데이터",
     heroCopy:
       "영어와 한국어 늑대인간 샘플 리그의 레이팅, 상대 전적, 비용 효율을 비교하는 기록 기반 AI 모델 아레나 MVP입니다.",
     leader: "선두",
@@ -677,6 +690,107 @@ function Dashboard({
             </tbody>
           </table>
         </div>
+      </section>
+    </div>
+  );
+}
+
+function PlayersPage({
+  data,
+  language,
+  t,
+}: {
+  data: LeagueData;
+  language: Language;
+  t: Copy;
+}) {
+  const leaderboard = getLeaderboard(data);
+  const playerRows = leaderboard
+    .map((row) => {
+      const detail = getModelDetail(data, row.model.id);
+      return detail ? { ...row, detail } : null;
+    })
+    .filter((row): row is NonNullable<typeof row> => row !== null);
+
+  return (
+    <div className="page-stack">
+      <section className="model-header">
+        <div>
+          <p className="eyebrow">{t.playersEyebrow}</p>
+          <h1>{t.aiPlayers}</h1>
+          <p>{t.playersCopy}</p>
+        </div>
+        <div className="header-actions">
+          <Users aria-hidden="true" />
+        </div>
+      </section>
+
+      <section className="player-grid" aria-label={t.aiPlayers}>
+        {playerRows.map((row, index) => (
+          <article className="player-card" key={row.model.id}>
+            <div className="player-card-header">
+              <div>
+                <span className="profile-provider">{row.model.provider}</span>
+                <h2>{row.model.name}</h2>
+                <p>{row.model.profile.tagline}</p>
+              </div>
+              <span className="rank-chip">#{index + 1}</span>
+            </div>
+
+            <div className="tag-row compact-tags">
+              {row.model.profile.styleTags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+
+            <dl className="player-metrics">
+              <div>
+                <dt>{t.currentRating}</dt>
+                <dd>{row.currentRating}</dd>
+              </div>
+              <div>
+                <dt>{t.delta}</dt>
+                <dd>
+                  <DeltaBadge value={row.ratingDelta} />
+                </dd>
+              </div>
+              <div>
+                <dt>{t.overallRecord}</dt>
+                <dd>{recordText(row.overallRecord, t)}</dd>
+              </div>
+              <div>
+                <dt>{t.recentForm}</dt>
+                <dd>{recordText(row.recentForm, t)}</dd>
+              </div>
+              <div>
+                <dt>{t.costPerWin}</dt>
+                <dd>{formatMoney(row.costSummary.costPerWin, t)}</dd>
+              </div>
+            </dl>
+
+            <div className="player-language-records">
+              <h3>{t.languageRecords}</h3>
+              <ul className="breakdown-list">
+                {row.detail.gameRecords.map((gameRecord) => (
+                  <GameRecordItem
+                    key={gameRecord.game.id}
+                    data={data}
+                    gameId={gameRecord.game.id}
+                    modelId={row.model.id}
+                    name={gameRecord.game.name}
+                    record={gameRecord.record}
+                    language={language}
+                    t={t}
+                  />
+                ))}
+              </ul>
+            </div>
+
+            <Link className="button-link player-link" to={`/models/${row.model.id}`}>
+              {t.viewPlayer} {row.model.name}
+            </Link>
+          </article>
+        ))}
       </section>
     </div>
   );
@@ -1293,6 +1407,7 @@ function AppShell({
         </Link>
         <nav aria-label={t.appNav}>
           <Link to="/">{t.leaderboard}</Link>
+          <Link to="/players">{t.aiPlayers}</Link>
         </nav>
         <SettingsControls
           theme={theme}
@@ -1311,6 +1426,10 @@ function AppShell({
           <Route
             path="/models/:modelId"
             element={<ModelDetailPage data={data} language={language} t={t} />}
+          />
+          <Route
+            path="/players"
+            element={<PlayersPage data={data} language={language} t={t} />}
           />
           <Route
             path="/models/:modelId/vs/:opponentId"

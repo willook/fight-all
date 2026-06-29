@@ -527,6 +527,95 @@ tbody tr:last-child td {
   box-shadow: none;
 }
 
+.player-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.player-card {
+  min-width: 0;
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.player-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.player-card h2,
+.player-language-records h3 {
+  margin: 4px 0 0;
+  letter-spacing: 0;
+}
+
+.player-card h2 {
+  font-size: 1.25rem;
+}
+
+.player-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.rank-chip {
+  display: inline-flex;
+  min-width: 42px;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent);
+  background: var(--stat-icon-bg);
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.compact-tags {
+  margin: 0;
+}
+
+.player-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 14px;
+  margin: 0;
+}
+
+.player-metrics div {
+  min-width: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.player-metrics dt,
+.player-metrics dd {
+  text-align: left;
+}
+
+.player-metrics dd {
+  margin-top: 4px;
+}
+
+.player-language-records h3 {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.player-link {
+  margin-bottom: 0;
+}
+
 .profile-panel p,
 .profile-panel blockquote {
   color: var(--muted);
@@ -625,7 +714,8 @@ dd {
   .hero-stats,
   .stats-strip,
   .section-grid,
-  .model-grid {
+  .model-grid,
+  .player-grid {
     grid-template-columns: 1fr;
   }
 
