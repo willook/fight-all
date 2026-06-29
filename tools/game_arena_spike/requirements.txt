@@ -1,0 +1,2 @@
+git+https://github.com/google-deepmind/game_arena.git@6ddcc7dac06321472f2f22fabdeceab97eebeb73
+pytest>=8,<9
