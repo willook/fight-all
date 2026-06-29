@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { ActionList, ActionMenu, BaseStyles, ThemeProvider } from "@primer/react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { BaseStyles, ThemeProvider } from "@primer/react";
 import {
   Activity,
   ArrowDown,
@@ -69,7 +69,7 @@ const translations = {
     viewPlayer: "View profile",
     expandPlayer: "Expand",
     collapsePlayer: "Collapse",
-    sampleLeagueData: "FightAll League",
+    sampleLeagueData: "GLADI League",
     heroCopy:
       "Compare AI models by Werewolf ratings, head-to-head records, and language-specific results.",
     leader: "Leader",
@@ -153,9 +153,9 @@ const translations = {
     won: "won",
     notFound: "Not found",
     dataError: "Data error",
-    notFoundCopy: "We could not find that FightAll record.",
+    notFoundCopy: "We could not find that GLADI record.",
     backToLeaderboard: "Back to leaderboard",
-    loading: "Loading FightAll league data...",
+    loading: "Loading GLADI league data...",
     themeSystem: "System",
     themeLight: "Light",
     themeDark: "Dark",
@@ -182,7 +182,7 @@ const translations = {
     viewPlayer: "프로필 보기",
     expandPlayer: "펼치기",
     collapsePlayer: "접기",
-    sampleLeagueData: "FightAll 리그",
+    sampleLeagueData: "GLADI 리그",
     heroCopy:
       "AI 모델들이 늑대인간으로 겨룬 결과를 레이팅과 전적으로 비교하세요.",
     leader: "선두",
@@ -266,9 +266,9 @@ const translations = {
     won: "승리",
     notFound: "찾을 수 없음",
     dataError: "데이터 오류",
-    notFoundCopy: "해당 FightAll 기록을 찾을 수 없습니다.",
+    notFoundCopy: "해당 GLADI 기록을 찾을 수 없습니다.",
     backToLeaderboard: "리더보드로 돌아가기",
-    loading: "FightAll 리그 데이터를 불러오는 중...",
+    loading: "GLADI 리그 데이터를 불러오는 중...",
     themeSystem: "시스템",
     themeLight: "라이트",
     themeDark: "다크",
@@ -406,6 +406,29 @@ function EmptyState({ title, t }: { title: string; t: Copy }) {
         {t.backToLeaderboard}
       </Link>
     </section>
+  );
+}
+
+function GladiLogo() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="gladi-logo"
+      data-mark="arena-g"
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        className="gladi-logo-ring"
+        d="M18.9 5.8A8.8 8.8 0 1 0 19 18.3"
+      />
+      <path className="gladi-logo-accent" d="M12.5 12h7.4" />
+      <path className="gladi-logo-turn" d="M19.9 12v5.1" />
+      <path className="gladi-logo-stand" d="M7.7 18.5v2.2" />
+      <path className="gladi-logo-stand" d="M12 19.2v2.2" />
+      <path className="gladi-logo-stand" d="M16.3 18.5v2.2" />
+    </svg>
   );
 }
 
@@ -672,7 +695,7 @@ function Dashboard({
       <section className="hero-band">
         <div>
           <p className="eyebrow">{t.sampleLeagueData}</p>
-          <h1>FightAll</h1>
+          <h1>GLADI</h1>
           <p>{t.heroCopy}</p>
         </div>
         <div className="hero-stats">
@@ -1469,6 +1492,95 @@ function MatchDetailPage({
   );
 }
 
+type SettingsMenuOption<T extends string> = {
+  label: string;
+  value: T;
+};
+
+function SettingsMenu<T extends string>({
+  ariaLabel,
+  controlLabel,
+  onSelect,
+  options,
+  selectedValue,
+  valueLabel,
+}: {
+  ariaLabel: string;
+  controlLabel: string;
+  onSelect: (value: T) => void;
+  options: SettingsMenuOption<T>[];
+  selectedValue: T;
+  valueLabel: string;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+
+    function closeOnOutsidePointer(event: PointerEvent) {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", closeOnOutsidePointer);
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsidePointer);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isOpen]);
+
+  return (
+    <div className="settings-menu" ref={menuRef}>
+      <button
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        aria-label={ariaLabel}
+        className="settings-menu-button"
+        onClick={() => setIsOpen((current) => !current)}
+        type="button"
+      >
+        <span className="settings-menu-label">{controlLabel}</span>
+        <span className="settings-menu-value">{valueLabel}</span>
+        <ChevronDown aria-hidden="true" className="settings-menu-chevron" />
+      </button>
+      {isOpen ? (
+        <div className="settings-menu-overlay" role="menu" aria-label={controlLabel}>
+          {options.map((option) => (
+            <button
+              aria-checked={selectedValue === option.value}
+              className="settings-menu-option"
+              key={option.value}
+              onClick={() => {
+                onSelect(option.value);
+                setIsOpen(false);
+              }}
+              role="menuitemradio"
+              type="button"
+            >
+              <span>{option.label}</span>
+              {selectedValue === option.value ? (
+                <span aria-hidden="true" className="settings-menu-option-check" />
+              ) : null}
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 function SettingsControls({
   theme,
   setTheme,
@@ -1491,53 +1603,28 @@ function SettingsControls({
 
   return (
     <div className="topbar-actions">
-      <ActionMenu>
-        <ActionMenu.Button
-          aria-label={`${t.themeControl}: ${themeLabels[theme]}`}
-          className="settings-menu-button"
-        >
-          <span className="settings-menu-label">{t.themeControl}</span>
-          <span className="settings-menu-value">{themeLabels[theme]}</span>
-        </ActionMenu.Button>
-        <ActionMenu.Overlay width="small">
-          <ActionList selectionVariant="single">
-            {themeModes.map((mode) => (
-              <ActionList.Item
-                key={mode}
-                onSelect={() => setTheme(mode)}
-                selected={theme === mode}
-              >
-                {themeLabels[mode]}
-              </ActionList.Item>
-            ))}
-          </ActionList>
-        </ActionMenu.Overlay>
-      </ActionMenu>
-      <ActionMenu>
-        <ActionMenu.Button
-          aria-label={`${t.languageControl}: ${languageLabel}`}
-          className="settings-menu-button settings-menu-button--language"
-        >
-          <span className="settings-menu-label">{t.languageControl}</span>
-          <span className="settings-menu-value">{languageLabel}</span>
-        </ActionMenu.Button>
-        <ActionMenu.Overlay width="small">
-          <ActionList selectionVariant="single">
-            <ActionList.Item
-              onSelect={() => setLanguage("en")}
-              selected={language === "en"}
-            >
-              English
-            </ActionList.Item>
-            <ActionList.Item
-              onSelect={() => setLanguage("ko")}
-              selected={language === "ko"}
-            >
-              한국어
-            </ActionList.Item>
-          </ActionList>
-        </ActionMenu.Overlay>
-      </ActionMenu>
+      <SettingsMenu
+        ariaLabel={`${t.themeControl}: ${themeLabels[theme]}`}
+        controlLabel={t.themeControl}
+        onSelect={setTheme}
+        options={themeModes.map((mode) => ({
+          label: themeLabels[mode],
+          value: mode,
+        }))}
+        selectedValue={theme}
+        valueLabel={themeLabels[theme]}
+      />
+      <SettingsMenu
+        ariaLabel={`${t.languageControl}: ${languageLabel}`}
+        controlLabel={t.languageControl}
+        onSelect={setLanguage}
+        options={[
+          { label: "English", value: "en" },
+          { label: "한국어", value: "ko" },
+        ]}
+        selectedValue={language}
+        valueLabel={languageLabel}
+      />
     </div>
   );
 }
@@ -1561,8 +1648,8 @@ function AppShell({
     <div className="app-shell">
       <header className="topbar">
         <Link className="brand" to="/">
-          <Swords aria-hidden="true" />
-          <span>FightAll</span>
+          <GladiLogo />
+          <span>GLADI</span>
         </Link>
         <nav aria-label={t.appNav}>
           <Link to="/">{t.leaderboard}</Link>

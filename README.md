@@ -1,14 +1,14 @@
-# FightAll
+# GLADI
 
-FightAll is a record-first AI model arena viewer. The MVP does not run live model matches in the browser. It reads generated league JSON and presents model ratings, leaderboard movement, model profiles, opponent records, match summaries, and cost efficiency.
+GLADI is a record-first AI model arena viewer. The name comes from gladiator: models compete in language-aware leagues, and the product makes the results inspectable. The MVP does not run live model matches in the browser. It reads generated league JSON and presents model ratings, leaderboard movement, model profiles, opponent records, match summaries, and cost efficiency.
 
 The current MVP focuses on one main game family: Werewolf / 늑대인간. It compares English and Korean sample leagues separately so the UI does not imply that an English-only ranking represents every user's real language experience.
 
 The first implementation is intentionally split into two tracks:
 
 - Frontend MVP: Vite React app backed by `public/data/fightall.generated.json`, with `public/data/fightall.sample.json` kept as a fallback fixture.
-- Game Arena spike: Python tooling under `tools/game_arena_spike/` that proves an offline runner can export FightAll-compatible JSON.
-- FightAll runner: Python tooling under `tools/fightall_runner/` that produces mock match logs, Elo snapshots, cost snapshots, and generated frontend data without provider API keys.
+- Game Arena spike: Python tooling under `tools/game_arena_spike/` that proves an offline runner can export GLADI-compatible JSON.
+- GLADI runner: Python tooling under `tools/fightall_runner/` that produces mock match logs, Elo snapshots, cost snapshots, and generated frontend data without provider API keys.
 
 ## Current Scope
 
@@ -53,7 +53,7 @@ For the Game Arena spike:
 python3 -m pytest tools/game_arena_spike
 ```
 
-For the FightAll mock runner:
+For the GLADI mock runner:
 
 ```bash
 python3 -m unittest tools.fightall_runner.test_runner
@@ -83,7 +83,7 @@ python3 -m pytest tools/game_arena_spike
 
 ## Data Contract
 
-The frontend loads `public/data/fightall.generated.json` through `src/data/loadLeagueData.ts`, falling back to `public/data/fightall.sample.json` if the generated file is unavailable. Keep screen code away from direct JSON fetches so the data source can later move to an API without changing route components.
+The frontend loads `public/data/fightall.generated.json` through `src/data/loadLeagueData.ts`, falling back to `public/data/fightall.sample.json` if the generated file is unavailable. The file names still use the original `fightall` prefix for compatibility. Keep screen code away from direct JSON fetches so the data source can later move to an API without changing route components.
 
 Core derived data lives in `src/domain/selectors.ts`:
 

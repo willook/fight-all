@@ -33,7 +33,7 @@ function renderAppWithData(route: string, data: LeagueData) {
   );
 }
 
-describe("FightAll app", () => {
+describe("GLADI app", () => {
   beforeEach(() => {
     localStorage.clear();
     document.documentElement.removeAttribute("data-theme");
@@ -43,9 +43,10 @@ describe("FightAll app", () => {
     renderApp("/");
 
     expect(
-      screen.getByRole("heading", { name: /fightall/i }),
+      screen.getByRole("heading", { name: /gladi/i }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/FightAll League/i)).toBeInTheDocument();
+    expect(screen.getByText(/GLADI League/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /^GLADI$/i })).toBeInTheDocument();
     expect(screen.queryByText(/MVP|sample|generated/i)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /all league/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
@@ -73,6 +74,24 @@ describe("FightAll app", () => {
 
     expect(screen.getByRole("link", { name: /leaderboard/i })).toBeInTheDocument();
     expect(screen.queryByRole("link", { name: /game arena/i })).not.toBeInTheDocument();
+  });
+
+  it("renders the compact arena-G logo and aligned settings controls", () => {
+    renderApp("/");
+
+    const brand = screen.getByRole("link", { name: /^GLADI$/i });
+    const logo = brand.querySelector(".gladi-logo");
+    expect(logo).toHaveAttribute("data-mark", "arena-g");
+    expect(logo?.querySelector(".gladi-logo-turn")).toBeInTheDocument();
+
+    const themeButton = screen.getByRole("button", { name: /Theme: System/i });
+    expect(within(themeButton).getByText("Theme")).toHaveClass(
+      "settings-menu-label",
+    );
+    expect(within(themeButton).getByText("System")).toHaveClass(
+      "settings-menu-value",
+    );
+    expect(themeButton.querySelector(".settings-menu-chevron")).toBeInTheDocument();
   });
 
   it("renders AI Players as a compact expandable roster", async () => {
@@ -141,7 +160,7 @@ describe("FightAll app", () => {
   it("switches the UI and game display names while preserving model data names", async () => {
     renderApp("/");
 
-    expect(screen.getByText(/FightAll League/i)).toBeInTheDocument();
+    expect(screen.getByText(/GLADI League/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - Korean/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /늑대인간 - 한국어/i })).not.toBeInTheDocument();
@@ -151,9 +170,9 @@ describe("FightAll app", () => {
       screen.getByRole("menuitemradio", { name: /한국어/i }),
     );
 
-    expect(screen.getByText(/FightAll 리그/i)).toBeInTheDocument();
+    expect(screen.getByText(/GLADI 리그/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /리그 범위/i })).toBeInTheDocument();
-    expect(screen.queryByText(/FightAll League/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/GLADI League/i)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /늑대인간 - 영어/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Werewolf - Korean/i })).not.toBeInTheDocument();

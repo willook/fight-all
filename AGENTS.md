@@ -67,4 +67,4 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 ## Design System
 
 Always read `DESIGN.md` before making visual or UI decisions.
-FightAll uses GitHub Primer as the primary design system. Prefer `@primer/react` components and Primer visual tokens before adding custom UI. Do not deviate from the Primer direction without explicit user approval.
+GLADI uses GitHub Primer as the primary design system. Prefer `@primer/react` components and Primer visual tokens before adding custom UI. Do not deviate from the Primer direction without explicit user approval.

@@ -1,19 +1,20 @@
-# Design System - FightAll
+# Design System - GLADI
 
 ## Product Context
-- **What this is:** FightAll is a record-first AI model arena for comparing ratings, matchup records, language-specific results, and run cost.
+- **What this is:** GLADI is a record-first AI model arena for comparing ratings, matchup records, language-specific results, and run cost.
 - **Who it is for:** Builders and operators who want to inspect AI model competition results without treating one language leaderboard as universal.
 - **Project type:** Data-heavy web app and league dashboard.
 
 ## Design Direction
 - **Reference system:** GitHub Primer.
-- **Rule:** Use Primer React components and Primer visual tokens first. Add custom CSS only when FightAll needs a domain-specific layout that Primer does not provide.
+- **Rule:** Use Primer React components and Primer visual tokens first. Add custom CSS only when GLADI needs a domain-specific layout that Primer does not provide.
 - **Mood:** Serious, inspectable, and product-like. The interface should feel like a useful league console, not a student demo or marketing page.
+- **Logo:** Use the A1-derived mark: a simplified capital `G` that also reads as a top-down arena ring. Keep the blue horizontal stroke as the only accent.
 
 ## Implementation Baseline
 - Use `@primer/react` for app-level theming, base styles, menus, buttons, labels, overlays, and future table/list controls.
 - Keep Recharts for rating charts until a better Primer-compatible chart layer is chosen.
-- Keep FightAll domain copy, model names, provider names, match IDs, and game names as product data rather than design-system text.
+- Keep GLADI domain copy, model names, provider names, match IDs, and game names as product data rather than design-system text.
 
 ## Color
 - **Light mode:** GitHub Primer light palette.
@@ -38,7 +39,7 @@
 - Use compact weights and tabular numeric presentation where ranking, rating, cost, or record values need fast scanning.
 
 ## Components
-- **Topbar controls:** Primer `ActionMenu` with fixed-width buttons. Visible values should stay compact so theme/language changes do not shift layout.
+- **Topbar controls:** Primer-styled fixed-width dropdown buttons. Use a custom grid button when text/value/chevron alignment needs exact control.
 - **Tables and rosters:** Prefer dense, left-aligned, scan-friendly rows. Avoid card grids for core records unless the content is genuinely repeated and visual.
 - **Panels:** 8px radius, Primer borders, restrained shadows.
 - **Badges:** Use semantic color only for meaningful deltas, wins, losses, warnings, and status.
@@ -51,3 +52,5 @@
 | Date | Decision | Rationale |
 |------|----------|-----------|
 | 2026-06-29 | Adopt GitHub Primer as the primary design system | The product is data-heavy and benefits from Primer's dense, accessible, product-grade UI patterns. |
+| 2026-06-29 | Rename product from FightAll to GLADI | GLADI is shorter, stronger, and better matches the arena metaphor without sounding like a generic fight app. |
+| 2026-06-29 | Use A1 simplified arena-G logo | The mark keeps the gladiator-arena idea while staying simpler and more distinctive than helmets, shields, or swords. |
