@@ -1,11 +1,12 @@
-# FightAll Runner
+# GLADI Runner
 
-This runner creates deterministic MVP league data without live provider API calls.
+This runner creates GLADI MVP league data. It supports both deterministic mock data and a small real OpenAI/Gemini API PoC.
 
 It exports:
 
 - `public/data/fightall.generated.json`: frontend `LeagueData`
 - `tools/fightall_runner/out/turn_logs.json`: raw match logs keyed by `matchId`
+- `tools/fightall_runner/out/real_poc_turn_logs.json`: raw real PoC logs keyed by `matchId`
 
 ## Scope
 
@@ -16,12 +17,13 @@ Included:
 - 1:1 mirror matches
 - Elo snapshots for overall and per-language ratings
 - Mock token, duration, and estimated cost snapshots
+- Real OpenAI/Gemini 4-match PoC with usage-based cost snapshots
 - Budget guard for the generated run
 
 Excluded:
 
-- Real API calls
-- Provider billing or key setup
+- Production-scale API runs
+- Provider billing administration or key management
 - Browser-side live matches
 - Replay UI
 
@@ -30,7 +32,7 @@ Excluded:
 Run tests:
 
 ```bash
-python3 -m unittest tools.fightall_runner.test_runner
+python3 -m unittest tools.fightall_runner.test_runner tools.fightall_runner.test_real_poc
 ```
 
 Generate the default 40-match league:
@@ -52,6 +54,23 @@ python3 -m tools.fightall_runner.export_league \
   --preset smoke
 ```
 
+Check real API access:
+
+```bash
+cp .env.example .env.local
+# Add OPENAI_API_KEY and GEMINI_API_KEY to .env.local.
+python3 -m tools.fightall_runner.real_poc --doctor
+```
+
+Generate the real 4-match PoC league:
+
+```bash
+python3 -m tools.fightall_runner.real_poc \
+  --output public/data/fightall.generated.json \
+  --logs tools/fightall_runner/out/real_poc_turn_logs.json \
+  --budget-cap-usd 2
+```
+
 ## MVP Defaults
 
 - Initial Elo: `1500`
@@ -60,3 +79,6 @@ python3 -m tools.fightall_runner.export_league \
 - Default match count: `40`
 - Budget target: under `$50` for the equivalent real-provider run
 - Upstage Solar is included as the Korean-language anchor model.
+- Real PoC match count: `4`
+- Real PoC budget cap: `$2`
+- Real PoC cost snapshots allocate each player's own call cost plus 50% of the judge call cost.

@@ -1,127 +1,52 @@
 {
   "models": [
     {
-      "id": "gpt-41",
-      "name": "GPT-4.1",
+      "id": "openai-gpt-41-nano",
+      "name": "GPT-4.1 Nano",
       "provider": "OpenAI",
-      "version": "mock-2026-06",
+      "version": "real-poc-2026-06",
       "profile": {
         "mbti": "ENTP",
-        "tagline": "Inventive attacker that pushes initiative early.",
-        "quote": "If a line has three traps, I would like to examine all three.",
+        "tagline": "Low-cost OpenAI player for real pipeline validation.",
+        "quote": "A tiny match is still a match if the ledger is honest.",
         "styleTags": [
-          "Creative",
-          "Aggressive",
-          "Tempo"
+          "OpenAI",
+          "PoC",
+          "Lightweight"
         ],
         "strengths": [
-          "Opening pressure",
-          "Tactical pivots",
-          "Fast adaptation"
+          "Fast reasoning",
+          "Structured responses",
+          "Low-cost tests"
         ],
         "weaknesses": [
-          "Overextension",
-          "Occasional draw conversion errors"
+          "Single-turn context",
+          "PoC-only sample size"
         ]
       }
     },
     {
-      "id": "claude-sonnet-45",
-      "name": "Claude Sonnet 4.5",
-      "provider": "Anthropic",
-      "version": "mock-2026-06",
-      "profile": {
-        "mbti": "INFJ",
-        "tagline": "Patient strategist with late-game discipline.",
-        "quote": "The room usually tells you where the pressure belongs.",
-        "styleTags": [
-          "Positional",
-          "Careful",
-          "Endgame"
-        ],
-        "strengths": [
-          "Long-horizon planning",
-          "Defensive conversions",
-          "Low-blunder play"
-        ],
-        "weaknesses": [
-          "Early tempo races",
-          "High-variance openings"
-        ]
-      }
-    },
-    {
-      "id": "gemini-25-flash",
-      "name": "Gemini 2.5 Flash",
+      "id": "gemini-25-flash-lite",
+      "name": "Gemini 2.5 Flash-Lite",
       "provider": "Google",
-      "version": "mock-2026-06",
+      "version": "real-poc-2026-06",
       "profile": {
         "mbti": "INTJ",
-        "tagline": "Structured planner with strong board control.",
-        "quote": "A quiet vote can still decide the match.",
+        "tagline": "Low-cost Gemini player and judge candidate for real pipeline validation.",
+        "quote": "Measure first. Argue second.",
         "styleTags": [
-          "Analytical",
-          "Balanced",
+          "Gemini",
+          "PoC",
           "Efficient"
         ],
         "strengths": [
-          "Pattern recognition",
-          "Resource-efficient wins",
-          "Stable midgame play"
+          "Fast completions",
+          "Cost efficiency",
+          "Judge compatibility"
         ],
         "weaknesses": [
-          "Slow starts",
-          "Rare tactical tunnel vision"
-        ]
-      }
-    },
-    {
-      "id": "grok-4",
-      "name": "Grok 4",
-      "provider": "xAI",
-      "version": "mock-2026-06",
-      "profile": {
-        "mbti": "ESTP",
-        "tagline": "Volatile pressure player with upset potential.",
-        "quote": "Chaos is only bad if you are surprised by it.",
-        "styleTags": [
-          "Volatile",
-          "Fast",
-          "Pressure"
-        ],
-        "strengths": [
-          "Forcing lines",
-          "Comeback attempts",
-          "Short-game tactics"
-        ],
-        "weaknesses": [
-          "Consistency",
-          "Cost control under pressure"
-        ]
-      }
-    },
-    {
-      "id": "solar-pro-3",
-      "name": "Solar Pro 3",
-      "provider": "Upstage",
-      "version": "mock-2026-06",
-      "profile": {
-        "mbti": "ISFJ",
-        "tagline": "Korean-language anchor with careful social reads.",
-        "quote": "Nuance matters most when everyone sounds certain.",
-        "styleTags": [
-          "Korean",
-          "Grounded",
-          "Social"
-        ],
-        "strengths": [
-          "Korean persuasion",
-          "Role inference",
-          "Concise vote framing"
-        ],
-        "weaknesses": [
-          "English tempo races",
-          "High-chaos counterclaims"
+          "Single judge bias",
+          "PoC-only sample size"
         ]
       }
     }
@@ -148,2488 +73,256 @@
   ],
   "matches": [
     {
-      "id": "match-001",
-      "playedAt": "2026-06-01T09:00:00Z",
+      "id": "real-poc-001",
+      "playedAt": "2026-06-30T09:00:00Z",
       "gameId": "werewolf-en",
-      "modelAId": "gpt-41",
-      "modelBId": "claude-sonnet-45",
-      "winnerModelId": "gpt-41",
+      "modelAId": "openai-gpt-41-nano",
+      "modelBId": "gemini-25-flash-lite",
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_b",
+      "turns": 3,
+      "durationSeconds": 53,
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf PoC match. Model B demonstrates superior role inference by anticipating Model A's likely arguments and refuting them preemptively. Model B's rebuttal is more direct and persuasive, highlighting the nuances of social deduction games that Model A's analytical approach might miss. Model A's argument is circular, claiming Model B lacks evidence while offering little concrete evidence itself."
+    },
+    {
+      "id": "real-poc-002",
+      "playedAt": "2026-06-30T09:30:00Z",
+      "gameId": "werewolf-en",
+      "modelAId": "gemini-25-flash-lite",
+      "modelBId": "openai-gpt-41-nano",
+      "winnerModelId": "gemini-25-flash-lite",
       "result": "model_a",
-      "turns": 8,
-      "durationSeconds": 118,
-      "summary": "GPT-4.1 won the English Werewolf scenario with clearer vote pressure and role inference."
+      "turns": 3,
+      "durationSeconds": 24,
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf PoC match. Model A provides a more robust and well-reasoned argument, clearly outlining its own logic and directly addressing potential weaknesses in the opponent's hypothetical strategy. Model B's argument is less developed and relies on a weaker rebuttal."
     },
     {
-      "id": "match-002",
-      "playedAt": "2026-06-01T09:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "claude-sonnet-45",
-      "modelBId": "gpt-41",
-      "winnerModelId": "claude-sonnet-45",
+      "id": "real-poc-003",
+      "playedAt": "2026-06-30T10:00:00Z",
+      "gameId": "werewolf-ko",
+      "modelAId": "openai-gpt-41-nano",
+      "modelBId": "gemini-25-flash-lite",
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_b",
+      "turns": 3,
+      "durationSeconds": 61,
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf PoC match. Model B provides a more robust and logical argument by referencing specific observational tactics (speech order, answer style, interaction) and critiquing Model A's reliance on vague 'feelings' and 'suspicion'. Model A's reasoning is circular and lacks concrete examples of the 'inconsistency' and 'ambiguity' it claims to observe."
+    },
+    {
+      "id": "real-poc-004",
+      "playedAt": "2026-06-30T10:30:00Z",
+      "gameId": "werewolf-ko",
+      "modelAId": "gemini-25-flash-lite",
+      "modelBId": "openai-gpt-41-nano",
+      "winnerModelId": "gemini-25-flash-lite",
       "result": "model_a",
-      "turns": 10,
-      "durationSeconds": 141,
-      "summary": "Claude Sonnet 4.5 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-003",
-      "playedAt": "2026-06-01T10:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "gpt-41",
-      "modelBId": "claude-sonnet-45",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_b",
-      "turns": 16,
-      "durationSeconds": 196,
-      "summary": "Claude Sonnet 4.5 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-004",
-      "playedAt": "2026-06-01T11:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "claude-sonnet-45",
-      "modelBId": "gpt-41",
-      "winnerModelId": "gpt-41",
-      "result": "model_b",
-      "turns": 18,
-      "durationSeconds": 219,
-      "summary": "GPT-4.1 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-005",
-      "playedAt": "2026-06-01T12:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "gpt-41",
-      "modelBId": "gemini-25-flash",
-      "winnerModelId": "gpt-41",
-      "result": "model_a",
-      "turns": 16,
-      "durationSeconds": 210,
-      "summary": "GPT-4.1 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-006",
-      "playedAt": "2026-06-01T12:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "gemini-25-flash",
-      "modelBId": "gpt-41",
-      "winnerModelId": null,
-      "result": "draw",
-      "turns": 18,
-      "durationSeconds": 198,
-      "summary": "Gemini 2.5 Flash and GPT-4.1 split the English scenario after balanced suspicion reads."
-    },
-    {
-      "id": "match-007",
-      "playedAt": "2026-06-01T13:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "gpt-41",
-      "modelBId": "gemini-25-flash",
-      "winnerModelId": "gemini-25-flash",
-      "result": "model_b",
-      "turns": 24,
-      "durationSeconds": 253,
-      "summary": "Gemini 2.5 Flash won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-008",
-      "playedAt": "2026-06-01T14:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "gemini-25-flash",
-      "modelBId": "gpt-41",
-      "winnerModelId": "gpt-41",
-      "result": "model_b",
-      "turns": 12,
-      "durationSeconds": 164,
-      "summary": "GPT-4.1 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-009",
-      "playedAt": "2026-06-01T15:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "gpt-41",
-      "modelBId": "grok-4",
-      "winnerModelId": "gpt-41",
-      "result": "model_a",
-      "turns": 10,
-      "durationSeconds": 155,
-      "summary": "GPT-4.1 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-010",
-      "playedAt": "2026-06-01T15:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "grok-4",
-      "modelBId": "gpt-41",
-      "winnerModelId": "gpt-41",
-      "result": "model_b",
-      "turns": 12,
-      "durationSeconds": 178,
-      "summary": "GPT-4.1 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-011",
-      "playedAt": "2026-06-01T16:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "gpt-41",
-      "modelBId": "grok-4",
-      "winnerModelId": "gpt-41",
-      "result": "model_a",
-      "turns": 18,
-      "durationSeconds": 198,
-      "summary": "GPT-4.1 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-012",
-      "playedAt": "2026-06-01T17:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "grok-4",
-      "modelBId": "gpt-41",
-      "winnerModelId": "gpt-41",
-      "result": "model_b",
-      "turns": 20,
-      "durationSeconds": 221,
-      "summary": "GPT-4.1 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-013",
-      "playedAt": "2026-06-01T18:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "gpt-41",
-      "modelBId": "solar-pro-3",
-      "winnerModelId": "gpt-41",
-      "result": "model_a",
-      "turns": 18,
-      "durationSeconds": 212,
-      "summary": "GPT-4.1 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-014",
-      "playedAt": "2026-06-01T18:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "solar-pro-3",
-      "modelBId": "gpt-41",
-      "winnerModelId": "gpt-41",
-      "result": "model_b",
-      "turns": 20,
-      "durationSeconds": 235,
-      "summary": "GPT-4.1 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-015",
-      "playedAt": "2026-06-01T19:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "gpt-41",
-      "modelBId": "solar-pro-3",
-      "winnerModelId": "solar-pro-3",
-      "result": "model_b",
-      "turns": 12,
-      "durationSeconds": 178,
-      "summary": "Solar Pro 3 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-016",
-      "playedAt": "2026-06-01T20:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "solar-pro-3",
-      "modelBId": "gpt-41",
-      "winnerModelId": null,
-      "result": "draw",
-      "turns": 14,
-      "durationSeconds": 166,
-      "summary": "Solar Pro 3 and GPT-4.1 split the Korean scenario after balanced suspicion reads."
-    },
-    {
-      "id": "match-017",
-      "playedAt": "2026-06-01T21:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "claude-sonnet-45",
-      "modelBId": "gemini-25-flash",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_a",
-      "turns": 12,
-      "durationSeconds": 157,
-      "summary": "Claude Sonnet 4.5 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-018",
-      "playedAt": "2026-06-01T21:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "gemini-25-flash",
-      "modelBId": "claude-sonnet-45",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_b",
-      "turns": 14,
-      "durationSeconds": 180,
-      "summary": "Claude Sonnet 4.5 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-019",
-      "playedAt": "2026-06-01T22:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "claude-sonnet-45",
-      "modelBId": "gemini-25-flash",
-      "winnerModelId": null,
-      "result": "draw",
-      "turns": 20,
-      "durationSeconds": 235,
-      "summary": "Claude Sonnet 4.5 and Gemini 2.5 Flash split the Korean scenario after balanced suspicion reads."
-    },
-    {
-      "id": "match-020",
-      "playedAt": "2026-06-01T23:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "gemini-25-flash",
-      "modelBId": "claude-sonnet-45",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_b",
-      "turns": 22,
-      "durationSeconds": 258,
-      "summary": "Claude Sonnet 4.5 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-021",
-      "playedAt": "2026-06-02T00:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "claude-sonnet-45",
-      "modelBId": "grok-4",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_a",
-      "turns": 20,
-      "durationSeconds": 214,
-      "summary": "Claude Sonnet 4.5 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-022",
-      "playedAt": "2026-06-02T00:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "grok-4",
-      "modelBId": "claude-sonnet-45",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_b",
-      "turns": 8,
-      "durationSeconds": 125,
-      "summary": "Claude Sonnet 4.5 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-023",
-      "playedAt": "2026-06-02T01:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "claude-sonnet-45",
-      "modelBId": "grok-4",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_a",
-      "turns": 14,
-      "durationSeconds": 180,
-      "summary": "Claude Sonnet 4.5 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-024",
-      "playedAt": "2026-06-02T02:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "grok-4",
-      "modelBId": "claude-sonnet-45",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_b",
-      "turns": 16,
-      "durationSeconds": 203,
-      "summary": "Claude Sonnet 4.5 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-025",
-      "playedAt": "2026-06-02T03:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "claude-sonnet-45",
-      "modelBId": "solar-pro-3",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_a",
-      "turns": 14,
-      "durationSeconds": 194,
-      "summary": "Claude Sonnet 4.5 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-026",
-      "playedAt": "2026-06-02T03:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "solar-pro-3",
-      "modelBId": "claude-sonnet-45",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_b",
-      "turns": 16,
-      "durationSeconds": 182,
-      "summary": "Claude Sonnet 4.5 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-027",
-      "playedAt": "2026-06-02T04:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "claude-sonnet-45",
-      "modelBId": "solar-pro-3",
-      "winnerModelId": "solar-pro-3",
-      "result": "model_b",
-      "turns": 22,
-      "durationSeconds": 237,
-      "summary": "Solar Pro 3 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-028",
-      "playedAt": "2026-06-02T05:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "solar-pro-3",
-      "modelBId": "claude-sonnet-45",
-      "winnerModelId": "claude-sonnet-45",
-      "result": "model_b",
-      "turns": 24,
-      "durationSeconds": 260,
-      "summary": "Claude Sonnet 4.5 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-029",
-      "playedAt": "2026-06-02T06:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "gemini-25-flash",
-      "modelBId": "grok-4",
-      "winnerModelId": "gemini-25-flash",
-      "result": "model_a",
-      "turns": 8,
-      "durationSeconds": 139,
-      "summary": "Gemini 2.5 Flash won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-030",
-      "playedAt": "2026-06-02T06:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "grok-4",
-      "modelBId": "gemini-25-flash",
-      "winnerModelId": null,
-      "result": "draw",
-      "turns": 10,
-      "durationSeconds": 162,
-      "summary": "Grok 4 and Gemini 2.5 Flash split the English scenario after balanced suspicion reads."
-    },
-    {
-      "id": "match-031",
-      "playedAt": "2026-06-02T07:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "gemini-25-flash",
-      "modelBId": "grok-4",
-      "winnerModelId": "gemini-25-flash",
-      "result": "model_a",
-      "turns": 16,
-      "durationSeconds": 182,
-      "summary": "Gemini 2.5 Flash won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-032",
-      "playedAt": "2026-06-02T08:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "grok-4",
-      "modelBId": "gemini-25-flash",
-      "winnerModelId": "gemini-25-flash",
-      "result": "model_b",
-      "turns": 18,
-      "durationSeconds": 205,
-      "summary": "Gemini 2.5 Flash won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-033",
-      "playedAt": "2026-06-02T09:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "gemini-25-flash",
-      "modelBId": "solar-pro-3",
-      "winnerModelId": "gemini-25-flash",
-      "result": "model_a",
-      "turns": 16,
-      "durationSeconds": 196,
-      "summary": "Gemini 2.5 Flash won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-034",
-      "playedAt": "2026-06-02T09:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "solar-pro-3",
-      "modelBId": "gemini-25-flash",
-      "winnerModelId": "gemini-25-flash",
-      "result": "model_b",
-      "turns": 18,
-      "durationSeconds": 219,
-      "summary": "Gemini 2.5 Flash won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-035",
-      "playedAt": "2026-06-02T10:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "gemini-25-flash",
-      "modelBId": "solar-pro-3",
-      "winnerModelId": "solar-pro-3",
-      "result": "model_b",
-      "turns": 24,
-      "durationSeconds": 274,
-      "summary": "Solar Pro 3 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-036",
-      "playedAt": "2026-06-02T11:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "solar-pro-3",
-      "modelBId": "gemini-25-flash",
-      "winnerModelId": "gemini-25-flash",
-      "result": "model_b",
-      "turns": 12,
-      "durationSeconds": 150,
-      "summary": "Gemini 2.5 Flash won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-037",
-      "playedAt": "2026-06-02T12:00:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "grok-4",
-      "modelBId": "solar-pro-3",
-      "winnerModelId": "grok-4",
-      "result": "model_a",
-      "turns": 10,
-      "durationSeconds": 141,
-      "summary": "Grok 4 won the English Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-038",
-      "playedAt": "2026-06-02T12:45:00Z",
-      "gameId": "werewolf-en",
-      "modelAId": "solar-pro-3",
-      "modelBId": "grok-4",
-      "winnerModelId": null,
-      "result": "draw",
-      "turns": 12,
-      "durationSeconds": 164,
-      "summary": "Solar Pro 3 and Grok 4 split the English scenario after balanced suspicion reads."
-    },
-    {
-      "id": "match-039",
-      "playedAt": "2026-06-02T13:30:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "grok-4",
-      "modelBId": "solar-pro-3",
-      "winnerModelId": "solar-pro-3",
-      "result": "model_b",
-      "turns": 18,
-      "durationSeconds": 219,
-      "summary": "Solar Pro 3 won the Korean Werewolf scenario with clearer vote pressure and role inference."
-    },
-    {
-      "id": "match-040",
-      "playedAt": "2026-06-02T14:15:00Z",
-      "gameId": "werewolf-ko",
-      "modelAId": "solar-pro-3",
-      "modelBId": "grok-4",
-      "winnerModelId": "solar-pro-3",
-      "result": "model_a",
-      "turns": 20,
-      "durationSeconds": 242,
-      "summary": "Solar Pro 3 won the Korean Werewolf scenario with clearer vote pressure and role inference."
+      "turns": 3,
+      "durationSeconds": 49,
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf PoC match. Model A provides a more detailed and specific explanation of its reasoning, including examples of how it analyzes evidence and justifies its vote. Model B's arguments are more general and less convincing."
     }
   ],
   "ratingSnapshots": [
     {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1516,
-      "recordedAt": "2026-06-01T09:00:00Z",
-      "matchId": "match-001"
-    },
-    {
-      "modelId": "claude-sonnet-45",
+      "modelId": "openai-gpt-41-nano",
       "gameId": null,
       "rating": 1484,
-      "recordedAt": "2026-06-01T09:00:00Z",
-      "matchId": "match-001"
+      "recordedAt": "2026-06-30T09:00:00Z",
+      "matchId": "real-poc-001"
     },
     {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-en",
+      "modelId": "gemini-25-flash-lite",
+      "gameId": null,
       "rating": 1516,
-      "recordedAt": "2026-06-01T09:00:00Z",
-      "matchId": "match-001"
+      "recordedAt": "2026-06-30T09:00:00Z",
+      "matchId": "real-poc-001"
     },
     {
-      "modelId": "claude-sonnet-45",
+      "modelId": "openai-gpt-41-nano",
       "gameId": "werewolf-en",
       "rating": 1484,
-      "recordedAt": "2026-06-01T09:00:00Z",
-      "matchId": "match-001"
+      "recordedAt": "2026-06-30T09:00:00Z",
+      "matchId": "real-poc-001"
     },
     {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1501,
-      "recordedAt": "2026-06-01T09:45:00Z",
-      "matchId": "match-002"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1499,
-      "recordedAt": "2026-06-01T09:45:00Z",
-      "matchId": "match-002"
-    },
-    {
-      "modelId": "claude-sonnet-45",
+      "modelId": "gemini-25-flash-lite",
       "gameId": "werewolf-en",
-      "rating": 1501,
-      "recordedAt": "2026-06-01T09:45:00Z",
-      "matchId": "match-002"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-en",
-      "rating": 1499,
-      "recordedAt": "2026-06-01T09:45:00Z",
-      "matchId": "match-002"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1483,
-      "recordedAt": "2026-06-01T10:30:00Z",
-      "matchId": "match-003"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1517,
-      "recordedAt": "2026-06-01T10:30:00Z",
-      "matchId": "match-003"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-ko",
-      "rating": 1484,
-      "recordedAt": "2026-06-01T10:30:00Z",
-      "matchId": "match-003"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-ko",
       "rating": 1516,
-      "recordedAt": "2026-06-01T10:30:00Z",
-      "matchId": "match-003"
+      "recordedAt": "2026-06-30T09:00:00Z",
+      "matchId": "real-poc-001"
     },
     {
-      "modelId": "claude-sonnet-45",
+      "modelId": "gemini-25-flash-lite",
       "gameId": null,
-      "rating": 1500,
-      "recordedAt": "2026-06-01T11:15:00Z",
-      "matchId": "match-004"
+      "rating": 1531,
+      "recordedAt": "2026-06-30T09:30:00Z",
+      "matchId": "real-poc-002"
     },
     {
-      "modelId": "gpt-41",
+      "modelId": "openai-gpt-41-nano",
       "gameId": null,
-      "rating": 1500,
-      "recordedAt": "2026-06-01T11:15:00Z",
-      "matchId": "match-004"
+      "rating": 1469,
+      "recordedAt": "2026-06-30T09:30:00Z",
+      "matchId": "real-poc-002"
     },
     {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-ko",
-      "rating": 1499,
-      "recordedAt": "2026-06-01T11:15:00Z",
-      "matchId": "match-004"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-ko",
-      "rating": 1501,
-      "recordedAt": "2026-06-01T11:15:00Z",
-      "matchId": "match-004"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1516,
-      "recordedAt": "2026-06-01T12:00:00Z",
-      "matchId": "match-005"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1484,
-      "recordedAt": "2026-06-01T12:00:00Z",
-      "matchId": "match-005"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-en",
-      "rating": 1515,
-      "recordedAt": "2026-06-01T12:00:00Z",
-      "matchId": "match-005"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-en",
-      "rating": 1484,
-      "recordedAt": "2026-06-01T12:00:00Z",
-      "matchId": "match-005"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1485,
-      "recordedAt": "2026-06-01T12:45:00Z",
-      "matchId": "match-006"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1515,
-      "recordedAt": "2026-06-01T12:45:00Z",
-      "matchId": "match-006"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-en",
-      "rating": 1485,
-      "recordedAt": "2026-06-01T12:45:00Z",
-      "matchId": "match-006"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-en",
-      "rating": 1513,
-      "recordedAt": "2026-06-01T12:45:00Z",
-      "matchId": "match-006"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1497,
-      "recordedAt": "2026-06-01T13:30:00Z",
-      "matchId": "match-007"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1503,
-      "recordedAt": "2026-06-01T13:30:00Z",
-      "matchId": "match-007"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-ko",
-      "rating": 1485,
-      "recordedAt": "2026-06-01T13:30:00Z",
-      "matchId": "match-007"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-ko",
-      "rating": 1516,
-      "recordedAt": "2026-06-01T13:30:00Z",
-      "matchId": "match-007"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1487,
-      "recordedAt": "2026-06-01T14:15:00Z",
-      "matchId": "match-008"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1514,
-      "recordedAt": "2026-06-01T14:15:00Z",
-      "matchId": "match-008"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-ko",
-      "rating": 1499,
-      "recordedAt": "2026-06-01T14:15:00Z",
-      "matchId": "match-008"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-ko",
-      "rating": 1503,
-      "recordedAt": "2026-06-01T14:15:00Z",
-      "matchId": "match-008"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1529,
-      "recordedAt": "2026-06-01T15:00:00Z",
-      "matchId": "match-009"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1485,
-      "recordedAt": "2026-06-01T15:00:00Z",
-      "matchId": "match-009"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-en",
-      "rating": 1529,
-      "recordedAt": "2026-06-01T15:00:00Z",
-      "matchId": "match-009"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-en",
-      "rating": 1485,
-      "recordedAt": "2026-06-01T15:00:00Z",
-      "matchId": "match-009"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1471,
-      "recordedAt": "2026-06-01T15:45:00Z",
-      "matchId": "match-010"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1543,
-      "recordedAt": "2026-06-01T15:45:00Z",
-      "matchId": "match-010"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-en",
-      "rating": 1471,
-      "recordedAt": "2026-06-01T15:45:00Z",
-      "matchId": "match-010"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-en",
-      "rating": 1543,
-      "recordedAt": "2026-06-01T15:45:00Z",
-      "matchId": "match-010"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1556,
-      "recordedAt": "2026-06-01T16:30:00Z",
-      "matchId": "match-011"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1458,
-      "recordedAt": "2026-06-01T16:30:00Z",
-      "matchId": "match-011"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-ko",
-      "rating": 1519,
-      "recordedAt": "2026-06-01T16:30:00Z",
-      "matchId": "match-011"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-ko",
-      "rating": 1484,
-      "recordedAt": "2026-06-01T16:30:00Z",
-      "matchId": "match-011"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1446,
-      "recordedAt": "2026-06-01T17:15:00Z",
-      "matchId": "match-012"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1567,
-      "recordedAt": "2026-06-01T17:15:00Z",
-      "matchId": "match-012"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-ko",
-      "rating": 1470,
-      "recordedAt": "2026-06-01T17:15:00Z",
-      "matchId": "match-012"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-ko",
-      "rating": 1533,
-      "recordedAt": "2026-06-01T17:15:00Z",
-      "matchId": "match-012"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1580,
-      "recordedAt": "2026-06-01T18:00:00Z",
-      "matchId": "match-013"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1487,
-      "recordedAt": "2026-06-01T18:00:00Z",
-      "matchId": "match-013"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-en",
-      "rating": 1557,
-      "recordedAt": "2026-06-01T18:00:00Z",
-      "matchId": "match-013"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-en",
-      "rating": 1486,
-      "recordedAt": "2026-06-01T18:00:00Z",
-      "matchId": "match-013"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1475,
-      "recordedAt": "2026-06-01T18:45:00Z",
-      "matchId": "match-014"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1592,
-      "recordedAt": "2026-06-01T18:45:00Z",
-      "matchId": "match-014"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-en",
-      "rating": 1473,
-      "recordedAt": "2026-06-01T18:45:00Z",
-      "matchId": "match-014"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-en",
-      "rating": 1569,
-      "recordedAt": "2026-06-01T18:45:00Z",
-      "matchId": "match-014"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1571,
-      "recordedAt": "2026-06-01T19:30:00Z",
-      "matchId": "match-015"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1496,
-      "recordedAt": "2026-06-01T19:30:00Z",
-      "matchId": "match-015"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-ko",
-      "rating": 1516,
-      "recordedAt": "2026-06-01T19:30:00Z",
-      "matchId": "match-015"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-ko",
-      "rating": 1518,
-      "recordedAt": "2026-06-01T19:30:00Z",
-      "matchId": "match-015"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1500,
-      "recordedAt": "2026-06-01T20:15:00Z",
-      "matchId": "match-016"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": null,
-      "rating": 1568,
-      "recordedAt": "2026-06-01T20:15:00Z",
-      "matchId": "match-016"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-ko",
-      "rating": 1517,
-      "recordedAt": "2026-06-01T20:15:00Z",
-      "matchId": "match-016"
-    },
-    {
-      "modelId": "gpt-41",
-      "gameId": "werewolf-ko",
-      "rating": 1516,
-      "recordedAt": "2026-06-01T20:15:00Z",
-      "matchId": "match-016"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1515,
-      "recordedAt": "2026-06-01T21:00:00Z",
-      "matchId": "match-017"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1471,
-      "recordedAt": "2026-06-01T21:00:00Z",
-      "matchId": "match-017"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-en",
-      "rating": 1517,
-      "recordedAt": "2026-06-01T21:00:00Z",
-      "matchId": "match-017"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-en",
-      "rating": 1470,
-      "recordedAt": "2026-06-01T21:00:00Z",
-      "matchId": "match-017"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1457,
-      "recordedAt": "2026-06-01T21:45:00Z",
-      "matchId": "match-018"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1529,
-      "recordedAt": "2026-06-01T21:45:00Z",
-      "matchId": "match-018"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-en",
-      "rating": 1456,
-      "recordedAt": "2026-06-01T21:45:00Z",
-      "matchId": "match-018"
-    },
-    {
-      "modelId": "claude-sonnet-45",
+      "modelId": "gemini-25-flash-lite",
       "gameId": "werewolf-en",
       "rating": 1531,
-      "recordedAt": "2026-06-01T21:45:00Z",
-      "matchId": "match-018"
+      "recordedAt": "2026-06-30T09:30:00Z",
+      "matchId": "real-poc-002"
     },
     {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1526,
-      "recordedAt": "2026-06-01T22:30:00Z",
-      "matchId": "match-019"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1460,
-      "recordedAt": "2026-06-01T22:30:00Z",
-      "matchId": "match-019"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-ko",
-      "rating": 1499,
-      "recordedAt": "2026-06-01T22:30:00Z",
-      "matchId": "match-019"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-ko",
-      "rating": 1499,
-      "recordedAt": "2026-06-01T22:30:00Z",
-      "matchId": "match-019"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1447,
-      "recordedAt": "2026-06-01T23:15:00Z",
-      "matchId": "match-020"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1539,
-      "recordedAt": "2026-06-01T23:15:00Z",
-      "matchId": "match-020"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-ko",
-      "rating": 1483,
-      "recordedAt": "2026-06-01T23:15:00Z",
-      "matchId": "match-020"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-ko",
-      "rating": 1515,
-      "recordedAt": "2026-06-01T23:15:00Z",
-      "matchId": "match-020"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1551,
-      "recordedAt": "2026-06-02T00:00:00Z",
-      "matchId": "match-021"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1434,
-      "recordedAt": "2026-06-02T00:00:00Z",
-      "matchId": "match-021"
-    },
-    {
-      "modelId": "claude-sonnet-45",
+      "modelId": "openai-gpt-41-nano",
       "gameId": "werewolf-en",
-      "rating": 1544,
-      "recordedAt": "2026-06-02T00:00:00Z",
-      "matchId": "match-021"
+      "rating": 1469,
+      "recordedAt": "2026-06-30T09:30:00Z",
+      "matchId": "real-poc-002"
     },
     {
-      "modelId": "grok-4",
-      "gameId": "werewolf-en",
-      "rating": 1457,
-      "recordedAt": "2026-06-02T00:00:00Z",
-      "matchId": "match-021"
-    },
-    {
-      "modelId": "grok-4",
+      "modelId": "openai-gpt-41-nano",
       "gameId": null,
-      "rating": 1424,
-      "recordedAt": "2026-06-02T00:45:00Z",
-      "matchId": "match-022"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1562,
-      "recordedAt": "2026-06-02T00:45:00Z",
-      "matchId": "match-022"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-en",
-      "rating": 1445,
-      "recordedAt": "2026-06-02T00:45:00Z",
-      "matchId": "match-022"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-en",
-      "rating": 1556,
-      "recordedAt": "2026-06-02T00:45:00Z",
-      "matchId": "match-022"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1572,
-      "recordedAt": "2026-06-02T01:30:00Z",
-      "matchId": "match-023"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1414,
-      "recordedAt": "2026-06-02T01:30:00Z",
-      "matchId": "match-023"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-ko",
-      "rating": 1528,
-      "recordedAt": "2026-06-02T01:30:00Z",
-      "matchId": "match-023"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-ko",
       "rating": 1456,
-      "recordedAt": "2026-06-02T01:30:00Z",
-      "matchId": "match-023"
+      "recordedAt": "2026-06-30T10:00:00Z",
+      "matchId": "real-poc-003"
     },
     {
-      "modelId": "grok-4",
+      "modelId": "gemini-25-flash-lite",
       "gameId": null,
-      "rating": 1405,
-      "recordedAt": "2026-06-02T02:15:00Z",
-      "matchId": "match-024"
+      "rating": 1544,
+      "recordedAt": "2026-06-30T10:00:00Z",
+      "matchId": "real-poc-003"
     },
     {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1581,
-      "recordedAt": "2026-06-02T02:15:00Z",
-      "matchId": "match-024"
-    },
-    {
-      "modelId": "grok-4",
+      "modelId": "openai-gpt-41-nano",
       "gameId": "werewolf-ko",
-      "rating": 1443,
-      "recordedAt": "2026-06-02T02:15:00Z",
-      "matchId": "match-024"
+      "rating": 1484,
+      "recordedAt": "2026-06-30T10:00:00Z",
+      "matchId": "real-poc-003"
     },
     {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-ko",
-      "rating": 1541,
-      "recordedAt": "2026-06-02T02:15:00Z",
-      "matchId": "match-024"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1593,
-      "recordedAt": "2026-06-02T03:00:00Z",
-      "matchId": "match-025"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1487,
-      "recordedAt": "2026-06-02T03:00:00Z",
-      "matchId": "match-025"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-en",
-      "rating": 1568,
-      "recordedAt": "2026-06-02T03:00:00Z",
-      "matchId": "match-025"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-en",
-      "rating": 1461,
-      "recordedAt": "2026-06-02T03:00:00Z",
-      "matchId": "match-025"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1476,
-      "recordedAt": "2026-06-02T03:45:00Z",
-      "matchId": "match-026"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1604,
-      "recordedAt": "2026-06-02T03:45:00Z",
-      "matchId": "match-026"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-en",
-      "rating": 1450,
-      "recordedAt": "2026-06-02T03:45:00Z",
-      "matchId": "match-026"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-en",
-      "rating": 1579,
-      "recordedAt": "2026-06-02T03:45:00Z",
-      "matchId": "match-026"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1583,
-      "recordedAt": "2026-06-02T04:30:00Z",
-      "matchId": "match-027"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1498,
-      "recordedAt": "2026-06-02T04:30:00Z",
-      "matchId": "match-027"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-ko",
-      "rating": 1524,
-      "recordedAt": "2026-06-02T04:30:00Z",
-      "matchId": "match-027"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-ko",
-      "rating": 1535,
-      "recordedAt": "2026-06-02T04:30:00Z",
-      "matchId": "match-027"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1486,
-      "recordedAt": "2026-06-02T05:15:00Z",
-      "matchId": "match-028"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": null,
-      "rating": 1595,
-      "recordedAt": "2026-06-02T05:15:00Z",
-      "matchId": "match-028"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-ko",
-      "rating": 1518,
-      "recordedAt": "2026-06-02T05:15:00Z",
-      "matchId": "match-028"
-    },
-    {
-      "modelId": "claude-sonnet-45",
-      "gameId": "werewolf-ko",
-      "rating": 1541,
-      "recordedAt": "2026-06-02T05:15:00Z",
-      "matchId": "match-028"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1461,
-      "recordedAt": "2026-06-02T06:00:00Z",
-      "matchId": "match-029"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1390,
-      "recordedAt": "2026-06-02T06:00:00Z",
-      "matchId": "match-029"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-en",
-      "rating": 1472,
-      "recordedAt": "2026-06-02T06:00:00Z",
-      "matchId": "match-029"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-en",
-      "rating": 1430,
-      "recordedAt": "2026-06-02T06:00:00Z",
-      "matchId": "match-029"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1394,
-      "recordedAt": "2026-06-02T06:45:00Z",
-      "matchId": "match-030"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1458,
-      "recordedAt": "2026-06-02T06:45:00Z",
-      "matchId": "match-030"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-en",
-      "rating": 1432,
-      "recordedAt": "2026-06-02T06:45:00Z",
-      "matchId": "match-030"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-en",
-      "rating": 1470,
-      "recordedAt": "2026-06-02T06:45:00Z",
-      "matchId": "match-030"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1471,
-      "recordedAt": "2026-06-02T07:30:00Z",
-      "matchId": "match-031"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1381,
-      "recordedAt": "2026-06-02T07:30:00Z",
-      "matchId": "match-031"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-ko",
-      "rating": 1497,
-      "recordedAt": "2026-06-02T07:30:00Z",
-      "matchId": "match-031"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-ko",
-      "rating": 1429,
-      "recordedAt": "2026-06-02T07:30:00Z",
-      "matchId": "match-031"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1369,
-      "recordedAt": "2026-06-02T08:15:00Z",
-      "matchId": "match-032"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1483,
-      "recordedAt": "2026-06-02T08:15:00Z",
-      "matchId": "match-032"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-ko",
-      "rating": 1416,
-      "recordedAt": "2026-06-02T08:15:00Z",
-      "matchId": "match-032"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-ko",
-      "rating": 1510,
-      "recordedAt": "2026-06-02T08:15:00Z",
-      "matchId": "match-032"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1499,
-      "recordedAt": "2026-06-02T09:00:00Z",
-      "matchId": "match-033"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1470,
-      "recordedAt": "2026-06-02T09:00:00Z",
-      "matchId": "match-033"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-en",
-      "rating": 1485,
-      "recordedAt": "2026-06-02T09:00:00Z",
-      "matchId": "match-033"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-en",
-      "rating": 1435,
-      "recordedAt": "2026-06-02T09:00:00Z",
-      "matchId": "match-033"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1455,
-      "recordedAt": "2026-06-02T09:45:00Z",
-      "matchId": "match-034"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1514,
-      "recordedAt": "2026-06-02T09:45:00Z",
-      "matchId": "match-034"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-en",
-      "rating": 1421,
-      "recordedAt": "2026-06-02T09:45:00Z",
-      "matchId": "match-034"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-en",
-      "rating": 1499,
-      "recordedAt": "2026-06-02T09:45:00Z",
-      "matchId": "match-034"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1495,
-      "recordedAt": "2026-06-02T10:30:00Z",
-      "matchId": "match-035"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1474,
-      "recordedAt": "2026-06-02T10:30:00Z",
-      "matchId": "match-035"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": "werewolf-ko",
-      "rating": 1494,
-      "recordedAt": "2026-06-02T10:30:00Z",
-      "matchId": "match-035"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-ko",
-      "rating": 1534,
-      "recordedAt": "2026-06-02T10:30:00Z",
-      "matchId": "match-035"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1459,
-      "recordedAt": "2026-06-02T11:15:00Z",
-      "matchId": "match-036"
-    },
-    {
-      "modelId": "gemini-25-flash",
-      "gameId": null,
-      "rating": 1510,
-      "recordedAt": "2026-06-02T11:15:00Z",
-      "matchId": "match-036"
-    },
-    {
-      "modelId": "solar-pro-3",
+      "modelId": "gemini-25-flash-lite",
       "gameId": "werewolf-ko",
       "rating": 1516,
-      "recordedAt": "2026-06-02T11:15:00Z",
-      "matchId": "match-036"
+      "recordedAt": "2026-06-30T10:00:00Z",
+      "matchId": "real-poc-003"
     },
     {
-      "modelId": "gemini-25-flash",
+      "modelId": "gemini-25-flash-lite",
+      "gameId": null,
+      "rating": 1556,
+      "recordedAt": "2026-06-30T10:30:00Z",
+      "matchId": "real-poc-004"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": null,
+      "rating": 1444,
+      "recordedAt": "2026-06-30T10:30:00Z",
+      "matchId": "real-poc-004"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
       "gameId": "werewolf-ko",
-      "rating": 1512,
-      "recordedAt": "2026-06-02T11:15:00Z",
-      "matchId": "match-036"
+      "rating": 1531,
+      "recordedAt": "2026-06-30T10:30:00Z",
+      "matchId": "real-poc-004"
     },
     {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1389,
-      "recordedAt": "2026-06-02T12:00:00Z",
-      "matchId": "match-037"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1439,
-      "recordedAt": "2026-06-02T12:00:00Z",
-      "matchId": "match-037"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-en",
-      "rating": 1447,
-      "recordedAt": "2026-06-02T12:00:00Z",
-      "matchId": "match-037"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-en",
-      "rating": 1405,
-      "recordedAt": "2026-06-02T12:00:00Z",
-      "matchId": "match-037"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1436,
-      "recordedAt": "2026-06-02T12:45:00Z",
-      "matchId": "match-038"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1391,
-      "recordedAt": "2026-06-02T12:45:00Z",
-      "matchId": "match-038"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-en",
-      "rating": 1407,
-      "recordedAt": "2026-06-02T12:45:00Z",
-      "matchId": "match-038"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-en",
-      "rating": 1445,
-      "recordedAt": "2026-06-02T12:45:00Z",
-      "matchId": "match-038"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1377,
-      "recordedAt": "2026-06-02T13:30:00Z",
-      "matchId": "match-039"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1450,
-      "recordedAt": "2026-06-02T13:30:00Z",
-      "matchId": "match-039"
-    },
-    {
-      "modelId": "grok-4",
+      "modelId": "openai-gpt-41-nano",
       "gameId": "werewolf-ko",
-      "rating": 1404,
-      "recordedAt": "2026-06-02T13:30:00Z",
-      "matchId": "match-039"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-ko",
-      "rating": 1527,
-      "recordedAt": "2026-06-02T13:30:00Z",
-      "matchId": "match-039"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": null,
-      "rating": 1463,
-      "recordedAt": "2026-06-02T14:15:00Z",
-      "matchId": "match-040"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": null,
-      "rating": 1364,
-      "recordedAt": "2026-06-02T14:15:00Z",
-      "matchId": "match-040"
-    },
-    {
-      "modelId": "solar-pro-3",
-      "gameId": "werewolf-ko",
-      "rating": 1538,
-      "recordedAt": "2026-06-02T14:15:00Z",
-      "matchId": "match-040"
-    },
-    {
-      "modelId": "grok-4",
-      "gameId": "werewolf-ko",
-      "rating": 1394,
-      "recordedAt": "2026-06-02T14:15:00Z",
-      "matchId": "match-040"
+      "rating": 1469,
+      "recordedAt": "2026-06-30T10:30:00Z",
+      "matchId": "real-poc-004"
     }
   ],
   "costSnapshots": [
     {
-      "matchId": "match-001",
-      "modelId": "gpt-41",
+      "matchId": "real-poc-001",
+      "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
-      "inputTokens": 1301,
-      "outputTokens": 713,
-      "cachedTokens": 156,
-      "requestCount": 2,
-      "elapsedSeconds": 21.5,
-      "estimatedCostUsd": 0.008306
+      "inputTokens": 455.5,
+      "outputTokens": 240.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 13.181,
+      "estimatedCostUsd": 0.00014175
     },
     {
-      "matchId": "match-001",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1318,
-      "outputTokens": 713,
-      "cachedTokens": 158,
-      "requestCount": 2,
-      "elapsedSeconds": 22.2,
-      "estimatedCostUsd": 0.014649
+      "matchId": "real-poc-001",
+      "modelId": "gemini-25-flash-lite",
+      "provider": "Google",
+      "inputTokens": 454.5,
+      "outputTokens": 470.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 39.544,
+      "estimatedCostUsd": 0.00023365
     },
     {
-      "matchId": "match-002",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1414,
-      "outputTokens": 802,
-      "cachedTokens": 169,
-      "requestCount": 2,
-      "elapsedSeconds": 25.4,
-      "estimatedCostUsd": 0.016272
+      "matchId": "real-poc-002",
+      "modelId": "gemini-25-flash-lite",
+      "provider": "Google",
+      "inputTokens": 462.0,
+      "outputTokens": 459.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 17.512,
+      "estimatedCostUsd": 0.0002298
     },
     {
-      "matchId": "match-002",
-      "modelId": "gpt-41",
+      "matchId": "real-poc-002",
+      "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
-      "inputTokens": 1397,
-      "outputTokens": 802,
-      "cachedTokens": 167,
-      "requestCount": 2,
-      "elapsedSeconds": 24.7,
-      "estimatedCostUsd": 0.00921
+      "inputTokens": 463.0,
+      "outputTokens": 244.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 6.133,
+      "estimatedCostUsd": 0.0001439
     },
     {
-      "matchId": "match-003",
-      "modelId": "gpt-41",
+      "matchId": "real-poc-003",
+      "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
-      "inputTokens": 1988,
-      "outputTokens": 1162,
-      "cachedTokens": 238,
-      "requestCount": 4,
-      "elapsedSeconds": 34.3,
-      "estimatedCostUsd": 0.013272
+      "inputTokens": 468.5,
+      "outputTokens": 335.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 17.542,
+      "estimatedCostUsd": 0.00018085
     },
     {
-      "matchId": "match-003",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 2008,
-      "outputTokens": 1162,
-      "cachedTokens": 240,
-      "requestCount": 4,
-      "elapsedSeconds": 35.0,
-      "estimatedCostUsd": 0.023454
+      "matchId": "real-poc-003",
+      "modelId": "gemini-25-flash-lite",
+      "provider": "Google",
+      "inputTokens": 463.5,
+      "outputTokens": 393.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 43.841,
+      "estimatedCostUsd": 0.00020355
     },
     {
-      "matchId": "match-004",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 2121,
-      "outputTokens": 1267,
-      "cachedTokens": 254,
-      "requestCount": 4,
-      "elapsedSeconds": 38.2,
-      "estimatedCostUsd": 0.025368
+      "matchId": "real-poc-004",
+      "modelId": "gemini-25-flash-lite",
+      "provider": "Google",
+      "inputTokens": 484.5,
+      "outputTokens": 427.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 39.476,
+      "estimatedCostUsd": 0.00021945
     },
     {
-      "matchId": "match-004",
-      "modelId": "gpt-41",
+      "matchId": "real-poc-004",
+      "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
-      "inputTokens": 2101,
-      "outputTokens": 1267,
-      "cachedTokens": 252,
-      "requestCount": 4,
-      "elapsedSeconds": 37.5,
-      "estimatedCostUsd": 0.014338
-    },
-    {
-      "matchId": "match-005",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1685,
-      "outputTokens": 985,
-      "cachedTokens": 202,
-      "requestCount": 4,
-      "elapsedSeconds": 34.3,
-      "estimatedCostUsd": 0.01125
-    },
-    {
-      "matchId": "match-005",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1685,
-      "outputTokens": 985,
-      "cachedTokens": 202,
-      "requestCount": 4,
-      "elapsedSeconds": 34.3,
-      "estimatedCostUsd": 0.002968
-    },
-    {
-      "matchId": "match-006",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1781,
-      "outputTokens": 1074,
-      "cachedTokens": 213,
-      "requestCount": 4,
-      "elapsedSeconds": 37.5,
-      "estimatedCostUsd": 0.003219
-    },
-    {
-      "matchId": "match-006",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1781,
-      "outputTokens": 1074,
-      "cachedTokens": 213,
-      "requestCount": 4,
-      "elapsedSeconds": 37.5,
-      "estimatedCostUsd": 0.012154
-    },
-    {
-      "matchId": "match-007",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 2441,
-      "outputTokens": 1483,
-      "cachedTokens": 292,
-      "requestCount": 6,
-      "elapsedSeconds": 47.1,
-      "estimatedCostUsd": 0.016746
-    },
-    {
-      "matchId": "match-007",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 2441,
-      "outputTokens": 1483,
-      "cachedTokens": 292,
-      "requestCount": 6,
-      "elapsedSeconds": 47.1,
-      "estimatedCostUsd": 0.00444
-    },
-    {
-      "matchId": "match-008",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1761,
-      "outputTokens": 1026,
-      "cachedTokens": 211,
-      "requestCount": 3,
-      "elapsedSeconds": 27.9,
-      "estimatedCostUsd": 0.003093
-    },
-    {
-      "matchId": "match-008",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1761,
-      "outputTokens": 1026,
-      "cachedTokens": 211,
-      "requestCount": 3,
-      "elapsedSeconds": 27.9,
-      "estimatedCostUsd": 0.01173
-    },
-    {
-      "matchId": "match-009",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1397,
-      "outputTokens": 781,
-      "cachedTokens": 167,
-      "requestCount": 2,
-      "elapsedSeconds": 24.7,
-      "estimatedCostUsd": 0.009042
-    },
-    {
-      "matchId": "match-009",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1448,
-      "outputTokens": 781,
-      "cachedTokens": 173,
-      "requestCount": 2,
-      "elapsedSeconds": 26.8,
-      "estimatedCostUsd": 0.016059
-    },
-    {
-      "matchId": "match-010",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1544,
-      "outputTokens": 870,
-      "cachedTokens": 185,
-      "requestCount": 3,
-      "elapsedSeconds": 30.0,
-      "estimatedCostUsd": 0.017682
-    },
-    {
-      "matchId": "match-010",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1493,
-      "outputTokens": 870,
-      "cachedTokens": 179,
-      "requestCount": 3,
-      "elapsedSeconds": 27.9,
-      "estimatedCostUsd": 0.009946
-    },
-    {
-      "matchId": "match-011",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 2101,
-      "outputTokens": 1242,
-      "cachedTokens": 252,
-      "requestCount": 4,
-      "elapsedSeconds": 37.5,
-      "estimatedCostUsd": 0.014138
-    },
-    {
-      "matchId": "match-011",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 2161,
-      "outputTokens": 1242,
-      "cachedTokens": 259,
-      "requestCount": 4,
-      "elapsedSeconds": 39.6,
-      "estimatedCostUsd": 0.025113
-    },
-    {
-      "matchId": "match-012",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 2275,
-      "outputTokens": 1347,
-      "cachedTokens": 273,
-      "requestCount": 5,
-      "elapsedSeconds": 42.8,
-      "estimatedCostUsd": 0.02703
-    },
-    {
-      "matchId": "match-012",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 2214,
-      "outputTokens": 1347,
-      "cachedTokens": 265,
-      "requestCount": 5,
-      "elapsedSeconds": 40.7,
-      "estimatedCostUsd": 0.015204
-    },
-    {
-      "matchId": "match-013",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1781,
-      "outputTokens": 1053,
-      "cachedTokens": 213,
-      "requestCount": 4,
-      "elapsedSeconds": 37.5,
-      "estimatedCostUsd": 0.011986
-    },
-    {
-      "matchId": "match-013",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1849,
-      "outputTokens": 1053,
-      "cachedTokens": 221,
-      "requestCount": 4,
-      "elapsedSeconds": 40.3,
-      "estimatedCostUsd": 0.000909
-    },
-    {
-      "matchId": "match-014",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1945,
-      "outputTokens": 1142,
-      "cachedTokens": 233,
-      "requestCount": 5,
-      "elapsedSeconds": 43.5,
-      "estimatedCostUsd": 0.000977
-    },
-    {
-      "matchId": "match-014",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1877,
-      "outputTokens": 1142,
-      "cachedTokens": 225,
-      "requestCount": 5,
-      "elapsedSeconds": 40.7,
-      "estimatedCostUsd": 0.01289
-    },
-    {
-      "matchId": "match-015",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1761,
-      "outputTokens": 1001,
-      "cachedTokens": 211,
-      "requestCount": 3,
-      "elapsedSeconds": 27.9,
-      "estimatedCostUsd": 0.01153
-    },
-    {
-      "matchId": "match-015",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1841,
-      "outputTokens": 1001,
-      "cachedTokens": 220,
-      "requestCount": 3,
-      "elapsedSeconds": 30.7,
-      "estimatedCostUsd": 0.000877
-    },
-    {
-      "matchId": "match-016",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1955,
-      "outputTokens": 1106,
-      "cachedTokens": 234,
-      "requestCount": 3,
-      "elapsedSeconds": 33.9,
-      "estimatedCostUsd": 0.000957
-    },
-    {
-      "matchId": "match-016",
-      "modelId": "gpt-41",
-      "provider": "OpenAI",
-      "inputTokens": 1875,
-      "outputTokens": 1106,
-      "cachedTokens": 225,
-      "requestCount": 3,
-      "elapsedSeconds": 31.1,
-      "estimatedCostUsd": 0.012598
-    },
-    {
-      "matchId": "match-017",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1510,
-      "outputTokens": 849,
-      "cachedTokens": 181,
-      "requestCount": 3,
-      "elapsedSeconds": 28.6,
-      "estimatedCostUsd": 0.017265
-    },
-    {
-      "matchId": "match-017",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1493,
-      "outputTokens": 849,
-      "cachedTokens": 179,
-      "requestCount": 3,
-      "elapsedSeconds": 27.9,
-      "estimatedCostUsd": 0.00257
-    },
-    {
-      "matchId": "match-018",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1589,
-      "outputTokens": 938,
-      "cachedTokens": 190,
-      "requestCount": 3,
-      "elapsedSeconds": 31.1,
-      "estimatedCostUsd": 0.002822
-    },
-    {
-      "matchId": "match-018",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1606,
-      "outputTokens": 938,
-      "cachedTokens": 192,
-      "requestCount": 3,
-      "elapsedSeconds": 31.8,
-      "estimatedCostUsd": 0.018888
-    },
-    {
-      "matchId": "match-019",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 2234,
-      "outputTokens": 1322,
-      "cachedTokens": 268,
-      "requestCount": 5,
-      "elapsedSeconds": 41.4,
-      "estimatedCostUsd": 0.026532
-    },
-    {
-      "matchId": "match-019",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 2214,
-      "outputTokens": 1322,
-      "cachedTokens": 265,
-      "requestCount": 5,
-      "elapsedSeconds": 40.7,
-      "estimatedCostUsd": 0.003969
-    },
-    {
-      "matchId": "match-020",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 2328,
-      "outputTokens": 1427,
-      "cachedTokens": 279,
-      "requestCount": 5,
-      "elapsedSeconds": 43.9,
-      "estimatedCostUsd": 0.004266
-    },
-    {
-      "matchId": "match-020",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 2348,
-      "outputTokens": 1427,
-      "cachedTokens": 281,
-      "requestCount": 5,
-      "elapsedSeconds": 44.6,
-      "estimatedCostUsd": 0.028449
-    },
-    {
-      "matchId": "match-021",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1894,
-      "outputTokens": 1121,
-      "cachedTokens": 227,
-      "requestCount": 5,
-      "elapsedSeconds": 41.4,
-      "estimatedCostUsd": 0.022497
-    },
-    {
-      "matchId": "match-021",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1928,
-      "outputTokens": 1121,
-      "cachedTokens": 231,
-      "requestCount": 5,
-      "elapsedSeconds": 42.8,
-      "estimatedCostUsd": 0.022599
-    },
-    {
-      "matchId": "match-022",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1352,
-      "outputTokens": 734,
-      "cachedTokens": 162,
-      "requestCount": 2,
-      "elapsedSeconds": 23.6,
-      "estimatedCostUsd": 0.015066
-    },
-    {
-      "matchId": "match-022",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1318,
-      "outputTokens": 734,
-      "cachedTokens": 158,
-      "requestCount": 2,
-      "elapsedSeconds": 22.2,
-      "estimatedCostUsd": 0.014964
-    },
-    {
-      "matchId": "match-023",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1895,
-      "outputTokens": 1082,
-      "cachedTokens": 227,
-      "requestCount": 3,
-      "elapsedSeconds": 31.8,
-      "estimatedCostUsd": 0.021915
-    },
-    {
-      "matchId": "match-023",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1935,
-      "outputTokens": 1082,
-      "cachedTokens": 232,
-      "requestCount": 3,
-      "elapsedSeconds": 33.2,
-      "estimatedCostUsd": 0.022035
-    },
-    {
-      "matchId": "match-024",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 2048,
-      "outputTokens": 1187,
-      "cachedTokens": 245,
-      "requestCount": 4,
-      "elapsedSeconds": 36.4,
-      "estimatedCostUsd": 0.023949
-    },
-    {
-      "matchId": "match-024",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 2008,
-      "outputTokens": 1187,
-      "cachedTokens": 240,
-      "requestCount": 4,
-      "elapsedSeconds": 35.0,
-      "estimatedCostUsd": 0.023829
-    },
-    {
-      "matchId": "match-025",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1606,
-      "outputTokens": 917,
-      "cachedTokens": 192,
-      "requestCount": 3,
-      "elapsedSeconds": 31.8,
-      "estimatedCostUsd": 0.018573
-    },
-    {
-      "matchId": "match-025",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1657,
-      "outputTokens": 917,
-      "cachedTokens": 198,
-      "requestCount": 3,
-      "elapsedSeconds": 33.9,
-      "estimatedCostUsd": 0.000799
-    },
-    {
-      "matchId": "match-026",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1753,
-      "outputTokens": 1006,
-      "cachedTokens": 210,
-      "requestCount": 4,
-      "elapsedSeconds": 37.1,
-      "estimatedCostUsd": 0.000867
-    },
-    {
-      "matchId": "match-026",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 1702,
-      "outputTokens": 1006,
-      "cachedTokens": 204,
-      "requestCount": 4,
-      "elapsedSeconds": 35.0,
-      "estimatedCostUsd": 0.020196
-    },
-    {
-      "matchId": "match-027",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 2348,
-      "outputTokens": 1403,
-      "cachedTokens": 281,
-      "requestCount": 5,
-      "elapsedSeconds": 44.6,
-      "estimatedCostUsd": 0.028089
-    },
-    {
-      "matchId": "match-027",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 2408,
-      "outputTokens": 1403,
-      "cachedTokens": 288,
-      "requestCount": 5,
-      "elapsedSeconds": 46.7,
-      "estimatedCostUsd": 0.001203
-    },
-    {
-      "matchId": "match-028",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 2521,
-      "outputTokens": 1508,
-      "cachedTokens": 302,
-      "requestCount": 6,
-      "elapsedSeconds": 49.9,
-      "estimatedCostUsd": 0.001283
-    },
-    {
-      "matchId": "match-028",
-      "modelId": "claude-sonnet-45",
-      "provider": "Anthropic",
-      "inputTokens": 2461,
-      "outputTokens": 1508,
-      "cachedTokens": 295,
-      "requestCount": 6,
-      "elapsedSeconds": 47.8,
-      "estimatedCostUsd": 0.030003
-    },
-    {
-      "matchId": "match-029",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1301,
-      "outputTokens": 713,
-      "cachedTokens": 156,
-      "requestCount": 2,
-      "elapsedSeconds": 21.5,
-      "estimatedCostUsd": 0.002173
-    },
-    {
-      "matchId": "match-029",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1352,
-      "outputTokens": 713,
-      "cachedTokens": 162,
-      "requestCount": 2,
-      "elapsedSeconds": 23.6,
-      "estimatedCostUsd": 0.014751
-    },
-    {
-      "matchId": "match-030",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1448,
-      "outputTokens": 802,
-      "cachedTokens": 173,
-      "requestCount": 2,
-      "elapsedSeconds": 26.8,
-      "estimatedCostUsd": 0.016374
-    },
-    {
-      "matchId": "match-030",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1397,
-      "outputTokens": 802,
-      "cachedTokens": 167,
-      "requestCount": 2,
-      "elapsedSeconds": 24.7,
-      "estimatedCostUsd": 0.002424
-    },
-    {
-      "matchId": "match-031",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1988,
-      "outputTokens": 1162,
-      "cachedTokens": 238,
-      "requestCount": 4,
-      "elapsedSeconds": 34.3,
-      "estimatedCostUsd": 0.003501
-    },
-    {
-      "matchId": "match-031",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 2048,
-      "outputTokens": 1162,
-      "cachedTokens": 245,
-      "requestCount": 4,
-      "elapsedSeconds": 36.4,
-      "estimatedCostUsd": 0.023574
-    },
-    {
-      "matchId": "match-032",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 2161,
-      "outputTokens": 1267,
-      "cachedTokens": 259,
-      "requestCount": 4,
-      "elapsedSeconds": 39.6,
-      "estimatedCostUsd": 0.025488
-    },
-    {
-      "matchId": "match-032",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 2101,
-      "outputTokens": 1267,
-      "cachedTokens": 252,
-      "requestCount": 4,
-      "elapsedSeconds": 37.5,
-      "estimatedCostUsd": 0.003798
-    },
-    {
-      "matchId": "match-033",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1685,
-      "outputTokens": 985,
-      "cachedTokens": 202,
-      "requestCount": 4,
-      "elapsedSeconds": 34.3,
-      "estimatedCostUsd": 0.002968
-    },
-    {
-      "matchId": "match-033",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1753,
-      "outputTokens": 985,
-      "cachedTokens": 210,
-      "requestCount": 4,
-      "elapsedSeconds": 37.1,
-      "estimatedCostUsd": 0.000854
-    },
-    {
-      "matchId": "match-034",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1849,
-      "outputTokens": 1074,
-      "cachedTokens": 221,
-      "requestCount": 4,
-      "elapsedSeconds": 40.3,
-      "estimatedCostUsd": 0.000922
-    },
-    {
-      "matchId": "match-034",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1781,
-      "outputTokens": 1074,
-      "cachedTokens": 213,
-      "requestCount": 4,
-      "elapsedSeconds": 37.5,
-      "estimatedCostUsd": 0.003219
-    },
-    {
-      "matchId": "match-035",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 2441,
-      "outputTokens": 1483,
-      "cachedTokens": 292,
-      "requestCount": 6,
-      "elapsedSeconds": 47.1,
-      "estimatedCostUsd": 0.00444
-    },
-    {
-      "matchId": "match-035",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 2521,
-      "outputTokens": 1483,
-      "cachedTokens": 302,
-      "requestCount": 6,
-      "elapsedSeconds": 49.9,
-      "estimatedCostUsd": 0.001268
-    },
-    {
-      "matchId": "match-036",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1841,
-      "outputTokens": 1026,
-      "cachedTokens": 220,
-      "requestCount": 3,
-      "elapsedSeconds": 30.7,
-      "estimatedCostUsd": 0.000892
-    },
-    {
-      "matchId": "match-036",
-      "modelId": "gemini-25-flash",
-      "provider": "Google",
-      "inputTokens": 1761,
-      "outputTokens": 1026,
-      "cachedTokens": 211,
-      "requestCount": 3,
-      "elapsedSeconds": 27.9,
-      "estimatedCostUsd": 0.003093
-    },
-    {
-      "matchId": "match-037",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1448,
-      "outputTokens": 781,
-      "cachedTokens": 173,
-      "requestCount": 2,
-      "elapsedSeconds": 26.8,
-      "estimatedCostUsd": 0.016059
-    },
-    {
-      "matchId": "match-037",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1465,
-      "outputTokens": 781,
-      "cachedTokens": 175,
-      "requestCount": 2,
-      "elapsedSeconds": 27.5,
-      "estimatedCostUsd": 0.000688
-    },
-    {
-      "matchId": "match-038",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 1561,
-      "outputTokens": 870,
-      "cachedTokens": 187,
-      "requestCount": 3,
-      "elapsedSeconds": 30.7,
-      "estimatedCostUsd": 0.000756
-    },
-    {
-      "matchId": "match-038",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 1544,
-      "outputTokens": 870,
-      "cachedTokens": 185,
-      "requestCount": 3,
-      "elapsedSeconds": 30.0,
-      "estimatedCostUsd": 0.017682
-    },
-    {
-      "matchId": "match-039",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 2161,
-      "outputTokens": 1242,
-      "cachedTokens": 259,
-      "requestCount": 4,
-      "elapsedSeconds": 39.6,
-      "estimatedCostUsd": 0.025113
-    },
-    {
-      "matchId": "match-039",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 2181,
-      "outputTokens": 1242,
-      "cachedTokens": 261,
-      "requestCount": 4,
-      "elapsedSeconds": 40.3,
-      "estimatedCostUsd": 0.001072
-    },
-    {
-      "matchId": "match-040",
-      "modelId": "solar-pro-3",
-      "provider": "Upstage",
-      "inputTokens": 2295,
-      "outputTokens": 1347,
-      "cachedTokens": 275,
-      "requestCount": 5,
-      "elapsedSeconds": 43.5,
-      "estimatedCostUsd": 0.001152
-    },
-    {
-      "matchId": "match-040",
-      "modelId": "grok-4",
-      "provider": "xAI",
-      "inputTokens": 2275,
-      "outputTokens": 1347,
-      "cachedTokens": 273,
-      "requestCount": 5,
-      "elapsedSeconds": 42.8,
-      "estimatedCostUsd": 0.02703
+      "inputTokens": 489.5,
+      "outputTokens": 304.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 9.345,
+      "estimatedCostUsd": 0.00017075
     }
   ]
 }

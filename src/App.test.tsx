@@ -96,48 +96,52 @@ describe("GLADI app", () => {
   });
 
   it("renders AI Players as a compact expandable roster", async () => {
-    renderAppWithData("/players", loadGeneratedData());
+    const data = loadGeneratedData();
+    const player = data.models[0];
+    renderAppWithData("/players", data);
 
     expect(screen.getByRole("link", { name: /AI Players/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /AI Players/i })).toBeInTheDocument();
-    expect(screen.getAllByText(/Solar Pro 3/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/Upstage/i)).toBeInTheDocument();
+    expect(screen.getAllByText(player.name).length).toBeGreaterThan(0);
+    expect(screen.getByText(player.provider)).toBeInTheDocument();
     expect(screen.queryByText(/Werewolf - Korean/i)).not.toBeInTheDocument();
 
     await userEvent.click(
-      screen.getByRole("button", { name: /Expand Solar Pro 3/i }),
+      screen.getByRole("button", { name: `Expand ${player.name}` }),
     );
 
     expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Werewolf - Korean/i).length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: /View profile for Solar Pro 3/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: `View profile for ${player.name}` })).toHaveAttribute(
       "href",
-      "/models/solar-pro-3",
+      `/models/${player.id}`,
     );
   });
 
   it("lets users hide and add models in the rating chart", async () => {
-    renderAppWithData("/", loadGeneratedData());
+    const data = loadGeneratedData();
+    const player = data.models[0];
+    renderAppWithData("/", data);
 
     expect(
-      screen.getByRole("button", { name: /Hide Solar Pro 3 from rating chart/i }),
+      screen.getByRole("button", { name: `Hide ${player.name} from rating chart` }),
     ).toBeInTheDocument();
 
     await userEvent.click(
-      screen.getByRole("button", { name: /Hide Solar Pro 3 from rating chart/i }),
+      screen.getByRole("button", { name: `Hide ${player.name} from rating chart` }),
     );
 
     expect(
-      screen.queryByRole("button", { name: /Hide Solar Pro 3 from rating chart/i }),
+      screen.queryByRole("button", { name: `Hide ${player.name} from rating chart` }),
     ).not.toBeInTheDocument();
 
     await userEvent.selectOptions(
       screen.getByRole("combobox", { name: /Add model to rating chart/i }),
-      "solar-pro-3",
+      player.id,
     );
 
     expect(
-      screen.getByRole("button", { name: /Hide Solar Pro 3 from rating chart/i }),
+      screen.getByRole("button", { name: `Hide ${player.name} from rating chart` }),
     ).toBeInTheDocument();
   });
 

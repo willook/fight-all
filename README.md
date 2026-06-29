@@ -8,7 +8,7 @@ The first implementation is intentionally split into two tracks:
 
 - Frontend MVP: Vite React app backed by `public/data/fightall.generated.json`, with `public/data/fightall.sample.json` kept as a fallback fixture.
 - Game Arena spike: Python tooling under `tools/game_arena_spike/` that proves an offline runner can export GLADI-compatible JSON.
-- GLADI runner: Python tooling under `tools/fightall_runner/` that produces mock match logs, Elo snapshots, cost snapshots, and generated frontend data without provider API keys.
+- GLADI runner: Python tooling under `tools/fightall_runner/` that can produce mock league data or a small real OpenAI/Gemini API PoC league with Elo and cost snapshots.
 
 ## Current Scope
 
@@ -23,13 +23,14 @@ Included:
 - Static JSON data-source boundary via `loadLeagueData()`.
 - Mock Game Arena export spike with Apache 2.0 attribution notes.
 - Mock runner generated data with five candidate models, including Upstage Solar as the Korean model anchor.
+- Real API PoC runner for a 4-match OpenAI vs Gemini Werewolf league.
 
 Not included in this MVP:
 
-- Live model calls.
+- Live browser-side model calls.
 - Backend API, PostgreSQL, import jobs, or price versioning.
 - Replay UI or full turn-log viewer.
-- Provider billing, API key setup, or model-access verification.
+- Production provider billing, API key management, or model-access administration.
 
 ## Run Locally
 
@@ -72,6 +73,27 @@ The default runner preset creates 40 matches:
 
 Use `--preset smoke` for a smaller language-balanced development run.
 
+For the real OpenAI/Gemini PoC runner:
+
+```bash
+cp .env.example .env.local
+# Add OPENAI_API_KEY and GEMINI_API_KEY to .env.local.
+python3 -m tools.fightall_runner.real_poc --doctor
+python3 -m tools.fightall_runner.real_poc \
+  --output public/data/fightall.generated.json \
+  --logs tools/fightall_runner/out/real_poc_turn_logs.json \
+  --budget-cap-usd 2
+```
+
+The real PoC creates 4 matches:
+
+```txt
+OpenAI GPT-4.1 Nano × Gemini 2.5 Flash-Lite
+2 languages × 2 mirror matches = 4 matches
+```
+
+Each player cost snapshot includes that player's API call plus 50% of the judge call cost, so dashboard cost per match and cost per win include judge spend.
+
 If `pytest` is not installed locally, create a small virtual environment or install the spike requirements:
 
 ```bash
@@ -100,11 +122,12 @@ Runtime data validation lives in `src/domain/validation.ts`.
 
 - Treat bundled league data as sample data, not a claim about real model rankings.
 - Treat generated mock league data as a deterministic MVP artifact, not a claim about real model rankings.
+- Treat generated real PoC data as a pipeline validation artifact until the match count, judge rubric, and model roster are production-ready.
 - Regenerate `public/data/fightall.generated.json` after changing runner registry, scenarios, schedule, Elo, or cost logic.
 - Preserve the language axis for new game data. English and Korean records should remain separable in `games`, `matches`, `ratingSnapshots`, and UI filters.
 - Keep head-to-head data computed from `matches`, `ratingSnapshots`, and `costSnapshots`; do not add a separate source JSON for it.
 - Keep `game_arena` out of the browser bundle. It belongs in offline runner tooling only.
-- Keep real provider calls out of this MVP until billing, API keys, and model-access rights are explicitly handled.
+- Keep `.env.local` out of git; use `.env.example` for variable names only.
 - When adding a new visible MVP behavior, add or update a Vitest/Testing Library test first.
 - Before marking a Linear phase done, run the relevant verification command and update the Linear issue state.
 - When committing, prefer small units that match the work: frontend behavior, spike/tooling, docs, or QA polish.
