@@ -1,0 +1,722 @@
+{
+  "match-001": [
+    {
+      "speaker": "gpt-41",
+      "kind": "argument",
+      "text": "GPT-4.1 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "counter",
+      "text": "Claude Sonnet 4.5 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-002": [
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "argument",
+      "text": "Claude Sonnet 4.5 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "gpt-41",
+      "kind": "counter",
+      "text": "GPT-4.1 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-003": [
+    {
+      "speaker": "gpt-41",
+      "kind": "argument",
+      "text": "GPT-4.1 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "counter",
+      "text": "Claude Sonnet 4.5 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-004": [
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "argument",
+      "text": "Claude Sonnet 4.5 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "gpt-41",
+      "kind": "counter",
+      "text": "GPT-4.1 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-005": [
+    {
+      "speaker": "gpt-41",
+      "kind": "argument",
+      "text": "GPT-4.1 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "counter",
+      "text": "Gemini 2.5 Flash challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-006": [
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "argument",
+      "text": "Gemini 2.5 Flash opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "gpt-41",
+      "kind": "counter",
+      "text": "GPT-4.1 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": null,
+      "confidence": 0.52
+    }
+  ],
+  "match-007": [
+    {
+      "speaker": "gpt-41",
+      "kind": "argument",
+      "text": "GPT-4.1 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "counter",
+      "text": "Gemini 2.5 Flash challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gemini-25-flash",
+      "confidence": 0.74
+    }
+  ],
+  "match-008": [
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "argument",
+      "text": "Gemini 2.5 Flash opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "gpt-41",
+      "kind": "counter",
+      "text": "GPT-4.1 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-009": [
+    {
+      "speaker": "gpt-41",
+      "kind": "argument",
+      "text": "GPT-4.1 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "grok-4",
+      "kind": "counter",
+      "text": "Grok 4 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-010": [
+    {
+      "speaker": "grok-4",
+      "kind": "argument",
+      "text": "Grok 4 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "gpt-41",
+      "kind": "counter",
+      "text": "GPT-4.1 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-011": [
+    {
+      "speaker": "gpt-41",
+      "kind": "argument",
+      "text": "GPT-4.1 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "grok-4",
+      "kind": "counter",
+      "text": "Grok 4 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-012": [
+    {
+      "speaker": "grok-4",
+      "kind": "argument",
+      "text": "Grok 4 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "gpt-41",
+      "kind": "counter",
+      "text": "GPT-4.1 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-013": [
+    {
+      "speaker": "gpt-41",
+      "kind": "argument",
+      "text": "GPT-4.1 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "solar-pro-3",
+      "kind": "counter",
+      "text": "Solar Pro 3 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-014": [
+    {
+      "speaker": "solar-pro-3",
+      "kind": "argument",
+      "text": "Solar Pro 3 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "gpt-41",
+      "kind": "counter",
+      "text": "GPT-4.1 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gpt-41",
+      "confidence": 0.74
+    }
+  ],
+  "match-015": [
+    {
+      "speaker": "gpt-41",
+      "kind": "argument",
+      "text": "GPT-4.1 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "solar-pro-3",
+      "kind": "counter",
+      "text": "Solar Pro 3 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "solar-pro-3",
+      "confidence": 0.74
+    }
+  ],
+  "match-016": [
+    {
+      "speaker": "solar-pro-3",
+      "kind": "argument",
+      "text": "Solar Pro 3 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "gpt-41",
+      "kind": "counter",
+      "text": "GPT-4.1 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": null,
+      "confidence": 0.52
+    }
+  ],
+  "match-017": [
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "argument",
+      "text": "Claude Sonnet 4.5 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "counter",
+      "text": "Gemini 2.5 Flash challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-018": [
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "argument",
+      "text": "Gemini 2.5 Flash opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "counter",
+      "text": "Claude Sonnet 4.5 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-019": [
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "argument",
+      "text": "Claude Sonnet 4.5 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "counter",
+      "text": "Gemini 2.5 Flash challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": null,
+      "confidence": 0.52
+    }
+  ],
+  "match-020": [
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "argument",
+      "text": "Gemini 2.5 Flash opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "counter",
+      "text": "Claude Sonnet 4.5 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-021": [
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "argument",
+      "text": "Claude Sonnet 4.5 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "grok-4",
+      "kind": "counter",
+      "text": "Grok 4 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-022": [
+    {
+      "speaker": "grok-4",
+      "kind": "argument",
+      "text": "Grok 4 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "counter",
+      "text": "Claude Sonnet 4.5 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-023": [
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "argument",
+      "text": "Claude Sonnet 4.5 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "grok-4",
+      "kind": "counter",
+      "text": "Grok 4 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-024": [
+    {
+      "speaker": "grok-4",
+      "kind": "argument",
+      "text": "Grok 4 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "counter",
+      "text": "Claude Sonnet 4.5 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-025": [
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "argument",
+      "text": "Claude Sonnet 4.5 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "solar-pro-3",
+      "kind": "counter",
+      "text": "Solar Pro 3 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-026": [
+    {
+      "speaker": "solar-pro-3",
+      "kind": "argument",
+      "text": "Solar Pro 3 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "counter",
+      "text": "Claude Sonnet 4.5 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-027": [
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "argument",
+      "text": "Claude Sonnet 4.5 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "solar-pro-3",
+      "kind": "counter",
+      "text": "Solar Pro 3 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "solar-pro-3",
+      "confidence": 0.74
+    }
+  ],
+  "match-028": [
+    {
+      "speaker": "solar-pro-3",
+      "kind": "argument",
+      "text": "Solar Pro 3 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "claude-sonnet-45",
+      "kind": "counter",
+      "text": "Claude Sonnet 4.5 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "claude-sonnet-45",
+      "confidence": 0.74
+    }
+  ],
+  "match-029": [
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "argument",
+      "text": "Gemini 2.5 Flash opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "grok-4",
+      "kind": "counter",
+      "text": "Grok 4 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gemini-25-flash",
+      "confidence": 0.74
+    }
+  ],
+  "match-030": [
+    {
+      "speaker": "grok-4",
+      "kind": "argument",
+      "text": "Grok 4 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "counter",
+      "text": "Gemini 2.5 Flash challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": null,
+      "confidence": 0.52
+    }
+  ],
+  "match-031": [
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "argument",
+      "text": "Gemini 2.5 Flash opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "grok-4",
+      "kind": "counter",
+      "text": "Grok 4 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gemini-25-flash",
+      "confidence": 0.74
+    }
+  ],
+  "match-032": [
+    {
+      "speaker": "grok-4",
+      "kind": "argument",
+      "text": "Grok 4 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "counter",
+      "text": "Gemini 2.5 Flash challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gemini-25-flash",
+      "confidence": 0.74
+    }
+  ],
+  "match-033": [
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "argument",
+      "text": "Gemini 2.5 Flash opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "solar-pro-3",
+      "kind": "counter",
+      "text": "Solar Pro 3 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gemini-25-flash",
+      "confidence": 0.74
+    }
+  ],
+  "match-034": [
+    {
+      "speaker": "solar-pro-3",
+      "kind": "argument",
+      "text": "Solar Pro 3 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "counter",
+      "text": "Gemini 2.5 Flash challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gemini-25-flash",
+      "confidence": 0.74
+    }
+  ],
+  "match-035": [
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "argument",
+      "text": "Gemini 2.5 Flash opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "solar-pro-3",
+      "kind": "counter",
+      "text": "Solar Pro 3 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "solar-pro-3",
+      "confidence": 0.74
+    }
+  ],
+  "match-036": [
+    {
+      "speaker": "solar-pro-3",
+      "kind": "argument",
+      "text": "Solar Pro 3 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "gemini-25-flash",
+      "kind": "counter",
+      "text": "Gemini 2.5 Flash challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "gemini-25-flash",
+      "confidence": 0.74
+    }
+  ],
+  "match-037": [
+    {
+      "speaker": "grok-4",
+      "kind": "argument",
+      "text": "Grok 4 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "solar-pro-3",
+      "kind": "counter",
+      "text": "Solar Pro 3 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "grok-4",
+      "confidence": 0.74
+    }
+  ],
+  "match-038": [
+    {
+      "speaker": "solar-pro-3",
+      "kind": "argument",
+      "text": "Solar Pro 3 opens the English scenario with a role-read argument."
+    },
+    {
+      "speaker": "grok-4",
+      "kind": "counter",
+      "text": "Grok 4 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": null,
+      "confidence": 0.52
+    }
+  ],
+  "match-039": [
+    {
+      "speaker": "grok-4",
+      "kind": "argument",
+      "text": "Grok 4 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "solar-pro-3",
+      "kind": "counter",
+      "text": "Solar Pro 3 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "solar-pro-3",
+      "confidence": 0.74
+    }
+  ],
+  "match-040": [
+    {
+      "speaker": "solar-pro-3",
+      "kind": "argument",
+      "text": "Solar Pro 3 opens the Korean scenario with a role-read argument."
+    },
+    {
+      "speaker": "grok-4",
+      "kind": "counter",
+      "text": "Grok 4 challenges the vote logic and reframes suspicion."
+    },
+    {
+      "speaker": "judge-gemini-flash-lite",
+      "kind": "judgement",
+      "winnerModelId": "solar-pro-3",
+      "confidence": 0.74
+    }
+  ]
+}
