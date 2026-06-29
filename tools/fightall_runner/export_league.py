@@ -104,9 +104,9 @@ def _match_summary(schedule_item: dict, winner_id: str | None, model_index: dict
     model_b = model_index[schedule_item["modelBId"]]
     language = "Korean" if schedule_item["languageCode"] == "ko" else "English"
     if winner_id is None:
-        return f"{model_a['name']} and {model_b['name']} split the {language} scenario after balanced suspicion reads."
+        return f"{model_a['name']} and {model_b['name']} split the {language} Werewolf debate evaluation after balanced suspicion reads."
     winner = model_index[winner_id]
-    return f"{winner['name']} won the {language} Werewolf scenario with clearer vote pressure and role inference."
+    return f"{winner['name']} won the {language} Werewolf debate evaluation with clearer vote pressure and role inference."
 
 
 def export_league(

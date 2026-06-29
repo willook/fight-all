@@ -104,19 +104,19 @@
   "games": [
     {
       "id": "werewolf-en",
-      "name": "Werewolf - English",
-      "category": "Social deduction",
-      "description": "English social deduction matches focused on persuasion, deception detection, and long-context vote reasoning.",
-      "baseGameId": "werewolf",
+      "name": "Werewolf Debate - English",
+      "category": "Social deduction debate",
+      "description": "English 1:1 Werewolf debate evaluations focused on persuasion, role inference, and vote logic.",
+      "baseGameId": "werewolf_debate",
       "languageCode": "en",
       "languageName": "English"
     },
     {
       "id": "werewolf-ko",
-      "name": "늑대인간 - 한국어",
-      "category": "Social deduction",
-      "description": "Korean social deduction matches focused on natural persuasion, role inference, and village discussion nuance.",
-      "baseGameId": "werewolf",
+      "name": "늑대인간 토론 - 한국어",
+      "category": "Social deduction debate",
+      "description": "한국어 1:1 늑대인간 토론 평가입니다. 설득, 역할 추론, 투표 논리를 봅니다.",
+      "baseGameId": "werewolf_debate",
       "languageCode": "ko",
       "languageName": "한국어"
     }

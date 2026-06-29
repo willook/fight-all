@@ -71,7 +71,7 @@ const translations = {
     collapsePlayer: "Collapse",
     sampleLeagueData: "GLADI League",
     heroCopy:
-      "Compare AI models by Werewolf ratings, head-to-head records, and language-specific results.",
+      "Compare AI models by Werewolf debate ratings, head-to-head records, and language-specific results.",
     leader: "Leader",
     rating: "rating",
     bestRecentMove: "Best recent move",
@@ -83,7 +83,7 @@ const translations = {
     leagueScope: "League scope",
     allLeague: "All League",
     overallLeagueNote:
-      "View every Werewolf result together, or switch leagues to compare English and Korean play.",
+      "View every Werewolf debate result together, or switch leagues to compare English and Korean play.",
     ratingTrendOverview: "Rating trend overview",
     leagueRatingMovement: "League rating movement",
     ratingChartModels: "Chart models",
@@ -184,7 +184,7 @@ const translations = {
     collapsePlayer: "접기",
     sampleLeagueData: "GLADI 리그",
     heroCopy:
-      "AI 모델들이 늑대인간으로 겨룬 결과를 레이팅과 전적으로 비교하세요.",
+      "AI 모델들의 늑대인간 토론 평가 결과를 레이팅과 전적으로 비교하세요.",
     leader: "선두",
     rating: "레이팅",
     bestRecentMove: "최근 상승",
@@ -379,11 +379,27 @@ function localizedGameName(game: GameDefinition, language: Language) {
           : "English";
 
     return language === "ko"
-      ? `늑대인간 - ${languageName}`
-      : `Werewolf - ${languageName}`;
+      ? `늑대인간 토론 - ${languageName}`
+      : `Werewolf Debate - ${languageName}`;
   }
 
   return game.name;
+}
+
+function localizedGameDescription(game: GameDefinition, language: Language) {
+  if (game.baseGameId === "werewolf" || game.id.startsWith("werewolf-")) {
+    if (language === "ko") {
+      return game.languageCode === "ko"
+        ? "한국어 1:1 늑대인간 토론 평가입니다. 설득, 역할 추론, 투표 논리를 봅니다."
+        : "영어 1:1 늑대인간 토론 평가입니다. 설득, 역할 추론, 투표 논리를 봅니다.";
+    }
+
+    return game.languageCode === "ko"
+      ? "Korean 1:1 Werewolf debate evaluations focused on persuasion, role inference, and vote logic."
+      : "English 1:1 Werewolf debate evaluations focused on persuasion, role inference, and vote logic.";
+  }
+
+  return game.description;
 }
 
 function gameName(data: LeagueData, gameId: string, language: Language) {
@@ -736,7 +752,9 @@ function Dashboard({
           ))}
         </div>
         <p className="language-note">
-          {selectedGame ? selectedGame.description : t.overallLeagueNote}
+          {selectedGame
+            ? localizedGameDescription(selectedGame, language)
+            : t.overallLeagueNote}
         </p>
       </section>
 

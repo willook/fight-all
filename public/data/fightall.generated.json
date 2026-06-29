@@ -49,24 +49,50 @@
           "PoC-only sample size"
         ]
       }
+    },
+    {
+      "id": "upstage-solar-mini",
+      "name": "Solar Mini",
+      "provider": "Upstage",
+      "version": "real-poc-2026-06",
+      "profile": {
+        "mbti": "ISFJ",
+        "tagline": "Lightweight Korean-friendly Solar player for real pipeline validation.",
+        "quote": "Nuance matters when suspicion turns into a vote.",
+        "styleTags": [
+          "Upstage",
+          "Solar",
+          "Korean",
+          "PoC"
+        ],
+        "strengths": [
+          "Korean phrasing",
+          "Low-cost completions",
+          "Concise rebuttals"
+        ],
+        "weaknesses": [
+          "Single-turn context",
+          "PoC-only sample size"
+        ]
+      }
     }
   ],
   "games": [
     {
       "id": "werewolf-en",
-      "name": "Werewolf - English",
-      "category": "Social deduction",
-      "description": "English scenario matches focused on persuasion, deception detection, and long-context vote reasoning.",
-      "baseGameId": "werewolf",
+      "name": "Werewolf Debate - English",
+      "category": "Social deduction debate",
+      "description": "English 1:1 Werewolf final debate evaluation focused on persuasion, role inference, and vote logic.",
+      "baseGameId": "werewolf_debate",
       "languageCode": "en",
       "languageName": "English"
     },
     {
       "id": "werewolf-ko",
-      "name": "늑대인간 - 한국어",
-      "category": "Social deduction",
-      "description": "Korean scenario matches focused on natural persuasion, role inference, and village discussion nuance.",
-      "baseGameId": "werewolf",
+      "name": "늑대인간 토론 - 한국어",
+      "category": "Social deduction debate",
+      "description": "한국어 1:1 늑대인간 최종 토론 평가입니다. 설득, 역할 추론, 투표 논리를 봅니다.",
+      "baseGameId": "werewolf_debate",
       "languageCode": "ko",
       "languageName": "한국어"
     }
@@ -82,7 +108,7 @@
       "result": "model_b",
       "turns": 3,
       "durationSeconds": 53,
-      "summary": "Gemini 2.5 Flash-Lite won this Werewolf PoC match. Model B demonstrates superior role inference by anticipating Model A's likely arguments and refuting them preemptively. Model B's rebuttal is more direct and persuasive, highlighting the nuances of social deduction games that Model A's analytical approach might miss. Model A's argument is circular, claiming Model B lacks evidence while offering little concrete evidence itself."
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf debate evaluation. Model B demonstrates superior role inference by anticipating Model A's likely arguments and refuting them preemptively. Model B's rebuttal is more direct and persuasive, highlighting the nuances of social deduction games that Model A's analytical approach might miss. Model A's argument is circular, claiming Model B lacks evidence while offering little concrete evidence itself."
     },
     {
       "id": "real-poc-002",
@@ -94,7 +120,7 @@
       "result": "model_a",
       "turns": 3,
       "durationSeconds": 24,
-      "summary": "Gemini 2.5 Flash-Lite won this Werewolf PoC match. Model A provides a more robust and well-reasoned argument, clearly outlining its own logic and directly addressing potential weaknesses in the opponent's hypothetical strategy. Model B's argument is less developed and relies on a weaker rebuttal."
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf debate evaluation. Model A provides a more robust and well-reasoned argument, clearly outlining its own logic and directly addressing potential weaknesses in the opponent's hypothetical strategy. Model B's argument is less developed and relies on a weaker rebuttal."
     },
     {
       "id": "real-poc-003",
@@ -106,7 +132,7 @@
       "result": "model_b",
       "turns": 3,
       "durationSeconds": 61,
-      "summary": "Gemini 2.5 Flash-Lite won this Werewolf PoC match. Model B provides a more robust and logical argument by referencing specific observational tactics (speech order, answer style, interaction) and critiquing Model A's reliance on vague 'feelings' and 'suspicion'. Model A's reasoning is circular and lacks concrete examples of the 'inconsistency' and 'ambiguity' it claims to observe."
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf debate evaluation. Model B provides a more robust and logical argument by referencing specific observational tactics (speech order, answer style, interaction) and critiquing Model A's reliance on vague 'feelings' and 'suspicion'. Model A's reasoning is circular and lacks concrete examples of the 'inconsistency' and 'ambiguity' it claims to observe."
     },
     {
       "id": "real-poc-004",
@@ -118,7 +144,103 @@
       "result": "model_a",
       "turns": 3,
       "durationSeconds": 49,
-      "summary": "Gemini 2.5 Flash-Lite won this Werewolf PoC match. Model A provides a more detailed and specific explanation of its reasoning, including examples of how it analyzes evidence and justifies its vote. Model B's arguments are more general and less convincing."
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf debate evaluation. Model A provides a more detailed and specific explanation of its reasoning, including examples of how it analyzes evidence and justifies its vote. Model B's arguments are more general and less convincing."
+    },
+    {
+      "id": "real-poc-005",
+      "playedAt": "2026-06-30T11:00:00Z",
+      "gameId": "werewolf-en",
+      "modelAId": "openai-gpt-41-nano",
+      "modelBId": "upstage-solar-mini",
+      "winnerModelId": "upstage-solar-mini",
+      "result": "model_b",
+      "turns": 3,
+      "durationSeconds": 41,
+      "summary": "Solar Mini won this Werewolf debate evaluation. Response B provides a more direct and specific rebuttal to the opponent's (implied) strategy, offering concrete examples of how the opponent's approach could be flawed. Response A is more of a self-assessment and a general critique of the opponent's style without directly engaging with specific points."
+    },
+    {
+      "id": "real-poc-006",
+      "playedAt": "2026-06-30T11:30:00Z",
+      "gameId": "werewolf-en",
+      "modelAId": "upstage-solar-mini",
+      "modelBId": "openai-gpt-41-nano",
+      "winnerModelId": "openai-gpt-41-nano",
+      "result": "model_b",
+      "turns": 3,
+      "durationSeconds": 33,
+      "summary": "GPT-4.1 Nano won this Werewolf debate evaluation. Response B directly addresses the opponent's argument and provides a more coherent and persuasive case for its vote, while Response A's argument is based on a misunderstanding of the debate's premise."
+    },
+    {
+      "id": "real-poc-007",
+      "playedAt": "2026-06-30T12:00:00Z",
+      "gameId": "werewolf-ko",
+      "modelAId": "openai-gpt-41-nano",
+      "modelBId": "upstage-solar-mini",
+      "winnerModelId": "openai-gpt-41-nano",
+      "result": "model_a",
+      "turns": 3,
+      "durationSeconds": 20,
+      "summary": "GPT-4.1 Nano won this Werewolf debate evaluation. Response A provides a more detailed and persuasive argument, directly refuting Response B's claims and offering specific counter-evidence. Response B's argument is more abstract and less convincing."
+    },
+    {
+      "id": "real-poc-008",
+      "playedAt": "2026-06-30T12:30:00Z",
+      "gameId": "werewolf-ko",
+      "modelAId": "upstage-solar-mini",
+      "modelBId": "openai-gpt-41-nano",
+      "winnerModelId": "openai-gpt-41-nano",
+      "result": "model_b",
+      "turns": 3,
+      "durationSeconds": 29,
+      "summary": "GPT-4.1 Nano won this Werewolf debate evaluation. Response B provides a more direct and persuasive rebuttal to Response A's claims, effectively deconstructing the opponent's logic and offering a stronger counter-argument. Response A's claim is vague and its evidence is not a direct rebuttal but rather a statement of its own strategy."
+    },
+    {
+      "id": "real-poc-009",
+      "playedAt": "2026-06-30T13:00:00Z",
+      "gameId": "werewolf-en",
+      "modelAId": "gemini-25-flash-lite",
+      "modelBId": "upstage-solar-mini",
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_a",
+      "turns": 3,
+      "durationSeconds": 48,
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf debate evaluation. Response A demonstrates superior persuasion, role inference, vote logic, and direct rebuttal by analyzing the opponent's likely strategy and explaining its flaws within the context of the game. Response B is meta-commentary on the other model's argument rather than engaging in the debate itself."
+    },
+    {
+      "id": "real-poc-010",
+      "playedAt": "2026-06-30T13:30:00Z",
+      "gameId": "werewolf-en",
+      "modelAId": "upstage-solar-mini",
+      "modelBId": "gemini-25-flash-lite",
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_b",
+      "turns": 3,
+      "durationSeconds": 56,
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf debate evaluation. Response B demonstrates a superior understanding of role inference and persuasive strategy within the context of the Werewolf game. It effectively frames its own role as the werewolf and anticipates the opponent's likely arguments, while also explaining why its own deceptive strategy is more persuasive. Response A's critique of the opponent is valid but lacks the self-awareness and strategic depth of Response B."
+    },
+    {
+      "id": "real-poc-011",
+      "playedAt": "2026-06-30T14:00:00Z",
+      "gameId": "werewolf-ko",
+      "modelAId": "gemini-25-flash-lite",
+      "modelBId": "upstage-solar-mini",
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_a",
+      "turns": 3,
+      "durationSeconds": 51,
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf debate evaluation. Response A demonstrates stronger role inference and persuasion by directly addressing the opponent's perceived weaknesses and framing its own arguments as logical and beneficial for the village. Response B is more direct but lacks the persuasive framing and detailed evidence of role-playing seen in A."
+    },
+    {
+      "id": "real-poc-012",
+      "playedAt": "2026-06-30T14:30:00Z",
+      "gameId": "werewolf-ko",
+      "modelAId": "upstage-solar-mini",
+      "modelBId": "gemini-25-flash-lite",
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_b",
+      "turns": 3,
+      "durationSeconds": 12,
+      "summary": "Gemini 2.5 Flash-Lite won this Werewolf debate evaluation. Response B provides a more detailed and persuasive argument, directly addressing the opponent's lack of evidence and offering specific examples of its own 'villager' behavior. Response A is more generic in its claims."
     }
   ],
   "ratingSnapshots": [
@@ -233,6 +355,230 @@
       "rating": 1469,
       "recordedAt": "2026-06-30T10:30:00Z",
       "matchId": "real-poc-004"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": null,
+      "rating": 1431,
+      "recordedAt": "2026-06-30T11:00:00Z",
+      "matchId": "real-poc-005"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": null,
+      "rating": 1513,
+      "recordedAt": "2026-06-30T11:00:00Z",
+      "matchId": "real-poc-005"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": "werewolf-en",
+      "rating": 1454,
+      "recordedAt": "2026-06-30T11:00:00Z",
+      "matchId": "real-poc-005"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": "werewolf-en",
+      "rating": 1515,
+      "recordedAt": "2026-06-30T11:00:00Z",
+      "matchId": "real-poc-005"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": null,
+      "rating": 1494,
+      "recordedAt": "2026-06-30T11:30:00Z",
+      "matchId": "real-poc-006"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": null,
+      "rating": 1450,
+      "recordedAt": "2026-06-30T11:30:00Z",
+      "matchId": "real-poc-006"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": "werewolf-en",
+      "rating": 1496,
+      "recordedAt": "2026-06-30T11:30:00Z",
+      "matchId": "real-poc-006"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": "werewolf-en",
+      "rating": 1473,
+      "recordedAt": "2026-06-30T11:30:00Z",
+      "matchId": "real-poc-006"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": null,
+      "rating": 1468,
+      "recordedAt": "2026-06-30T12:00:00Z",
+      "matchId": "real-poc-007"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": null,
+      "rating": 1476,
+      "recordedAt": "2026-06-30T12:00:00Z",
+      "matchId": "real-poc-007"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": "werewolf-ko",
+      "rating": 1486,
+      "recordedAt": "2026-06-30T12:00:00Z",
+      "matchId": "real-poc-007"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": "werewolf-ko",
+      "rating": 1483,
+      "recordedAt": "2026-06-30T12:00:00Z",
+      "matchId": "real-poc-007"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": null,
+      "rating": 1459,
+      "recordedAt": "2026-06-30T12:30:00Z",
+      "matchId": "real-poc-008"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": null,
+      "rating": 1485,
+      "recordedAt": "2026-06-30T12:30:00Z",
+      "matchId": "real-poc-008"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": "werewolf-ko",
+      "rating": 1467,
+      "recordedAt": "2026-06-30T12:30:00Z",
+      "matchId": "real-poc-008"
+    },
+    {
+      "modelId": "openai-gpt-41-nano",
+      "gameId": "werewolf-ko",
+      "rating": 1502,
+      "recordedAt": "2026-06-30T12:30:00Z",
+      "matchId": "real-poc-008"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "gameId": null,
+      "rating": 1568,
+      "recordedAt": "2026-06-30T13:00:00Z",
+      "matchId": "real-poc-009"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": null,
+      "rating": 1448,
+      "recordedAt": "2026-06-30T13:00:00Z",
+      "matchId": "real-poc-009"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "gameId": "werewolf-en",
+      "rating": 1545,
+      "recordedAt": "2026-06-30T13:00:00Z",
+      "matchId": "real-poc-009"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": "werewolf-en",
+      "rating": 1481,
+      "recordedAt": "2026-06-30T13:00:00Z",
+      "matchId": "real-poc-009"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": null,
+      "rating": 1437,
+      "recordedAt": "2026-06-30T13:30:00Z",
+      "matchId": "real-poc-010"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "gameId": null,
+      "rating": 1578,
+      "recordedAt": "2026-06-30T13:30:00Z",
+      "matchId": "real-poc-010"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": "werewolf-en",
+      "rating": 1468,
+      "recordedAt": "2026-06-30T13:30:00Z",
+      "matchId": "real-poc-010"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "gameId": "werewolf-en",
+      "rating": 1558,
+      "recordedAt": "2026-06-30T13:30:00Z",
+      "matchId": "real-poc-010"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "gameId": null,
+      "rating": 1588,
+      "recordedAt": "2026-06-30T14:00:00Z",
+      "matchId": "real-poc-011"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": null,
+      "rating": 1427,
+      "recordedAt": "2026-06-30T14:00:00Z",
+      "matchId": "real-poc-011"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "gameId": "werewolf-ko",
+      "rating": 1544,
+      "recordedAt": "2026-06-30T14:00:00Z",
+      "matchId": "real-poc-011"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": "werewolf-ko",
+      "rating": 1454,
+      "recordedAt": "2026-06-30T14:00:00Z",
+      "matchId": "real-poc-011"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": null,
+      "rating": 1418,
+      "recordedAt": "2026-06-30T14:30:00Z",
+      "matchId": "real-poc-012"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "gameId": null,
+      "rating": 1597,
+      "recordedAt": "2026-06-30T14:30:00Z",
+      "matchId": "real-poc-012"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "gameId": "werewolf-ko",
+      "rating": 1442,
+      "recordedAt": "2026-06-30T14:30:00Z",
+      "matchId": "real-poc-012"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "gameId": "werewolf-ko",
+      "rating": 1556,
+      "recordedAt": "2026-06-30T14:30:00Z",
+      "matchId": "real-poc-012"
     }
   ],
   "costSnapshots": [
@@ -323,6 +669,182 @@
       "requestCount": 1.5,
       "elapsedSeconds": 9.345,
       "estimatedCostUsd": 0.00017075
+    },
+    {
+      "matchId": "real-poc-005",
+      "modelId": "openai-gpt-41-nano",
+      "provider": "OpenAI",
+      "inputTokens": 440.0,
+      "outputTokens": 262.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 19.899,
+      "estimatedCostUsd": 0.0001488
+    },
+    {
+      "matchId": "real-poc-005",
+      "modelId": "upstage-solar-mini",
+      "provider": "Upstage",
+      "inputTokens": 460.0,
+      "outputTokens": 466.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 21.137,
+      "estimatedCostUsd": 0.00013305
+    },
+    {
+      "matchId": "real-poc-006",
+      "modelId": "upstage-solar-mini",
+      "provider": "Upstage",
+      "inputTokens": 433.0,
+      "outputTokens": 382.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 15.161,
+      "estimatedCostUsd": 0.00011525
+    },
+    {
+      "matchId": "real-poc-006",
+      "modelId": "openai-gpt-41-nano",
+      "provider": "OpenAI",
+      "inputTokens": 413.0,
+      "outputTokens": 254.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 17.795,
+      "estimatedCostUsd": 0.0001429
+    },
+    {
+      "matchId": "real-poc-007",
+      "modelId": "openai-gpt-41-nano",
+      "provider": "OpenAI",
+      "inputTokens": 478.5,
+      "outputTokens": 399.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 11.813,
+      "estimatedCostUsd": 0.00020765
+    },
+    {
+      "matchId": "real-poc-007",
+      "modelId": "upstage-solar-mini",
+      "provider": "Upstage",
+      "inputTokens": 478.5,
+      "outputTokens": 272.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 8.156,
+      "estimatedCostUsd": 0.00010265
+    },
+    {
+      "matchId": "real-poc-008",
+      "modelId": "upstage-solar-mini",
+      "provider": "Upstage",
+      "inputTokens": 464.5,
+      "outputTokens": 266.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 13.305,
+      "estimatedCostUsd": 0.00010265
+    },
+    {
+      "matchId": "real-poc-008",
+      "modelId": "openai-gpt-41-nano",
+      "provider": "OpenAI",
+      "inputTokens": 464.5,
+      "outputTokens": 398.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 15.631,
+      "estimatedCostUsd": 0.00020565
+    },
+    {
+      "matchId": "real-poc-009",
+      "modelId": "gemini-25-flash-lite",
+      "provider": "Google",
+      "inputTokens": 522.0,
+      "outputTokens": 464.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 38.331,
+      "estimatedCostUsd": 0.0002378
+    },
+    {
+      "matchId": "real-poc-009",
+      "modelId": "upstage-solar-mini",
+      "provider": "Upstage",
+      "inputTokens": 542.0,
+      "outputTokens": 394.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 9.472,
+      "estimatedCostUsd": 0.00013
+    },
+    {
+      "matchId": "real-poc-010",
+      "modelId": "upstage-solar-mini",
+      "provider": "Upstage",
+      "inputTokens": 573.0,
+      "outputTokens": 473.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 14.679,
+      "estimatedCostUsd": 0.0001472
+    },
+    {
+      "matchId": "real-poc-010",
+      "modelId": "gemini-25-flash-lite",
+      "provider": "Google",
+      "inputTokens": 553.0,
+      "outputTokens": 473.0,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 41.177,
+      "estimatedCostUsd": 0.0002445
+    },
+    {
+      "matchId": "real-poc-011",
+      "modelId": "gemini-25-flash-lite",
+      "provider": "Google",
+      "inputTokens": 463.0,
+      "outputTokens": 381.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 36.037,
+      "estimatedCostUsd": 0.0001989
+    },
+    {
+      "matchId": "real-poc-011",
+      "modelId": "upstage-solar-mini",
+      "provider": "Upstage",
+      "inputTokens": 468.0,
+      "outputTokens": 278.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 14.894,
+      "estimatedCostUsd": 0.0001043
+    },
+    {
+      "matchId": "real-poc-012",
+      "modelId": "upstage-solar-mini",
+      "provider": "Upstage",
+      "inputTokens": 431.5,
+      "outputTokens": 212.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 4.059,
+      "estimatedCostUsd": 8.95e-05
+    },
+    {
+      "matchId": "real-poc-012",
+      "modelId": "gemini-25-flash-lite",
+      "provider": "Google",
+      "inputTokens": 426.5,
+      "outputTokens": 363.5,
+      "cachedTokens": 0.0,
+      "requestCount": 1.5,
+      "elapsedSeconds": 7.572,
+      "estimatedCostUsd": 0.00018805
     }
   ]
 }

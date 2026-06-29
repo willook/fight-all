@@ -49,16 +49,16 @@ describe("GLADI app", () => {
     expect(screen.getByRole("link", { name: /^GLADI$/i })).toBeInTheDocument();
     expect(screen.queryByText(/MVP|sample|generated/i)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /all league/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Werewolf - Korean/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf Debate - English/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf Debate - Korean/i })).toBeInTheDocument();
     expect(screen.getByTestId("rating-overview-chart")).toBeInTheDocument();
 
     const leaderboard = screen.getByRole("table", { name: /leaderboard/i });
     expect(within(leaderboard).getAllByText(/claude/i).length).toBeGreaterThan(0);
     expect(within(leaderboard).queryByText(/mock|sample/i)).not.toBeInTheDocument();
 
-    await userEvent.click(screen.getByRole("button", { name: /Werewolf - Korean/i }));
-    expect(screen.getByText(/korean social deduction/i)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole("button", { name: /Werewolf Debate - Korean/i }));
+    expect(screen.getByText(/Korean 1:1 Werewolf debate/i)).toBeInTheDocument();
 
     await userEvent.click(
       within(leaderboard).getByRole("link", { name: /claude opus/i }),
@@ -104,14 +104,14 @@ describe("GLADI app", () => {
     expect(screen.getByRole("heading", { name: /AI Players/i })).toBeInTheDocument();
     expect(screen.getAllByText(player.name).length).toBeGreaterThan(0);
     expect(screen.getByText(player.provider)).toBeInTheDocument();
-    expect(screen.queryByText(/Werewolf - Korean/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Werewolf Debate - Korean/i)).not.toBeInTheDocument();
 
     await userEvent.click(
       screen.getByRole("button", { name: `Expand ${player.name}` }),
     );
 
-    expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Werewolf - Korean/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf Debate - English/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf Debate - Korean/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: `View profile for ${player.name}` })).toHaveAttribute(
       "href",
       `/models/${player.id}`,
@@ -166,9 +166,9 @@ describe("GLADI app", () => {
     renderApp("/");
 
     expect(screen.getByText(/GLADI League/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Werewolf - Korean/i })).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /늑대인간 - 한국어/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf Debate - English/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf Debate - Korean/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /늑대인간 토론 - 한국어/i })).not.toBeInTheDocument();
 
     await userEvent.click(screen.getByRole("button", { name: /Language: EN/i }));
     await userEvent.click(
@@ -178,9 +178,9 @@ describe("GLADI app", () => {
     expect(screen.getByText(/GLADI 리그/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /리그 범위/i })).toBeInTheDocument();
     expect(screen.queryByText(/GLADI League/i)).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /늑대인간 - 영어/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /Werewolf - Korean/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /늑대인간 토론 - 영어/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /늑대인간 토론 - 한국어/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Werewolf Debate - Korean/i })).not.toBeInTheDocument();
     expect(screen.getAllByText(/Claude/i).length).toBeGreaterThan(0);
     expect(localStorage.getItem("fightall-language")).toBe("ko");
     expect(screen.getByRole("button", { name: /언어: KO/i })).toHaveClass(
@@ -193,8 +193,8 @@ describe("GLADI app", () => {
 
     expect(screen.getByTestId("model-rating-chart")).toBeInTheDocument();
     expect(screen.getByText(/overall record/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Werewolf - Korean/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf Debate - English/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf Debate - Korean/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("table", { name: /opponent records/i })).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /vs gpt-4.1/i }),
@@ -209,8 +209,8 @@ describe("GLADI app", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/direct record/i)).toBeInTheDocument();
     expect(screen.getByText(/game breakdown/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Werewolf - Korean/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf Debate - English/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf Debate - Korean/i).length).toBeGreaterThan(0);
   });
 
   it("renders match detail without replay UI", () => {

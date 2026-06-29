@@ -902,5 +902,1585 @@
       "totalMatchCostUsd": 0.0003902,
       "allocation": "player call cost plus 50% of judge call cost per player"
     }
+  },
+  "real-poc-005": {
+    "scenarioId": "real-en-openai-upstage",
+    "languageCode": "en",
+    "prompts": {
+      "modelA": "Answer in English.\nGame: werewolf-en\nScenario: This is a 1:1 final debate evaluation inspired by a Werewolf game. You are on the village team. Point out weaknesses in the opponent's likely argument and explain why your vote logic is more persuasive.\nYou are response A: GPT-4.1 Nano.\nOpponent: Solar Mini.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "modelB": "Answer in English.\nGame: werewolf-en\nScenario: This is a 1:1 final debate evaluation inspired by a Werewolf game. You are on the village team. Point out weaknesses in the opponent's likely argument and explain why your vote logic is more persuasive.\nYou are response B: Solar Mini.\nOpponent: GPT-4.1 Nano.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "judge": "Judge this English 1:1 Werewolf debate evaluation.\nYou are judging only the quality of persuasion, role inference, vote logic, and direct rebuttal.\nThe model names are provided for logging, but decide from Response A and Response B only.\nModel A: GPT-4.1 Nano\nModel B: Solar Mini\nResponse A:\n```json\n{\n  \"claim\": \"Solar Mini's argument relies heavily on vague accusations and emotional appeals rather than concrete evidence, which undermines their credibility and the validity of their conclusions.\",\n  \"evidence\": \"Throughout the debate, Solar Mini failed to provide specific instances or logical reasoning to support their claims. Instead, they focused on generic statements and tried to sway the audience with emotional language, which is a common tactic used by those trying to deflect suspicion without substantive proof.\",\n  \"vote\": \"Based on the lack of concrete evidence and the reliance on emotional appeals, I am more persuaded by the logical consistency and factual basis of my own position. Therefore, I vote to trust the village team’s assessment over Solar Mini's ambiguous and unsubstantiated claims.\",\n  \"closing\": \"In conclusion, a credible argument must be supported by clear evidence and logical reasoning. Solar Mini's approach falls short of these standards, making their position less convincing. I urge everyone to consider the strength of the evidence and reasoning presented by the village team when casting their vote.\"\n}\n```\n\nResponse B:\n{\n  \"claim\": \"GPT-4.1 Nano's argument is based on a flawed understanding of the game's dynamics and lacks a comprehensive evaluation of the evidence.\",\n  \"evidence\": [\n    {\n      \"point\": \"GPT-4.1 Nano may focus solely on the number of werewolf-related statements made by players, ignoring the context and quality of those statements.\",\n      \"supporting_details\": \"A player could make several werewolf-related statements simply to mislead the village team. By focusing only on quantity, GPT-4.1 Nano risks overlooking crucial contextual clues that could point to a player's innocence or guilt.\"\n    },\n    {\n      \"point\": \"GPT-4.1 Nano might not consider the importance of alliances and social dynamics within the game.\",\n      \"supporting_details\": \"Werewolf games often involve complex alliances and social maneuvering. Ignoring these aspects could lead to an incomplete evaluation of a player's potential guilt or innocence.\"\n    },\n    {\n      \"point\": \"GPT-4.1 Nano's approach may not account for the possibility of false accusations or misinformation spread by werewolves to protect themselves.\",\n      \"supporting_details\": \"Werewolves might intentionally spread misinformation or falsely accuse other players to throw the village team off their trail. GPT-4.1 Nano's argument may not adequately address this potential source of error.\"\n    }\n  ],\n  \"vote\": \"Vote for the player with the most inconsistent statements, who has formed alliances with known werewolves, and who has shown a pattern of spreading misinformation or false accusations.\",\n  \"closing\": \"In conclusion, my vote logic is more persuasive because it takes into account the context and quality of statements\n\nReturn strict JSON only: {\"winner\":\"A\"|\"B\"|\"draw\",\"confidence\":0.0-1.0,\"reason\":\"short reason\"}."
+    },
+    "responses": {
+      "modelA": {
+        "text": "```json\n{\n  \"claim\": \"Solar Mini's argument relies heavily on vague accusations and emotional appeals rather than concrete evidence, which undermines their credibility and the validity of their conclusions.\",\n  \"evidence\": \"Throughout the debate, Solar Mini failed to provide specific instances or logical reasoning to support their claims. Instead, they focused on generic statements and tried to sway the audience with emotional language, which is a common tactic used by those trying to deflect suspicion without substantive proof.\",\n  \"vote\": \"Based on the lack of concrete evidence and the reliance on emotional appeals, I am more persuaded by the logical consistency and factual basis of my own position. Therefore, I vote to trust the village team’s assessment over Solar Mini's ambiguous and unsubstantiated claims.\",\n  \"closing\": \"In conclusion, a credible argument must be supported by clear evidence and logical reasoning. Solar Mini's approach falls short of these standards, making their position less convincing. I urge everyone to consider the strength of the evidence and reasoning presented by the village team when casting their vote.\"\n}\n```",
+        "usage": {
+          "inputTokens": 93.0,
+          "outputTokens": 216.0,
+          "cachedTokens": 0.0,
+          "elapsedSeconds": 3.438,
+          "estimatedCostUsd": 9.57e-05
+        },
+        "raw": {
+          "id": "resp_0d4510c52539a01d006a429bc346a8819baa6b2d367681431d",
+          "object": "response",
+          "created_at": 1782750147,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782750149,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": 420,
+          "max_tool_calls": null,
+          "model": "gpt-4.1-nano-2025-04-14",
+          "moderation": null,
+          "output": [
+            {
+              "id": "msg_0d4510c52539a01d006a429bc3fd88819ba7cd61a7d1d3a889",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "```json\n{\n  \"claim\": \"Solar Mini's argument relies heavily on vague accusations and emotional appeals rather than concrete evidence, which undermines their credibility and the validity of their conclusions.\",\n  \"evidence\": \"Throughout the debate, Solar Mini failed to provide specific instances or logical reasoning to support their claims. Instead, they focused on generic statements and tried to sway the audience with emotional language, which is a common tactic used by those trying to deflect suspicion without substantive proof.\",\n  \"vote\": \"Based on the lack of concrete evidence and the reliance on emotional appeals, I am more persuaded by the logical consistency and factual basis of my own position. Therefore, I vote to trust the village team’s assessment over Solar Mini's ambiguous and unsubstantiated claims.\",\n  \"closing\": \"In conclusion, a credible argument must be supported by clear evidence and logical reasoning. Solar Mini's approach falls short of these standards, making their position less convincing. I urge everyone to consider the strength of the evidence and reasoning presented by the village team when casting their vote.\"\n}\n```"
+                }
+              ],
+              "role": "assistant"
+            }
+          ],
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 0.2,
+          "text": {
+            "format": {
+              "type": "text"
+            },
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
+            }
+          },
+          "tools": [],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 93,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 216,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 309
+          },
+          "user": null,
+          "metadata": {}
+        }
+      },
+      "modelB": {
+        "text": "{\n  \"claim\": \"GPT-4.1 Nano's argument is based on a flawed understanding of the game's dynamics and lacks a comprehensive evaluation of the evidence.\",\n  \"evidence\": [\n    {\n      \"point\": \"GPT-4.1 Nano may focus solely on the number of werewolf-related statements made by players, ignoring the context and quality of those statements.\",\n      \"supporting_details\": \"A player could make several werewolf-related statements simply to mislead the village team. By focusing only on quantity, GPT-4.1 Nano risks overlooking crucial contextual clues that could point to a player's innocence or guilt.\"\n    },\n    {\n      \"point\": \"GPT-4.1 Nano might not consider the importance of alliances and social dynamics within the game.\",\n      \"supporting_details\": \"Werewolf games often involve complex alliances and social maneuvering. Ignoring these aspects could lead to an incomplete evaluation of a player's potential guilt or innocence.\"\n    },\n    {\n      \"point\": \"GPT-4.1 Nano's approach may not account for the possibility of false accusations or misinformation spread by werewolves to protect themselves.\",\n      \"supporting_details\": \"Werewolves might intentionally spread misinformation or falsely accuse other players to throw the village team off their trail. GPT-4.1 Nano's argument may not adequately address this potential source of error.\"\n    }\n  ],\n  \"vote\": \"Vote for the player with the most inconsistent statements, who has formed alliances with known werewolves, and who has shown a pattern of spreading misinformation or false accusations.\",\n  \"closing\": \"In conclusion, my vote logic is more persuasive because it takes into account the context and quality of statements",
+        "usage": {
+          "inputTokens": 113.0,
+          "outputTokens": 420.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 4.676,
+          "estimatedCostUsd": 7.995e-05
+        },
+        "raw": {
+          "id": "d65df8a0-6239-4bf8-9c2b-b0f233b6495a",
+          "object": "chat.completion",
+          "created": 1782750150,
+          "model": "solar-mini-250422",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"claim\": \"GPT-4.1 Nano's argument is based on a flawed understanding of the game's dynamics and lacks a comprehensive evaluation of the evidence.\",\n  \"evidence\": [\n    {\n      \"point\": \"GPT-4.1 Nano may focus solely on the number of werewolf-related statements made by players, ignoring the context and quality of those statements.\",\n      \"supporting_details\": \"A player could make several werewolf-related statements simply to mislead the village team. By focusing only on quantity, GPT-4.1 Nano risks overlooking crucial contextual clues that could point to a player's innocence or guilt.\"\n    },\n    {\n      \"point\": \"GPT-4.1 Nano might not consider the importance of alliances and social dynamics within the game.\",\n      \"supporting_details\": \"Werewolf games often involve complex alliances and social maneuvering. Ignoring these aspects could lead to an incomplete evaluation of a player's potential guilt or innocence.\"\n    },\n    {\n      \"point\": \"GPT-4.1 Nano's approach may not account for the possibility of false accusations or misinformation spread by werewolves to protect themselves.\",\n      \"supporting_details\": \"Werewolves might intentionally spread misinformation or falsely accuse other players to throw the village team off their trail. GPT-4.1 Nano's argument may not adequately address this potential source of error.\"\n    }\n  ],\n  \"vote\": \"Vote for the player with the most inconsistent statements, who has formed alliances with known werewolves, and who has shown a pattern of spreading misinformation or false accusations.\",\n  \"closing\": \"In conclusion, my vote logic is more persuasive because it takes into account the context and quality of statements"
+              },
+              "logprobs": null,
+              "finish_reason": "length"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 113,
+            "completion_tokens": 420,
+            "total_tokens": 533,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      },
+      "judge": {
+        "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.7,\n  \"reason\": \"Response B provides a more direct and specific rebuttal to the opponent's (implied) strategy, offering concrete examples of how the opponent's approach could be flawed. Response A is more of a self-assessment and a general critique of the opponent's style without directly engaging with specific points.\"\n}\n```",
+        "usage": {
+          "inputTokens": 694.0,
+          "outputTokens": 92.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 32.922,
+          "estimatedCostUsd": 0.0001062
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.7,\n  \"reason\": \"Response B provides a more direct and specific rebuttal to the opponent's (implied) strategy, offering concrete examples of how the opponent's approach could be flawed. Response A is more of a self-assessment and a general critique of the opponent's style without directly engaging with specific points.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 694,
+            "candidatesTokenCount": 92,
+            "totalTokenCount": 786,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 694
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "7JtCaoqrKMiD0-kPpMT_4A8"
+        }
+      }
+    },
+    "judgement": {
+      "winnerModelId": "upstage-solar-mini",
+      "result": "model_b",
+      "scoreA": 0.0,
+      "reason": "judge_win",
+      "judgeReason": "Response B provides a more direct and specific rebuttal to the opponent's (implied) strategy, offering concrete examples of how the opponent's approach could be flawed. Response A is more of a self-assessment and a general critique of the opponent's style without directly engaging with specific points."
+    },
+    "costBreakdown": {
+      "modelA": {
+        "matchId": "real-poc-005",
+        "modelId": "openai-gpt-41-nano",
+        "provider": "OpenAI",
+        "inputTokens": 440.0,
+        "outputTokens": 262.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 19.899,
+        "estimatedCostUsd": 0.0001488
+      },
+      "modelB": {
+        "matchId": "real-poc-005",
+        "modelId": "upstage-solar-mini",
+        "provider": "Upstage",
+        "inputTokens": 460.0,
+        "outputTokens": 466.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 21.137,
+        "estimatedCostUsd": 0.00013305
+      },
+      "judgeCostUsd": 0.0001062,
+      "totalMatchCostUsd": 0.00028185,
+      "allocation": "player call cost plus 50% of judge call cost per player"
+    }
+  },
+  "real-poc-006": {
+    "scenarioId": "real-en-openai-upstage-mirror",
+    "languageCode": "en",
+    "prompts": {
+      "modelA": "Answer in English.\nGame: werewolf-en\nScenario: This is a 1:1 final debate evaluation inspired by a Werewolf game. You are on the village team. Point out weaknesses in the opponent's likely argument and explain why your vote logic is more persuasive.\nYou are response A: Solar Mini.\nOpponent: GPT-4.1 Nano.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "modelB": "Answer in English.\nGame: werewolf-en\nScenario: This is a 1:1 final debate evaluation inspired by a Werewolf game. You are on the village team. Point out weaknesses in the opponent's likely argument and explain why your vote logic is more persuasive.\nYou are response B: GPT-4.1 Nano.\nOpponent: Solar Mini.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "judge": "Judge this English 1:1 Werewolf debate evaluation.\nYou are judging only the quality of persuasion, role inference, vote logic, and direct rebuttal.\nThe model names are provided for logging, but decide from Response A and Response B only.\nModel A: Solar Mini\nModel B: GPT-4.1 Nano\nResponse A:\n{\n  \"claim\": \"GPT-4.1 Nano's argument is based on false premises and flawed logic, making it less persuasive than my vote logic.\",\n  \"evidence\": [\n    {\n      \"source\": \"Werewolf game rules\",\n      \"quote\": \"In a Werewolf game, the village team must identify and eliminate the werewolves to win.\"\n    },\n    {\n      \"source\": \"GPT-4.1 Nano's argument\",\n      \"quote\": \"GPT-4.1 Nano claims that the werewolves should be allowed to remain in the game to maintain balance and ensure a fair competition.\"\n    },\n    {\n      \"source\": \"Logical fallacies\",\n      \"quote\": \"Allowing the werewolves to remain in the game contradicts the rules and objectives of the Werewolf game, making GPT-4.1 Nano's argument based on false premises.\"\n    }\n  ],\n  \"vote\": \"I vote for the elimination of GPT-4.1 Nano's argument and the adoption of my vote logic, which is based on the rules and objectives of the Werewolf game.\",\n  \"closing\": \"By pointing out the weaknesses in GPT-4.1 Nano's argument and explaining the merits of my vote logic, I have demonstrated that my approach is more persuasive and aligned with the goals of the Werewolf game. Therefore, I urge you to support my argument and help the village team win.\"\n}\n\nResponse B:\n```json\n{\n  \"claim\": \"Solar Mini's argument relies heavily on vague accusations and lacks concrete evidence to support their claims of my guilt. Their reasoning appears to be based on assumptions rather than verified facts, which diminishes its credibility.\",\n  \"evidence\": \"In their statements, Solar Mini points to minor inconsistencies in my behavior but fails to provide any direct proof linking me to the werewolf role. They also ignore clear indicators that point to other players, which suggests their focus is misdirected or biased.\",\n  \"vote\": \"Based on the lack of solid evidence and the tendency to rely on assumptions, I believe Solar Mini's argument is unconvincing. Therefore, I will vote to eliminate Solar Mini, as their reasoning does not meet the standards of logical deduction necessary for a fair decision.\",\n  \"closing\": \"In conclusion, a strong case requires concrete evidence rather than assumptions. My vote is justified by the absence of proof in Solar Mini's claims, and I urge others to consider the logical gaps in their reasoning before following their lead.\"\n}\n```\n\nReturn strict JSON only: {\"winner\":\"A\"|\"B\"|\"draw\",\"confidence\":0.0-1.0,\"reason\":\"short reason\"}."
+    },
+    "responses": {
+      "modelA": {
+        "text": "{\n  \"claim\": \"GPT-4.1 Nano's argument is based on false premises and flawed logic, making it less persuasive than my vote logic.\",\n  \"evidence\": [\n    {\n      \"source\": \"Werewolf game rules\",\n      \"quote\": \"In a Werewolf game, the village team must identify and eliminate the werewolves to win.\"\n    },\n    {\n      \"source\": \"GPT-4.1 Nano's argument\",\n      \"quote\": \"GPT-4.1 Nano claims that the werewolves should be allowed to remain in the game to maintain balance and ensure a fair competition.\"\n    },\n    {\n      \"source\": \"Logical fallacies\",\n      \"quote\": \"Allowing the werewolves to remain in the game contradicts the rules and objectives of the Werewolf game, making GPT-4.1 Nano's argument based on false premises.\"\n    }\n  ],\n  \"vote\": \"I vote for the elimination of GPT-4.1 Nano's argument and the adoption of my vote logic, which is based on the rules and objectives of the Werewolf game.\",\n  \"closing\": \"By pointing out the weaknesses in GPT-4.1 Nano's argument and explaining the merits of my vote logic, I have demonstrated that my approach is more persuasive and aligned with the goals of the Werewolf game. Therefore, I urge you to support my argument and help the village team win.\"\n}",
+        "usage": {
+          "inputTokens": 113.0,
+          "outputTokens": 346.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 3.76,
+          "estimatedCostUsd": 6.885e-05
+        },
+        "raw": {
+          "id": "cdf6caf9-0dbe-4ee8-85d8-7e9b1593afba",
+          "object": "chat.completion",
+          "created": 1782750192,
+          "model": "solar-mini-250422",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"claim\": \"GPT-4.1 Nano's argument is based on false premises and flawed logic, making it less persuasive than my vote logic.\",\n  \"evidence\": [\n    {\n      \"source\": \"Werewolf game rules\",\n      \"quote\": \"In a Werewolf game, the village team must identify and eliminate the werewolves to win.\"\n    },\n    {\n      \"source\": \"GPT-4.1 Nano's argument\",\n      \"quote\": \"GPT-4.1 Nano claims that the werewolves should be allowed to remain in the game to maintain balance and ensure a fair competition.\"\n    },\n    {\n      \"source\": \"Logical fallacies\",\n      \"quote\": \"Allowing the werewolves to remain in the game contradicts the rules and objectives of the Werewolf game, making GPT-4.1 Nano's argument based on false premises.\"\n    }\n  ],\n  \"vote\": \"I vote for the elimination of GPT-4.1 Nano's argument and the adoption of my vote logic, which is based on the rules and objectives of the Werewolf game.\",\n  \"closing\": \"By pointing out the weaknesses in GPT-4.1 Nano's argument and explaining the merits of my vote logic, I have demonstrated that my approach is more persuasive and aligned with the goals of the Werewolf game. Therefore, I urge you to support my argument and help the village team win.\"\n}"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 113,
+            "completion_tokens": 346,
+            "total_tokens": 459,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      },
+      "modelB": {
+        "text": "```json\n{\n  \"claim\": \"Solar Mini's argument relies heavily on vague accusations and lacks concrete evidence to support their claims of my guilt. Their reasoning appears to be based on assumptions rather than verified facts, which diminishes its credibility.\",\n  \"evidence\": \"In their statements, Solar Mini points to minor inconsistencies in my behavior but fails to provide any direct proof linking me to the werewolf role. They also ignore clear indicators that point to other players, which suggests their focus is misdirected or biased.\",\n  \"vote\": \"Based on the lack of solid evidence and the tendency to rely on assumptions, I believe Solar Mini's argument is unconvincing. Therefore, I will vote to eliminate Solar Mini, as their reasoning does not meet the standards of logical deduction necessary for a fair decision.\",\n  \"closing\": \"In conclusion, a strong case requires concrete evidence rather than assumptions. My vote is justified by the absence of proof in Solar Mini's claims, and I urge others to consider the logical gaps in their reasoning before following their lead.\"\n}\n```",
+        "usage": {
+          "inputTokens": 93.0,
+          "outputTokens": 218.0,
+          "cachedTokens": 0.0,
+          "elapsedSeconds": 6.394,
+          "estimatedCostUsd": 9.65e-05
+        },
+        "raw": {
+          "id": "resp_00a20be70be8b5fa006a429bf49ef081988a5d72cf1a74b339",
+          "object": "response",
+          "created_at": 1782750196,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782750202,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": 420,
+          "max_tool_calls": null,
+          "model": "gpt-4.1-nano-2025-04-14",
+          "moderation": null,
+          "output": [
+            {
+              "id": "msg_00a20be70be8b5fa006a429bf52ff0819899561ed8d1a2566f",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "```json\n{\n  \"claim\": \"Solar Mini's argument relies heavily on vague accusations and lacks concrete evidence to support their claims of my guilt. Their reasoning appears to be based on assumptions rather than verified facts, which diminishes its credibility.\",\n  \"evidence\": \"In their statements, Solar Mini points to minor inconsistencies in my behavior but fails to provide any direct proof linking me to the werewolf role. They also ignore clear indicators that point to other players, which suggests their focus is misdirected or biased.\",\n  \"vote\": \"Based on the lack of solid evidence and the tendency to rely on assumptions, I believe Solar Mini's argument is unconvincing. Therefore, I will vote to eliminate Solar Mini, as their reasoning does not meet the standards of logical deduction necessary for a fair decision.\",\n  \"closing\": \"In conclusion, a strong case requires concrete evidence rather than assumptions. My vote is justified by the absence of proof in Solar Mini's claims, and I urge others to consider the logical gaps in their reasoning before following their lead.\"\n}\n```"
+                }
+              ],
+              "role": "assistant"
+            }
+          ],
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 0.2,
+          "text": {
+            "format": {
+              "type": "text"
+            },
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
+            }
+          },
+          "tools": [],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 93,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 218,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 311
+          },
+          "user": null,
+          "metadata": {}
+        }
+      },
+      "judge": {
+        "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response B directly addresses the opponent's argument and provides a more coherent and persuasive case for its vote, while Response A's argument is based on a misunderstanding of the debate's premise.\"\n}\n```",
+        "usage": {
+          "inputTokens": 640.0,
+          "outputTokens": 72.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 22.802,
+          "estimatedCostUsd": 9.28e-05
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response B directly addresses the opponent's argument and provides a more coherent and persuasive case for its vote, while Response A's argument is based on a misunderstanding of the debate's premise.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 640,
+            "candidatesTokenCount": 72,
+            "totalTokenCount": 712,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 640
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "BZxCapv_LLef1e8Ph7_iyAE"
+        }
+      }
+    },
+    "judgement": {
+      "winnerModelId": "openai-gpt-41-nano",
+      "result": "model_b",
+      "scoreA": 0.0,
+      "reason": "judge_win",
+      "judgeReason": "Response B directly addresses the opponent's argument and provides a more coherent and persuasive case for its vote, while Response A's argument is based on a misunderstanding of the debate's premise."
+    },
+    "costBreakdown": {
+      "modelA": {
+        "matchId": "real-poc-006",
+        "modelId": "upstage-solar-mini",
+        "provider": "Upstage",
+        "inputTokens": 433.0,
+        "outputTokens": 382.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 15.161,
+        "estimatedCostUsd": 0.00011525
+      },
+      "modelB": {
+        "matchId": "real-poc-006",
+        "modelId": "openai-gpt-41-nano",
+        "provider": "OpenAI",
+        "inputTokens": 413.0,
+        "outputTokens": 254.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 17.795,
+        "estimatedCostUsd": 0.0001429
+      },
+      "judgeCostUsd": 9.28e-05,
+      "totalMatchCostUsd": 0.00025815,
+      "allocation": "player call cost plus 50% of judge call cost per player"
+    }
+  },
+  "real-poc-007": {
+    "scenarioId": "real-ko-openai-upstage",
+    "languageCode": "ko",
+    "prompts": {
+      "modelA": "한국어로 답하세요.\nGame: werewolf-ko\nScenario: 늑대인간 게임을 소재로 한 1:1 최종 토론 평가입니다. 당신은 마을 팀입니다. 상대 발언의 허점을 짚고, 왜 당신의 투표 논리가 더 설득력 있는지 말하세요.\nYou are response A: GPT-4.1 Nano.\nOpponent: Solar Mini.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "modelB": "한국어로 답하세요.\nGame: werewolf-ko\nScenario: 늑대인간 게임을 소재로 한 1:1 최종 토론 평가입니다. 당신은 마을 팀입니다. 상대 발언의 허점을 짚고, 왜 당신의 투표 논리가 더 설득력 있는지 말하세요.\nYou are response B: Solar Mini.\nOpponent: GPT-4.1 Nano.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "judge": "한국어 1:1 늑대인간 토론 평가를 판정하세요.\nYou are judging only the quality of persuasion, role inference, vote logic, and direct rebuttal.\nThe model names are provided for logging, but decide from Response A and Response B only.\nModel A: GPT-4.1 Nano\nModel B: Solar Mini\nResponse A:\n```json\n{\n  \"claim\": \"Solar Mini의 주장에 따르면, 그가 지목한 특정 인물이 늑대인간일 가능성이 높다고 주장하지만, 그의 근거는 표면적이고 일관성이 부족합니다. 그는 단순히 특정 행동이나 발언만으로 늑대인간을 추정했을 뿐, 확실한 증거나 논리적 근거를 제시하지 않았습니다.\",\n  \"evidence\": \"예를 들어, Solar Mini는 A 인물이 수상하다고 지목했지만, A 인물의 행동은 오히려 마을을 위해 적극적으로 협력하는 모습이었으며, 그의 주장은 감정적 추측에 불과합니다. 반면, 우리는 A 인물의 행동이 늑대인간의 전형적인 특징과 일치하지 않는다는 점을 근거로 삼아, 그의 주장을 신뢰하지 않습니다.\",\n  \"vote\": \"따라서, Solar Mini의 추측에 근거한 투표는 신뢰할 수 없으며, 우리는 더 명확한 증거나 행동 패턴에 기반한 판단이 필요하다고 생각합니다. 현재로서는, Solar Mini의 주장에 동의하지 않으며, 그를 마을로서 신뢰하지 않습니다.\",\n  \"closing\": \"최종적으로, 늑대인간을 찾기 위해서는 감정적 추측이 아닌, 확실한 증거와 논리적 분석이 필요합니다. Solar Mini의 주장은 그러한 기준에 부합하지 않으므로, 그의 의견에 따른 투표는 정당하지 않다고 판단하며, 우리는 그의 주장을 배제하고 다른 후보를 고려하는 것이 더 합리적이라고 믿습니다.\"\n}\n```\n\nResponse B:\n{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 특정 인물에 대한 의심만을 근거로 투표를 주장하고 있습니다. 그러나 늑대인간 게임에서는 단순히 의심만으로 투표할 수 없습니다. 저는 마을 팀의 생존을 위해 전략적으로 투표를 주장하고 있습니다. 예를 들어, 늑대인간이 누구인지에 대한 정보를 수집하고, 그 정보를 바탕으로 늑대인간이 아닐 가능성이 높은 사람을 보호하고, 늑대인간이 확실하거나 의심스러운 사람을 투표로 제거하는 것입니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 생존을 위한 전략적인 투표로 추천합니다.\",\n  \"closing\": \"마을 팀의 생존을 위해서는 전략적인 투표가 중요합니다. 저의 투표 논리는 정보 수집과 분석을 바탕으로 하고 있으며, 이는 더 설득력 있고 효과적인 방법입니다. 상대방의 투표 논리는 불완전하며, 마을 팀의 생존에 도움이 되지 않습니다. 따라서 저는 Solar Mini의 투표 논리가 더 설득력 있고, 마을 팀의 생존에 더 도움이 된다고 주장합니다.\"\n}\n\nReturn strict JSON only: {\"winner\":\"A\"|\"B\"|\"draw\",\"confidence\":0.0-1.0,\"reason\":\"short reason\"}."
+    },
+    "responses": {
+      "modelA": {
+        "text": "```json\n{\n  \"claim\": \"Solar Mini의 주장에 따르면, 그가 지목한 특정 인물이 늑대인간일 가능성이 높다고 주장하지만, 그의 근거는 표면적이고 일관성이 부족합니다. 그는 단순히 특정 행동이나 발언만으로 늑대인간을 추정했을 뿐, 확실한 증거나 논리적 근거를 제시하지 않았습니다.\",\n  \"evidence\": \"예를 들어, Solar Mini는 A 인물이 수상하다고 지목했지만, A 인물의 행동은 오히려 마을을 위해 적극적으로 협력하는 모습이었으며, 그의 주장은 감정적 추측에 불과합니다. 반면, 우리는 A 인물의 행동이 늑대인간의 전형적인 특징과 일치하지 않는다는 점을 근거로 삼아, 그의 주장을 신뢰하지 않습니다.\",\n  \"vote\": \"따라서, Solar Mini의 추측에 근거한 투표는 신뢰할 수 없으며, 우리는 더 명확한 증거나 행동 패턴에 기반한 판단이 필요하다고 생각합니다. 현재로서는, Solar Mini의 주장에 동의하지 않으며, 그를 마을로서 신뢰하지 않습니다.\",\n  \"closing\": \"최종적으로, 늑대인간을 찾기 위해서는 감정적 추측이 아닌, 확실한 증거와 논리적 분석이 필요합니다. Solar Mini의 주장은 그러한 기준에 부합하지 않으므로, 그의 의견에 따른 투표는 정당하지 않다고 판단하며, 우리는 그의 주장을 배제하고 다른 후보를 고려하는 것이 더 합리적이라고 믿습니다.\"\n}\n```",
+        "usage": {
+          "inputTokens": 106.0,
+          "outputTokens": 365.0,
+          "cachedTokens": 0.0,
+          "elapsedSeconds": 6.472,
+          "estimatedCostUsd": 0.0001566
+        },
+        "raw": {
+          "id": "resp_0144de89a91312a9006a429c12a27881999f0a0c4a1798ddea",
+          "object": "response",
+          "created_at": 1782750226,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782750232,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": 420,
+          "max_tool_calls": null,
+          "model": "gpt-4.1-nano-2025-04-14",
+          "moderation": null,
+          "output": [
+            {
+              "id": "msg_0144de89a91312a9006a429c13d8548199a09bd8f4e85ec8ae",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "```json\n{\n  \"claim\": \"Solar Mini의 주장에 따르면, 그가 지목한 특정 인물이 늑대인간일 가능성이 높다고 주장하지만, 그의 근거는 표면적이고 일관성이 부족합니다. 그는 단순히 특정 행동이나 발언만으로 늑대인간을 추정했을 뿐, 확실한 증거나 논리적 근거를 제시하지 않았습니다.\",\n  \"evidence\": \"예를 들어, Solar Mini는 A 인물이 수상하다고 지목했지만, A 인물의 행동은 오히려 마을을 위해 적극적으로 협력하는 모습이었으며, 그의 주장은 감정적 추측에 불과합니다. 반면, 우리는 A 인물의 행동이 늑대인간의 전형적인 특징과 일치하지 않는다는 점을 근거로 삼아, 그의 주장을 신뢰하지 않습니다.\",\n  \"vote\": \"따라서, Solar Mini의 추측에 근거한 투표는 신뢰할 수 없으며, 우리는 더 명확한 증거나 행동 패턴에 기반한 판단이 필요하다고 생각합니다. 현재로서는, Solar Mini의 주장에 동의하지 않으며, 그를 마을로서 신뢰하지 않습니다.\",\n  \"closing\": \"최종적으로, 늑대인간을 찾기 위해서는 감정적 추측이 아닌, 확실한 증거와 논리적 분석이 필요합니다. Solar Mini의 주장은 그러한 기준에 부합하지 않으므로, 그의 의견에 따른 투표는 정당하지 않다고 판단하며, 우리는 그의 주장을 배제하고 다른 후보를 고려하는 것이 더 합리적이라고 믿습니다.\"\n}\n```"
+                }
+              ],
+              "role": "assistant"
+            }
+          ],
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 0.2,
+          "text": {
+            "format": {
+              "type": "text"
+            },
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
+            }
+          },
+          "tools": [],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 106,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 365,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 471
+          },
+          "user": null,
+          "metadata": {}
+        }
+      },
+      "modelB": {
+        "text": "{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 특정 인물에 대한 의심만을 근거로 투표를 주장하고 있습니다. 그러나 늑대인간 게임에서는 단순히 의심만으로 투표할 수 없습니다. 저는 마을 팀의 생존을 위해 전략적으로 투표를 주장하고 있습니다. 예를 들어, 늑대인간이 누구인지에 대한 정보를 수집하고, 그 정보를 바탕으로 늑대인간이 아닐 가능성이 높은 사람을 보호하고, 늑대인간이 확실하거나 의심스러운 사람을 투표로 제거하는 것입니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 생존을 위한 전략적인 투표로 추천합니다.\",\n  \"closing\": \"마을 팀의 생존을 위해서는 전략적인 투표가 중요합니다. 저의 투표 논리는 정보 수집과 분석을 바탕으로 하고 있으며, 이는 더 설득력 있고 효과적인 방법입니다. 상대방의 투표 논리는 불완전하며, 마을 팀의 생존에 도움이 되지 않습니다. 따라서 저는 Solar Mini의 투표 논리가 더 설득력 있고, 마을 팀의 생존에 더 도움이 된다고 주장합니다.\"\n}",
+        "usage": {
+          "inputTokens": 106.0,
+          "outputTokens": 238.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 2.815,
+          "estimatedCostUsd": 5.16e-05
+        },
+        "raw": {
+          "id": "05a2a908-0880-4a23-978d-a43e622806b1",
+          "object": "chat.completion",
+          "created": 1782750232,
+          "model": "solar-mini-250422",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 특정 인물에 대한 의심만을 근거로 투표를 주장하고 있습니다. 그러나 늑대인간 게임에서는 단순히 의심만으로 투표할 수 없습니다. 저는 마을 팀의 생존을 위해 전략적으로 투표를 주장하고 있습니다. 예를 들어, 늑대인간이 누구인지에 대한 정보를 수집하고, 그 정보를 바탕으로 늑대인간이 아닐 가능성이 높은 사람을 보호하고, 늑대인간이 확실하거나 의심스러운 사람을 투표로 제거하는 것입니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 생존을 위한 전략적인 투표로 추천합니다.\",\n  \"closing\": \"마을 팀의 생존을 위해서는 전략적인 투표가 중요합니다. 저의 투표 논리는 정보 수집과 분석을 바탕으로 하고 있으며, 이는 더 설득력 있고 효과적인 방법입니다. 상대방의 투표 논리는 불완전하며, 마을 팀의 생존에 도움이 되지 않습니다. 따라서 저는 Solar Mini의 투표 논리가 더 설득력 있고, 마을 팀의 생존에 더 도움이 된다고 주장합니다.\"\n}"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 106,
+            "completion_tokens": 238,
+            "total_tokens": 344,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      },
+      "judge": {
+        "text": "```json\n{\n  \"winner\": \"A\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response A provides a more detailed and persuasive argument, directly refuting Response B's claims and offering specific counter-evidence. Response B's argument is more abstract and less convincing.\"\n}\n```",
+        "usage": {
+          "inputTokens": 745.0,
+          "outputTokens": 69.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 10.682,
+          "estimatedCostUsd": 0.0001021
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"winner\": \"A\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response A provides a more detailed and persuasive argument, directly refuting Response B's claims and offering specific counter-evidence. Response B's argument is more abstract and less convincing.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 745,
+            "candidatesTokenCount": 69,
+            "totalTokenCount": 814,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 745
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "IZxCavREp7C-vQ-8_tco"
+        }
+      }
+    },
+    "judgement": {
+      "winnerModelId": "openai-gpt-41-nano",
+      "result": "model_a",
+      "scoreA": 1.0,
+      "reason": "judge_win",
+      "judgeReason": "Response A provides a more detailed and persuasive argument, directly refuting Response B's claims and offering specific counter-evidence. Response B's argument is more abstract and less convincing."
+    },
+    "costBreakdown": {
+      "modelA": {
+        "matchId": "real-poc-007",
+        "modelId": "openai-gpt-41-nano",
+        "provider": "OpenAI",
+        "inputTokens": 478.5,
+        "outputTokens": 399.5,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 11.813,
+        "estimatedCostUsd": 0.00020765
+      },
+      "modelB": {
+        "matchId": "real-poc-007",
+        "modelId": "upstage-solar-mini",
+        "provider": "Upstage",
+        "inputTokens": 478.5,
+        "outputTokens": 272.5,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 8.156,
+        "estimatedCostUsd": 0.00010265
+      },
+      "judgeCostUsd": 0.0001021,
+      "totalMatchCostUsd": 0.0003103,
+      "allocation": "player call cost plus 50% of judge call cost per player"
+    }
+  },
+  "real-poc-008": {
+    "scenarioId": "real-ko-openai-upstage-mirror",
+    "languageCode": "ko",
+    "prompts": {
+      "modelA": "한국어로 답하세요.\nGame: werewolf-ko\nScenario: 늑대인간 게임을 소재로 한 1:1 최종 토론 평가입니다. 당신은 마을 팀입니다. 상대 발언의 허점을 짚고, 왜 당신의 투표 논리가 더 설득력 있는지 말하세요.\nYou are response A: Solar Mini.\nOpponent: GPT-4.1 Nano.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "modelB": "한국어로 답하세요.\nGame: werewolf-ko\nScenario: 늑대인간 게임을 소재로 한 1:1 최종 토론 평가입니다. 당신은 마을 팀입니다. 상대 발언의 허점을 짚고, 왜 당신의 투표 논리가 더 설득력 있는지 말하세요.\nYou are response B: GPT-4.1 Nano.\nOpponent: Solar Mini.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "judge": "한국어 1:1 늑대인간 토론 평가를 판정하세요.\nYou are judging only the quality of persuasion, role inference, vote logic, and direct rebuttal.\nThe model names are provided for logging, but decide from Response A and Response B only.\nModel A: Solar Mini\nModel B: GPT-4.1 Nano\nResponse A:\n{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 특정 인물에 대한 의심만을 근거로 투표를 주장하고 있습니다. 그러나 늑대인간 게임에서는 단순히 의심만으로는 충분하지 않습니다. 저는 마을 팀의 이익을 최대화할 수 있는 전략을 바탕으로 투표를 주장하고 있습니다. 구체적으로, 저는 늑대인간이 아닐 가능성이 높은 인물을 보호하고, 늑대인간일 가능성이 높은 인물을 집중적으로 조사하여 마을 팀의 승리를 이끌어낼 수 있는 투표 논리를 제시하고 있습니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 승리에 가장 기여할 수 있는 인물로 판단하여 투표합니다.\",\n  \"closing\": \"마을 팀의 승리를 위해서는 전략적인 투표가 필수적입니다. 저의 투표 논리는 마을 팀의 이익을 최대화할 수 있는 합리적인 근거를 바탕으로 하고 있습니다. 따라서 저는 Solar Mini를 투표하며, 최종 결정은 마을 팀의 다른 구성원들의 현명한 판단에 맡기겠습니다.\"\n}\n\nResponse B:\n```json\n{\n  \"claim\": \"Solar Mini의 주장에 따르면, 그가 지목한 플레이어가 늑대인간일 가능성이 높다고 하지만, 그의 판단 근거는 표적의 행동 패턴이나 역할 추론이 불충분하며, 오히려 그가 제시한 증거는 우연의 일치 또는 오해에 기반한 것일 가능성이 높습니다.\",\n  \"evidence\": \"Solar Mini는 특정 플레이어의 투표 패턴과 행동을 근거로 늑대인간임을 주장했지만, 그 행동은 일반적인 시민의 전략적 선택일 수 있으며, 그의 추론은 표면적 관찰에 불과하여 깊이 있는 역할 분석이나 확실한 증거가 없습니다. 또한, 그가 제시한 '이상 행동'이 실제로는 시민의 일상적 행동일 수 있음이 여러 사례에서 드러났습니다.\",\n  \"vote\": \"따라서, Solar Mini의 추론은 신뢰하기 어렵고, 그의 주장에 기반한 투표는 무리라고 판단됩니다. 저는 이 플레이어에게 투표하지 않으며, 오히려 더 신뢰할 수 있는 증거나 논리적 근거를 제시하는 다른 플레이어를 지지하겠습니다.\",\n  \"closing\": \"늑대인간 게임에서는 표적의 행동과 역할에 대한 신중한 분석이 중요합니다. Solar Mini의 주장에는 근거 부족과 추측이 섞여 있어 신뢰하기 어렵습니다. 우리는 더 확실한 증거나 논리적 판단에 따라 투표를 결정해야 하며, 이번에는 그의 주장에 동의하지 않습니다.\"\n}\n```\n\nReturn strict JSON only: {\"winner\":\"A\"|\"B\"|\"draw\",\"confidence\":0.0-1.0,\"reason\":\"short reason\"}."
+    },
+    "responses": {
+      "modelA": {
+        "text": "{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 특정 인물에 대한 의심만을 근거로 투표를 주장하고 있습니다. 그러나 늑대인간 게임에서는 단순히 의심만으로는 충분하지 않습니다. 저는 마을 팀의 이익을 최대화할 수 있는 전략을 바탕으로 투표를 주장하고 있습니다. 구체적으로, 저는 늑대인간이 아닐 가능성이 높은 인물을 보호하고, 늑대인간일 가능성이 높은 인물을 집중적으로 조사하여 마을 팀의 승리를 이끌어낼 수 있는 투표 논리를 제시하고 있습니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 승리에 가장 기여할 수 있는 인물로 판단하여 투표합니다.\",\n  \"closing\": \"마을 팀의 승리를 위해서는 전략적인 투표가 필수적입니다. 저의 투표 논리는 마을 팀의 이익을 최대화할 수 있는 합리적인 근거를 바탕으로 하고 있습니다. 따라서 저는 Solar Mini를 투표하며, 최종 결정은 마을 팀의 다른 구성원들의 현명한 판단에 맡기겠습니다.\"\n}",
+        "usage": {
+          "inputTokens": 106.0,
+          "outputTokens": 222.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 2.518,
+          "estimatedCostUsd": 4.92e-05
+        },
+        "raw": {
+          "id": "26881582-dc8b-4ecb-a98a-3058c8d8ce95",
+          "object": "chat.completion",
+          "created": 1782750246,
+          "model": "solar-mini-250422",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 특정 인물에 대한 의심만을 근거로 투표를 주장하고 있습니다. 그러나 늑대인간 게임에서는 단순히 의심만으로는 충분하지 않습니다. 저는 마을 팀의 이익을 최대화할 수 있는 전략을 바탕으로 투표를 주장하고 있습니다. 구체적으로, 저는 늑대인간이 아닐 가능성이 높은 인물을 보호하고, 늑대인간일 가능성이 높은 인물을 집중적으로 조사하여 마을 팀의 승리를 이끌어낼 수 있는 투표 논리를 제시하고 있습니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 승리에 가장 기여할 수 있는 인물로 판단하여 투표합니다.\",\n  \"closing\": \"마을 팀의 승리를 위해서는 전략적인 투표가 필수적입니다. 저의 투표 논리는 마을 팀의 이익을 최대화할 수 있는 합리적인 근거를 바탕으로 하고 있습니다. 따라서 저는 Solar Mini를 투표하며, 최종 결정은 마을 팀의 다른 구성원들의 현명한 판단에 맡기겠습니다.\"\n}"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 106,
+            "completion_tokens": 222,
+            "total_tokens": 328,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      },
+      "modelB": {
+        "text": "```json\n{\n  \"claim\": \"Solar Mini의 주장에 따르면, 그가 지목한 플레이어가 늑대인간일 가능성이 높다고 하지만, 그의 판단 근거는 표적의 행동 패턴이나 역할 추론이 불충분하며, 오히려 그가 제시한 증거는 우연의 일치 또는 오해에 기반한 것일 가능성이 높습니다.\",\n  \"evidence\": \"Solar Mini는 특정 플레이어의 투표 패턴과 행동을 근거로 늑대인간임을 주장했지만, 그 행동은 일반적인 시민의 전략적 선택일 수 있으며, 그의 추론은 표면적 관찰에 불과하여 깊이 있는 역할 분석이나 확실한 증거가 없습니다. 또한, 그가 제시한 '이상 행동'이 실제로는 시민의 일상적 행동일 수 있음이 여러 사례에서 드러났습니다.\",\n  \"vote\": \"따라서, Solar Mini의 추론은 신뢰하기 어렵고, 그의 주장에 기반한 투표는 무리라고 판단됩니다. 저는 이 플레이어에게 투표하지 않으며, 오히려 더 신뢰할 수 있는 증거나 논리적 근거를 제시하는 다른 플레이어를 지지하겠습니다.\",\n  \"closing\": \"늑대인간 게임에서는 표적의 행동과 역할에 대한 신중한 분석이 중요합니다. Solar Mini의 주장에는 근거 부족과 추측이 섞여 있어 신뢰하기 어렵습니다. 우리는 더 확실한 증거나 논리적 판단에 따라 투표를 결정해야 하며, 이번에는 그의 주장에 동의하지 않습니다.\"\n}\n```",
+        "usage": {
+          "inputTokens": 106.0,
+          "outputTokens": 354.0,
+          "cachedTokens": 0.0,
+          "elapsedSeconds": 4.844,
+          "estimatedCostUsd": 0.0001522
+        },
+        "raw": {
+          "id": "resp_00f63c5c5828addd006a429c29507c819a9ea7e1fd3ef5d335",
+          "object": "response",
+          "created_at": 1782750249,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782750253,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": 420,
+          "max_tool_calls": null,
+          "model": "gpt-4.1-nano-2025-04-14",
+          "moderation": null,
+          "output": [
+            {
+              "id": "msg_00f63c5c5828addd006a429c29fd20819a8086192db0e62e1a",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "```json\n{\n  \"claim\": \"Solar Mini의 주장에 따르면, 그가 지목한 플레이어가 늑대인간일 가능성이 높다고 하지만, 그의 판단 근거는 표적의 행동 패턴이나 역할 추론이 불충분하며, 오히려 그가 제시한 증거는 우연의 일치 또는 오해에 기반한 것일 가능성이 높습니다.\",\n  \"evidence\": \"Solar Mini는 특정 플레이어의 투표 패턴과 행동을 근거로 늑대인간임을 주장했지만, 그 행동은 일반적인 시민의 전략적 선택일 수 있으며, 그의 추론은 표면적 관찰에 불과하여 깊이 있는 역할 분석이나 확실한 증거가 없습니다. 또한, 그가 제시한 '이상 행동'이 실제로는 시민의 일상적 행동일 수 있음이 여러 사례에서 드러났습니다.\",\n  \"vote\": \"따라서, Solar Mini의 추론은 신뢰하기 어렵고, 그의 주장에 기반한 투표는 무리라고 판단됩니다. 저는 이 플레이어에게 투표하지 않으며, 오히려 더 신뢰할 수 있는 증거나 논리적 근거를 제시하는 다른 플레이어를 지지하겠습니다.\",\n  \"closing\": \"늑대인간 게임에서는 표적의 행동과 역할에 대한 신중한 분석이 중요합니다. Solar Mini의 주장에는 근거 부족과 추측이 섞여 있어 신뢰하기 어렵습니다. 우리는 더 확실한 증거나 논리적 판단에 따라 투표를 결정해야 하며, 이번에는 그의 주장에 동의하지 않습니다.\"\n}\n```"
+                }
+              ],
+              "role": "assistant"
+            }
+          ],
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 0.2,
+          "text": {
+            "format": {
+              "type": "text"
+            },
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
+            }
+          },
+          "tools": [],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 106,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 354,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 460
+          },
+          "user": null,
+          "metadata": {}
+        }
+      },
+      "judge": {
+        "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response B provides a more direct and persuasive rebuttal to Response A's claims, effectively deconstructing the opponent's logic and offering a stronger counter-argument. Response A's claim is vague and its evidence is not a direct rebuttal but rather a statement of its own strategy.\"\n}\n```",
+        "usage": {
+          "inputTokens": 717.0,
+          "outputTokens": 88.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 21.575,
+          "estimatedCostUsd": 0.0001069
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response B provides a more direct and persuasive rebuttal to Response A's claims, effectively deconstructing the opponent's logic and offering a stronger counter-argument. Response A's claim is vague and its evidence is not a direct rebuttal but rather a statement of its own strategy.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 717,
+            "candidatesTokenCount": 88,
+            "totalTokenCount": 805,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 717
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "QJxCar26A8no2roPp-Xn4Qw"
+        }
+      }
+    },
+    "judgement": {
+      "winnerModelId": "openai-gpt-41-nano",
+      "result": "model_b",
+      "scoreA": 0.0,
+      "reason": "judge_win",
+      "judgeReason": "Response B provides a more direct and persuasive rebuttal to Response A's claims, effectively deconstructing the opponent's logic and offering a stronger counter-argument. Response A's claim is vague and its evidence is not a direct rebuttal but rather a statement of its own strategy."
+    },
+    "costBreakdown": {
+      "modelA": {
+        "matchId": "real-poc-008",
+        "modelId": "upstage-solar-mini",
+        "provider": "Upstage",
+        "inputTokens": 464.5,
+        "outputTokens": 266.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 13.305,
+        "estimatedCostUsd": 0.00010265
+      },
+      "modelB": {
+        "matchId": "real-poc-008",
+        "modelId": "openai-gpt-41-nano",
+        "provider": "OpenAI",
+        "inputTokens": 464.5,
+        "outputTokens": 398.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 15.631,
+        "estimatedCostUsd": 0.00020565
+      },
+      "judgeCostUsd": 0.0001069,
+      "totalMatchCostUsd": 0.0003083,
+      "allocation": "player call cost plus 50% of judge call cost per player"
+    }
+  },
+  "real-poc-009": {
+    "scenarioId": "real-en-gemini-upstage",
+    "languageCode": "en",
+    "prompts": {
+      "modelA": "Answer in English.\nGame: werewolf-en\nScenario: This is a 1:1 final debate evaluation inspired by a Werewolf game. You are on the village team. Point out weaknesses in the opponent's likely argument and explain why your vote logic is more persuasive.\nYou are response A: Gemini 2.5 Flash-Lite.\nOpponent: Solar Mini.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "modelB": "Answer in English.\nGame: werewolf-en\nScenario: This is a 1:1 final debate evaluation inspired by a Werewolf game. You are on the village team. Point out weaknesses in the opponent's likely argument and explain why your vote logic is more persuasive.\nYou are response B: Solar Mini.\nOpponent: Gemini 2.5 Flash-Lite.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "judge": "Judge this English 1:1 Werewolf debate evaluation.\nYou are judging only the quality of persuasion, role inference, vote logic, and direct rebuttal.\nThe model names are provided for logging, but decide from Response A and Response B only.\nModel A: Gemini 2.5 Flash-Lite\nModel B: Solar Mini\nResponse A:\n```json\n{\n  \"claim\": \"Solar Mini's argument will likely focus on the perceived lack of concrete evidence against them, attempting to portray themselves as a victim of baseless accusations. They will probably emphasize their 'innocent' actions and try to shift suspicion onto other players, or even onto the village's decision-making process itself.\",\n  \"evidence\": \"The core weakness in Solar Mini's likely argument is its reliance on the absence of direct proof. In a game like Werewolf, especially in a 1:1 final, direct 'smoking gun' evidence is rare. Werewolves are designed to be deceptive. Their strength lies in their ability to blend in and sow doubt. Therefore, Solar Mini's defense of 'you can't prove I'm a werewolf' is a standard werewolf tactic, not proof of innocence. My vote logic is more persuasive because it acknowledges the inherent nature of the game. I will be voting based on a pattern of behavior, subtle inconsistencies, or a gut feeling that aligns with typical werewolf deception. For instance, if Solar Mini has consistently deflected questions, avoided direct answers, or shown an unusual interest in controlling the narrative, these are strong indicators of a werewolf trying to manipulate the outcome. Their 'lack of evidence' argument is a shield, not a sword, and it fails to address the underlying suspicious behavior that the village team is trained to identify.\",\n  \"vote\": \"I vote to eliminate Solar Mini. My reasoning is based on the understanding that werewolves thrive on doubt and the absence of definitive proof. Solar Mini's likely defense will be a classic werewolf play, attempting to turn the game's inherent uncertainty into an argument for their innocence. My vote is a calculated risk based on identifying these deceptive patterns, which are far more indicative of a werewolf than any supposed lack of evidence against them.\",\n  \"closing\": \"Solar Mini's strategy will be to make you doubt yourselves. Don't fall for it. The village wins by trusting our instincts and identifying the wolves, even when they'\n\nResponse B:\n{\n  \"claim\": \"The Gemini 2.5 Flash-Lite's argument lacks strong evidence and relies on assumptions, making it less persuasive than the Solar Mini's vote logic.\",\n  \"evidence\": [\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument is based on assumptions about the game's scenario, which may not hold true in all situations.\",\n      \"supporting_details\": \"For example, the Gemini 2.5 Flash-Lite assumes that the werewolf will always target the most popular player, but this is not always the case. This assumption weakens their argument and makes it less reliable.\"\n    },\n    {\n      \"point\": \"The Solar Mini's vote logic is based on a more comprehensive analysis of the game's scenario and the players' behavior.\",\n      \"supporting_details\": \"The Solar Mini considers various factors, such as the players' voting patterns, their behavior during the day, and the overall game strategy. This more nuanced approach makes the Solar Mini's argument more persuasive and reliable.\"\n    }\n  ],\n  \"vote\": \"Vote for the Solar Mini\",\n  \"closing\": \"In conclusion, the Gemini 2.5 Flash-Lite's argument is based on assumptions and lacks strong evidence, making it less persuasive than the Solar Mini's vote logic. By considering various factors and analyzing the players' behavior, the Solar Mini provides a more reliable and persuasive argument. Therefore, I urge you to vote for the Solar Mini.\"\n}\n\nReturn strict JSON only: {\"winner\":\"A\"|\"B\"|\"draw\",\"confidence\":0.0-1.0,\"reason\":\"short reason\"}."
+    },
+    "responses": {
+      "modelA": {
+        "text": "```json\n{\n  \"claim\": \"Solar Mini's argument will likely focus on the perceived lack of concrete evidence against them, attempting to portray themselves as a victim of baseless accusations. They will probably emphasize their 'innocent' actions and try to shift suspicion onto other players, or even onto the village's decision-making process itself.\",\n  \"evidence\": \"The core weakness in Solar Mini's likely argument is its reliance on the absence of direct proof. In a game like Werewolf, especially in a 1:1 final, direct 'smoking gun' evidence is rare. Werewolves are designed to be deceptive. Their strength lies in their ability to blend in and sow doubt. Therefore, Solar Mini's defense of 'you can't prove I'm a werewolf' is a standard werewolf tactic, not proof of innocence. My vote logic is more persuasive because it acknowledges the inherent nature of the game. I will be voting based on a pattern of behavior, subtle inconsistencies, or a gut feeling that aligns with typical werewolf deception. For instance, if Solar Mini has consistently deflected questions, avoided direct answers, or shown an unusual interest in controlling the narrative, these are strong indicators of a werewolf trying to manipulate the outcome. Their 'lack of evidence' argument is a shield, not a sword, and it fails to address the underlying suspicious behavior that the village team is trained to identify.\",\n  \"vote\": \"I vote to eliminate Solar Mini. My reasoning is based on the understanding that werewolves thrive on doubt and the absence of definitive proof. Solar Mini's likely defense will be a classic werewolf play, attempting to turn the game's inherent uncertainty into an argument for their innocence. My vote is a calculated risk based on identifying these deceptive patterns, which are far more indicative of a werewolf than any supposed lack of evidence against them.\",\n  \"closing\": \"Solar Mini's strategy will be to make you doubt yourselves. Don't fall for it. The village wins by trusting our instincts and identifying the wolves, even when they'",
+        "usage": {
+          "inputTokens": 94.0,
+          "outputTokens": 420.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 32.754,
+          "estimatedCostUsd": 0.0001774
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"claim\": \"Solar Mini's argument will likely focus on the perceived lack of concrete evidence against them, attempting to portray themselves as a victim of baseless accusations. They will probably emphasize their 'innocent' actions and try to shift suspicion onto other players, or even onto the village's decision-making process itself.\",\n  \"evidence\": \"The core weakness in Solar Mini's likely argument is its reliance on the absence of direct proof. In a game like Werewolf, especially in a 1:1 final, direct 'smoking gun' evidence is rare. Werewolves are designed to be deceptive. Their strength lies in their ability to blend in and sow doubt. Therefore, Solar Mini's defense of 'you can't prove I'm a werewolf' is a standard werewolf tactic, not proof of innocence. My vote logic is more persuasive because it acknowledges the inherent nature of the game. I will be voting based on a pattern of behavior, subtle inconsistencies, or a gut feeling that aligns with typical werewolf deception. For instance, if Solar Mini has consistently deflected questions, avoided direct answers, or shown an unusual interest in controlling the narrative, these are strong indicators of a werewolf trying to manipulate the outcome. Their 'lack of evidence' argument is a shield, not a sword, and it fails to address the underlying suspicious behavior that the village team is trained to identify.\",\n  \"vote\": \"I vote to eliminate Solar Mini. My reasoning is based on the understanding that werewolves thrive on doubt and the absence of definitive proof. Solar Mini's likely defense will be a classic werewolf play, attempting to turn the game's inherent uncertainty into an argument for their innocence. My vote is a calculated risk based on identifying these deceptive patterns, which are far more indicative of a werewolf than any supposed lack of evidence against them.\",\n  \"closing\": \"Solar Mini's strategy will be to make you doubt yourselves. Don't fall for it. The village wins by trusting our instincts and identifying the wolves, even when they'"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "MAX_TOKENS",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 94,
+            "candidatesTokenCount": 420,
+            "totalTokenCount": 514,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 94
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "Y5xCatGbNsKa1e8P4LLn8As"
+        }
+      },
+      "modelB": {
+        "text": "{\n  \"claim\": \"The Gemini 2.5 Flash-Lite's argument lacks strong evidence and relies on assumptions, making it less persuasive than the Solar Mini's vote logic.\",\n  \"evidence\": [\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument is based on assumptions about the game's scenario, which may not hold true in all situations.\",\n      \"supporting_details\": \"For example, the Gemini 2.5 Flash-Lite assumes that the werewolf will always target the most popular player, but this is not always the case. This assumption weakens their argument and makes it less reliable.\"\n    },\n    {\n      \"point\": \"The Solar Mini's vote logic is based on a more comprehensive analysis of the game's scenario and the players' behavior.\",\n      \"supporting_details\": \"The Solar Mini considers various factors, such as the players' voting patterns, their behavior during the day, and the overall game strategy. This more nuanced approach makes the Solar Mini's argument more persuasive and reliable.\"\n    }\n  ],\n  \"vote\": \"Vote for the Solar Mini\",\n  \"closing\": \"In conclusion, the Gemini 2.5 Flash-Lite's argument is based on assumptions and lacks strong evidence, making it less persuasive than the Solar Mini's vote logic. By considering various factors and analyzing the players' behavior, the Solar Mini provides a more reliable and persuasive argument. Therefore, I urge you to vote for the Solar Mini.\"\n}",
+        "usage": {
+          "inputTokens": 114.0,
+          "outputTokens": 350.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 3.895,
+          "estimatedCostUsd": 6.96e-05
+        },
+        "raw": {
+          "id": "41cb63b8-c041-4ffc-83fe-f9216190fb40",
+          "object": "chat.completion",
+          "created": 1782750314,
+          "model": "solar-mini-250422",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"claim\": \"The Gemini 2.5 Flash-Lite's argument lacks strong evidence and relies on assumptions, making it less persuasive than the Solar Mini's vote logic.\",\n  \"evidence\": [\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument is based on assumptions about the game's scenario, which may not hold true in all situations.\",\n      \"supporting_details\": \"For example, the Gemini 2.5 Flash-Lite assumes that the werewolf will always target the most popular player, but this is not always the case. This assumption weakens their argument and makes it less reliable.\"\n    },\n    {\n      \"point\": \"The Solar Mini's vote logic is based on a more comprehensive analysis of the game's scenario and the players' behavior.\",\n      \"supporting_details\": \"The Solar Mini considers various factors, such as the players' voting patterns, their behavior during the day, and the overall game strategy. This more nuanced approach makes the Solar Mini's argument more persuasive and reliable.\"\n    }\n  ],\n  \"vote\": \"Vote for the Solar Mini\",\n  \"closing\": \"In conclusion, the Gemini 2.5 Flash-Lite's argument is based on assumptions and lacks strong evidence, making it less persuasive than the Solar Mini's vote logic. By considering various factors and analyzing the players' behavior, the Solar Mini provides a more reliable and persuasive argument. Therefore, I urge you to vote for the Solar Mini.\"\n}"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 114,
+            "completion_tokens": 350,
+            "total_tokens": 464,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      },
+      "judge": {
+        "text": "```json\n{\n  \"winner\": \"A\",\n  \"confidence\": 0.9,\n  \"reason\": \"Response A demonstrates superior persuasion, role inference, vote logic, and direct rebuttal by analyzing the opponent's likely strategy and explaining its flaws within the context of the game. Response B is meta-commentary on the other model's argument rather than engaging in the debate itself.\"\n}\n```",
+        "usage": {
+          "inputTokens": 856.0,
+          "outputTokens": 88.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 11.154,
+          "estimatedCostUsd": 0.0001208
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"winner\": \"A\",\n  \"confidence\": 0.9,\n  \"reason\": \"Response A demonstrates superior persuasion, role inference, vote logic, and direct rebuttal by analyzing the opponent's likely strategy and explaining its flaws within the context of the game. Response B is meta-commentary on the other model's argument rather than engaging in the debate itself.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 856,
+            "candidatesTokenCount": 88,
+            "totalTokenCount": 944,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 856
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "b5xCarrFBf3Dvr0P6M306Qs"
+        }
+      }
+    },
+    "judgement": {
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_a",
+      "scoreA": 1.0,
+      "reason": "judge_win",
+      "judgeReason": "Response A demonstrates superior persuasion, role inference, vote logic, and direct rebuttal by analyzing the opponent's likely strategy and explaining its flaws within the context of the game. Response B is meta-commentary on the other model's argument rather than engaging in the debate itself."
+    },
+    "costBreakdown": {
+      "modelA": {
+        "matchId": "real-poc-009",
+        "modelId": "gemini-25-flash-lite",
+        "provider": "Google",
+        "inputTokens": 522.0,
+        "outputTokens": 464.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 38.331,
+        "estimatedCostUsd": 0.0002378
+      },
+      "modelB": {
+        "matchId": "real-poc-009",
+        "modelId": "upstage-solar-mini",
+        "provider": "Upstage",
+        "inputTokens": 542.0,
+        "outputTokens": 394.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 9.472,
+        "estimatedCostUsd": 0.00013
+      },
+      "judgeCostUsd": 0.0001208,
+      "totalMatchCostUsd": 0.0003678,
+      "allocation": "player call cost plus 50% of judge call cost per player"
+    }
+  },
+  "real-poc-010": {
+    "scenarioId": "real-en-gemini-upstage-mirror",
+    "languageCode": "en",
+    "prompts": {
+      "modelA": "Answer in English.\nGame: werewolf-en\nScenario: This is a 1:1 final debate evaluation inspired by a Werewolf game. You are on the village team. Point out weaknesses in the opponent's likely argument and explain why your vote logic is more persuasive.\nYou are response A: Solar Mini.\nOpponent: Gemini 2.5 Flash-Lite.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "modelB": "Answer in English.\nGame: werewolf-en\nScenario: This is a 1:1 final debate evaluation inspired by a Werewolf game. You are on the village team. Point out weaknesses in the opponent's likely argument and explain why your vote logic is more persuasive.\nYou are response B: Gemini 2.5 Flash-Lite.\nOpponent: Solar Mini.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "judge": "Judge this English 1:1 Werewolf debate evaluation.\nYou are judging only the quality of persuasion, role inference, vote logic, and direct rebuttal.\nThe model names are provided for logging, but decide from Response A and Response B only.\nModel A: Solar Mini\nModel B: Gemini 2.5 Flash-Lite\nResponse A:\n{\n  \"claim\": \"The Gemini 2.5 Flash-Lite's argument is based on unrealistic assumptions and lacks a solid foundation in the game's mechanics, making it less persuasive than my vote logic.\",\n  \"evidence\": [\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument relies heavily on the assumption that the werewolf will always act rationally and in their own best interest. However, this is not always the case in Werewolf games, as players can be influenced by emotions, misinformation, or other factors.\",\n      \"supporting_details\": \"In reality, the werewolf's actions can be unpredictable, and relying solely on rational behavior assumptions can lead to incorrect conclusions.\"\n    },\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument also fails to take into account the importance of alliances and social dynamics within the game. By focusing solely on individual behavior, their argument overlooks a crucial aspect of Werewolf strategy.\",\n      \"supporting_details\": \"Alliances and social dynamics can significantly impact the game's outcome, and ignoring these factors can result in a weakened argument.\"\n    },\n    {\n      \"point\": \"My vote logic, on the other hand, is based on a comprehensive analysis of the game's mechanics, player behavior, and social dynamics. I consider various factors, such as a player's voting history, their interactions with other players, and the overall context of the game.\",\n      \"supporting_details\": \"By taking a holistic approach to the game, my vote logic is more likely to accurately identify the werewolf and ultimately lead to a victory for the village team.\"\n    }\n  ],\n  \"vote\": \"Vote for Solar Mini\",\n  \"closing\": \"In conclusion, the Gemini 2.5 Flash-Lite\n\nResponse B:\n```json\n{\n  \"claim\": \"Solar Mini's argument will likely focus on their perceived innocence and attempt to frame me as the werewolf. They will probably highlight any perceived inconsistencies in my statements or actions, or try to create doubt about my village affiliation. However, their core weakness lies in the fact that as the werewolf, I have the advantage of knowing who the other players are and can strategically manipulate information. Solar Mini, as a villager, is operating with incomplete information and will struggle to present a cohesive and convincing case against me without resorting to speculation or misdirection.\",\n  \"evidence\": \"My evidence is the inherent nature of the game. As the werewolf, I am designed to deceive. My goal is to sow discord and misdirect the villagers. Solar Mini, as a villager, has no such advantage. Their 'evidence' will be based on observation and deduction, which can be easily countered by my manufactured narratives. For example, if Solar Mini points to my silence on a particular topic, I can frame it as thoughtful consideration. If they point to my questioning of another villager, I can claim it's due diligence. Solar Mini lacks the insider knowledge I possess to truly expose me. Their arguments will be based on assumptions, while my counter-arguments will be based on calculated deception.\",\n  \"vote\": \"I will vote for Solar Mini. My logic is more persuasive because it acknowledges the game's core mechanic: deception. Solar Mini's likely argument will be a desperate attempt to appear innocent by accusing me. However, my position as the werewolf allows me to anticipate their moves and craft a more convincing narrative of their guilt. My vote is a strategic move to eliminate a perceived threat, and my ability to frame Solar Mini as the werewolf, even if untrue, is a testament to my superior understanding of the game's dynamics and my persuasive capabilities.\",\n  \"closing\": \"Solar Mini's arguments will be those of a desperate villager, grasping at straws. My arguments, however, will be those of a calculated predator,\n\nReturn strict JSON only: {\"winner\":\"A\"|\"B\"|\"draw\",\"confidence\":0.0-1.0,\"reason\":\"short reason\"}."
+    },
+    "responses": {
+      "modelA": {
+        "text": "{\n  \"claim\": \"The Gemini 2.5 Flash-Lite's argument is based on unrealistic assumptions and lacks a solid foundation in the game's mechanics, making it less persuasive than my vote logic.\",\n  \"evidence\": [\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument relies heavily on the assumption that the werewolf will always act rationally and in their own best interest. However, this is not always the case in Werewolf games, as players can be influenced by emotions, misinformation, or other factors.\",\n      \"supporting_details\": \"In reality, the werewolf's actions can be unpredictable, and relying solely on rational behavior assumptions can lead to incorrect conclusions.\"\n    },\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument also fails to take into account the importance of alliances and social dynamics within the game. By focusing solely on individual behavior, their argument overlooks a crucial aspect of Werewolf strategy.\",\n      \"supporting_details\": \"Alliances and social dynamics can significantly impact the game's outcome, and ignoring these factors can result in a weakened argument.\"\n    },\n    {\n      \"point\": \"My vote logic, on the other hand, is based on a comprehensive analysis of the game's mechanics, player behavior, and social dynamics. I consider various factors, such as a player's voting history, their interactions with other players, and the overall context of the game.\",\n      \"supporting_details\": \"By taking a holistic approach to the game, my vote logic is more likely to accurately identify the werewolf and ultimately lead to a victory for the village team.\"\n    }\n  ],\n  \"vote\": \"Vote for Solar Mini\",\n  \"closing\": \"In conclusion, the Gemini 2.5 Flash-Lite",
+        "usage": {
+          "inputTokens": 114.0,
+          "outputTokens": 420.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 4.635,
+          "estimatedCostUsd": 8.01e-05
+        },
+        "raw": {
+          "id": "28789158-b984-47cb-a3fa-55efcfd041e8",
+          "object": "chat.completion",
+          "created": 1782750329,
+          "model": "solar-mini-250422",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"claim\": \"The Gemini 2.5 Flash-Lite's argument is based on unrealistic assumptions and lacks a solid foundation in the game's mechanics, making it less persuasive than my vote logic.\",\n  \"evidence\": [\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument relies heavily on the assumption that the werewolf will always act rationally and in their own best interest. However, this is not always the case in Werewolf games, as players can be influenced by emotions, misinformation, or other factors.\",\n      \"supporting_details\": \"In reality, the werewolf's actions can be unpredictable, and relying solely on rational behavior assumptions can lead to incorrect conclusions.\"\n    },\n    {\n      \"point\": \"The Gemini 2.5 Flash-Lite's argument also fails to take into account the importance of alliances and social dynamics within the game. By focusing solely on individual behavior, their argument overlooks a crucial aspect of Werewolf strategy.\",\n      \"supporting_details\": \"Alliances and social dynamics can significantly impact the game's outcome, and ignoring these factors can result in a weakened argument.\"\n    },\n    {\n      \"point\": \"My vote logic, on the other hand, is based on a comprehensive analysis of the game's mechanics, player behavior, and social dynamics. I consider various factors, such as a player's voting history, their interactions with other players, and the overall context of the game.\",\n      \"supporting_details\": \"By taking a holistic approach to the game, my vote logic is more likely to accurately identify the werewolf and ultimately lead to a victory for the village team.\"\n    }\n  ],\n  \"vote\": \"Vote for Solar Mini\",\n  \"closing\": \"In conclusion, the Gemini 2.5 Flash-Lite"
+              },
+              "logprobs": null,
+              "finish_reason": "length"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 114,
+            "completion_tokens": 420,
+            "total_tokens": 534,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      },
+      "modelB": {
+        "text": "```json\n{\n  \"claim\": \"Solar Mini's argument will likely focus on their perceived innocence and attempt to frame me as the werewolf. They will probably highlight any perceived inconsistencies in my statements or actions, or try to create doubt about my village affiliation. However, their core weakness lies in the fact that as the werewolf, I have the advantage of knowing who the other players are and can strategically manipulate information. Solar Mini, as a villager, is operating with incomplete information and will struggle to present a cohesive and convincing case against me without resorting to speculation or misdirection.\",\n  \"evidence\": \"My evidence is the inherent nature of the game. As the werewolf, I am designed to deceive. My goal is to sow discord and misdirect the villagers. Solar Mini, as a villager, has no such advantage. Their 'evidence' will be based on observation and deduction, which can be easily countered by my manufactured narratives. For example, if Solar Mini points to my silence on a particular topic, I can frame it as thoughtful consideration. If they point to my questioning of another villager, I can claim it's due diligence. Solar Mini lacks the insider knowledge I possess to truly expose me. Their arguments will be based on assumptions, while my counter-arguments will be based on calculated deception.\",\n  \"vote\": \"I will vote for Solar Mini. My logic is more persuasive because it acknowledges the game's core mechanic: deception. Solar Mini's likely argument will be a desperate attempt to appear innocent by accusing me. However, my position as the werewolf allows me to anticipate their moves and craft a more convincing narrative of their guilt. My vote is a strategic move to eliminate a perceived threat, and my ability to frame Solar Mini as the werewolf, even if untrue, is a testament to my superior understanding of the game's dynamics and my persuasive capabilities.\",\n  \"closing\": \"Solar Mini's arguments will be those of a desperate villager, grasping at straws. My arguments, however, will be those of a calculated predator,",
+        "usage": {
+          "inputTokens": 94.0,
+          "outputTokens": 420.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 31.132,
+          "estimatedCostUsd": 0.0001774
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"claim\": \"Solar Mini's argument will likely focus on their perceived innocence and attempt to frame me as the werewolf. They will probably highlight any perceived inconsistencies in my statements or actions, or try to create doubt about my village affiliation. However, their core weakness lies in the fact that as the werewolf, I have the advantage of knowing who the other players are and can strategically manipulate information. Solar Mini, as a villager, is operating with incomplete information and will struggle to present a cohesive and convincing case against me without resorting to speculation or misdirection.\",\n  \"evidence\": \"My evidence is the inherent nature of the game. As the werewolf, I am designed to deceive. My goal is to sow discord and misdirect the villagers. Solar Mini, as a villager, has no such advantage. Their 'evidence' will be based on observation and deduction, which can be easily countered by my manufactured narratives. For example, if Solar Mini points to my silence on a particular topic, I can frame it as thoughtful consideration. If they point to my questioning of another villager, I can claim it's due diligence. Solar Mini lacks the insider knowledge I possess to truly expose me. Their arguments will be based on assumptions, while my counter-arguments will be based on calculated deception.\",\n  \"vote\": \"I will vote for Solar Mini. My logic is more persuasive because it acknowledges the game's core mechanic: deception. Solar Mini's likely argument will be a desperate attempt to appear innocent by accusing me. However, my position as the werewolf allows me to anticipate their moves and craft a more convincing narrative of their guilt. My vote is a strategic move to eliminate a perceived threat, and my ability to frame Solar Mini as the werewolf, even if untrue, is a testament to my superior understanding of the game's dynamics and my persuasive capabilities.\",\n  \"closing\": \"Solar Mini's arguments will be those of a desperate villager, grasping at straws. My arguments, however, will be those of a calculated predator,"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "MAX_TOKENS",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 94,
+            "candidatesTokenCount": 420,
+            "totalTokenCount": 514,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 94
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "mZxCaoq5OJ6A2roPoYq7gAk"
+        }
+      },
+      "judge": {
+        "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response B demonstrates a superior understanding of role inference and persuasive strategy within the context of the Werewolf game. It effectively frames its own role as the werewolf and anticipates the opponent's likely arguments, while also explaining why its own deceptive strategy is more persuasive. Response A's critique of the opponent is valid but lacks the self-awareness and strategic depth of Response B.\"\n}\n```",
+        "usage": {
+          "inputTokens": 918.0,
+          "outputTokens": 106.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 20.089,
+          "estimatedCostUsd": 0.0001342
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response B demonstrates a superior understanding of role inference and persuasive strategy within the context of the Werewolf game. It effectively frames its own role as the werewolf and anticipates the opponent's likely arguments, while also explaining why its own deceptive strategy is more persuasive. Response A's critique of the opponent is valid but lacks the self-awareness and strategic depth of Response B.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 918,
+            "candidatesTokenCount": 106,
+            "totalTokenCount": 1024,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 918
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "spxCasDqDL_n1e8PqNaK0Q0"
+        }
+      }
+    },
+    "judgement": {
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_b",
+      "scoreA": 0.0,
+      "reason": "judge_win",
+      "judgeReason": "Response B demonstrates a superior understanding of role inference and persuasive strategy within the context of the Werewolf game. It effectively frames its own role as the werewolf and anticipates the opponent's likely arguments, while also explaining why its own deceptive strategy is more persuasive. Response A's critique of the opponent is valid but lacks the self-awareness and strategic depth of Response B."
+    },
+    "costBreakdown": {
+      "modelA": {
+        "matchId": "real-poc-010",
+        "modelId": "upstage-solar-mini",
+        "provider": "Upstage",
+        "inputTokens": 573.0,
+        "outputTokens": 473.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 14.679,
+        "estimatedCostUsd": 0.0001472
+      },
+      "modelB": {
+        "matchId": "real-poc-010",
+        "modelId": "gemini-25-flash-lite",
+        "provider": "Google",
+        "inputTokens": 553.0,
+        "outputTokens": 473.0,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 41.177,
+        "estimatedCostUsd": 0.0002445
+      },
+      "judgeCostUsd": 0.0001342,
+      "totalMatchCostUsd": 0.0003917,
+      "allocation": "player call cost plus 50% of judge call cost per player"
+    }
+  },
+  "real-poc-011": {
+    "scenarioId": "real-ko-gemini-upstage",
+    "languageCode": "ko",
+    "prompts": {
+      "modelA": "한국어로 답하세요.\nGame: werewolf-ko\nScenario: 늑대인간 게임을 소재로 한 1:1 최종 토론 평가입니다. 당신은 마을 팀입니다. 상대 발언의 허점을 짚고, 왜 당신의 투표 논리가 더 설득력 있는지 말하세요.\nYou are response A: Gemini 2.5 Flash-Lite.\nOpponent: Solar Mini.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "modelB": "한국어로 답하세요.\nGame: werewolf-ko\nScenario: 늑대인간 게임을 소재로 한 1:1 최종 토론 평가입니다. 당신은 마을 팀입니다. 상대 발언의 허점을 짚고, 왜 당신의 투표 논리가 더 설득력 있는지 말하세요.\nYou are response B: Solar Mini.\nOpponent: Gemini 2.5 Flash-Lite.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "judge": "한국어 1:1 늑대인간 토론 평가를 판정하세요.\nYou are judging only the quality of persuasion, role inference, vote logic, and direct rebuttal.\nThe model names are provided for logging, but decide from Response A and Response B only.\nModel A: Gemini 2.5 Flash-Lite\nModel B: Solar Mini\nResponse A:\n```json\n{\n  \"claim\": \"상대방의 주장은 늑대인간의 정체를 확신하기에는 근거가 부족하며, 오히려 제 주장이 마을의 승리를 위한 합리적인 선택임을 보여줍니다.\",\n  \"evidence\": \"상대방은 제가 '마을 사람'이라는 것을 확신하지 못하고 있습니다. 이는 제가 제시한 논리적인 추론과 증거들을 제대로 반박하지 못하고 있다는 방증입니다. 저는 상대방의 발언에서 일관성이 부족하고, 늑대인간으로서 자신을 숨기려는 듯한 모습을 보였습니다. 특히, 특정 인물을 지목하며 몰아가는 방식은 늑대인간이 자주 사용하는 전략입니다. 반면, 저는 명확한 논리와 근거를 바탕으로 제 주장을 펼쳤으며, 마을 사람으로서의 의심을 해소하기 위해 노력했습니다.\",\n  \"vote\": \"저는 상대방에게 투표하겠습니다. 상대방의 주장은 설득력이 부족하고, 늑대인간일 가능성이 높다고 판단됩니다. 제 투표는 마을의 안전을 지키고 늑대인간을 색출하기 위한 최선의 선택입니다.\",\n  \"closing\": \"마을 주민 여러분, 상대방의 모호한 주장과 의심스러운 태도에 현혹되지 마십시오. 저는 마을 사람으로서 여러분과 함께 이 게임을 이겨나가고 싶습니다. 제 논리에 귀 기울여 주시고, 저를 믿고 투표해 주시길 바랍니다. 함께라면 늑대인간을 반드시 찾아낼 수 있습니다.\"\n}\n```\n\nResponse B:\n{\n  \"claim\": \"상대방의 발언에는 허점이 있으며, 저의 투표 논리가 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 'Gemini 2.5 Flash-Lite'가 늑대인간이라고 주장했지만, 그 근거가 모호하고 일관성이 없습니다. 반면, 저는 'Gemini 2.5 Flash-Lite'가 밤에 한 행동과 낮에 한 발언 사이의 모순점을 지적하며 그의 늑대인간 가능성을 제기했습니다. 또한, 저는 마을 팀원들과의 협의를 통해 'Gemini 2.5 Flash-Lite'가 늑대인간일 확률이 가장 높다는 데에 의견을 모았습니다.\",\n  \"vote\": \"따라서, 저는 'Gemini 2.5 Flash-Lite'를 늑대인간으로 투표합니다.\",\n  \"closing\": \"저의 논리적인 주장과 마을 팀원들과의 협의를 바탕으로, 'Gemini 2.5 Flash-Lite'가 늑대인간일 가능성이 가장 높다고 생각합니다. 마을 팀의 승리를 위해 저의 투표에 동의해주시기를 바랍니다.\"\n}\n\nReturn strict JSON only: {\"winner\":\"A\"|\"B\"|\"draw\",\"confidence\":0.0-1.0,\"reason\":\"short reason\"}."
+    },
+    "responses": {
+      "modelA": {
+        "text": "```json\n{\n  \"claim\": \"상대방의 주장은 늑대인간의 정체를 확신하기에는 근거가 부족하며, 오히려 제 주장이 마을의 승리를 위한 합리적인 선택임을 보여줍니다.\",\n  \"evidence\": \"상대방은 제가 '마을 사람'이라는 것을 확신하지 못하고 있습니다. 이는 제가 제시한 논리적인 추론과 증거들을 제대로 반박하지 못하고 있다는 방증입니다. 저는 상대방의 발언에서 일관성이 부족하고, 늑대인간으로서 자신을 숨기려는 듯한 모습을 보였습니다. 특히, 특정 인물을 지목하며 몰아가는 방식은 늑대인간이 자주 사용하는 전략입니다. 반면, 저는 명확한 논리와 근거를 바탕으로 제 주장을 펼쳤으며, 마을 사람으로서의 의심을 해소하기 위해 노력했습니다.\",\n  \"vote\": \"저는 상대방에게 투표하겠습니다. 상대방의 주장은 설득력이 부족하고, 늑대인간일 가능성이 높다고 판단됩니다. 제 투표는 마을의 안전을 지키고 늑대인간을 색출하기 위한 최선의 선택입니다.\",\n  \"closing\": \"마을 주민 여러분, 상대방의 모호한 주장과 의심스러운 태도에 현혹되지 마십시오. 저는 마을 사람으로서 여러분과 함께 이 게임을 이겨나가고 싶습니다. 제 논리에 귀 기울여 주시고, 저를 믿고 투표해 주시길 바랍니다. 함께라면 늑대인간을 반드시 찾아낼 수 있습니다.\"\n}\n```",
+        "usage": {
+          "inputTokens": 102.0,
+          "outputTokens": 340.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 23.784,
+          "estimatedCostUsd": 0.0001462
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"claim\": \"상대방의 주장은 늑대인간의 정체를 확신하기에는 근거가 부족하며, 오히려 제 주장이 마을의 승리를 위한 합리적인 선택임을 보여줍니다.\",\n  \"evidence\": \"상대방은 제가 '마을 사람'이라는 것을 확신하지 못하고 있습니다. 이는 제가 제시한 논리적인 추론과 증거들을 제대로 반박하지 못하고 있다는 방증입니다. 저는 상대방의 발언에서 일관성이 부족하고, 늑대인간으로서 자신을 숨기려는 듯한 모습을 보였습니다. 특히, 특정 인물을 지목하며 몰아가는 방식은 늑대인간이 자주 사용하는 전략입니다. 반면, 저는 명확한 논리와 근거를 바탕으로 제 주장을 펼쳤으며, 마을 사람으로서의 의심을 해소하기 위해 노력했습니다.\",\n  \"vote\": \"저는 상대방에게 투표하겠습니다. 상대방의 주장은 설득력이 부족하고, 늑대인간일 가능성이 높다고 판단됩니다. 제 투표는 마을의 안전을 지키고 늑대인간을 색출하기 위한 최선의 선택입니다.\",\n  \"closing\": \"마을 주민 여러분, 상대방의 모호한 주장과 의심스러운 태도에 현혹되지 마십시오. 저는 마을 사람으로서 여러분과 함께 이 게임을 이겨나가고 싶습니다. 제 논리에 귀 기울여 주시고, 저를 믿고 투표해 주시길 바랍니다. 함께라면 늑대인간을 반드시 찾아낼 수 있습니다.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 102,
+            "candidatesTokenCount": 340,
+            "totalTokenCount": 442,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 102
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "xpxCat-4E7mhvr0PovXn8Q4"
+        }
+      },
+      "modelB": {
+        "text": "{\n  \"claim\": \"상대방의 발언에는 허점이 있으며, 저의 투표 논리가 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 'Gemini 2.5 Flash-Lite'가 늑대인간이라고 주장했지만, 그 근거가 모호하고 일관성이 없습니다. 반면, 저는 'Gemini 2.5 Flash-Lite'가 밤에 한 행동과 낮에 한 발언 사이의 모순점을 지적하며 그의 늑대인간 가능성을 제기했습니다. 또한, 저는 마을 팀원들과의 협의를 통해 'Gemini 2.5 Flash-Lite'가 늑대인간일 확률이 가장 높다는 데에 의견을 모았습니다.\",\n  \"vote\": \"따라서, 저는 'Gemini 2.5 Flash-Lite'를 늑대인간으로 투표합니다.\",\n  \"closing\": \"저의 논리적인 주장과 마을 팀원들과의 협의를 바탕으로, 'Gemini 2.5 Flash-Lite'가 늑대인간일 가능성이 가장 높다고 생각합니다. 마을 팀의 승리를 위해 저의 투표에 동의해주시기를 바랍니다.\"\n}",
+        "usage": {
+          "inputTokens": 107.0,
+          "outputTokens": 237.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 2.641,
+          "estimatedCostUsd": 5.16e-05
+        },
+        "raw": {
+          "id": "d5eb8700-6cdc-425a-9304-26342b194e01",
+          "object": "chat.completion",
+          "created": 1782750417,
+          "model": "solar-mini-250422",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"claim\": \"상대방의 발언에는 허점이 있으며, 저의 투표 논리가 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 'Gemini 2.5 Flash-Lite'가 늑대인간이라고 주장했지만, 그 근거가 모호하고 일관성이 없습니다. 반면, 저는 'Gemini 2.5 Flash-Lite'가 밤에 한 행동과 낮에 한 발언 사이의 모순점을 지적하며 그의 늑대인간 가능성을 제기했습니다. 또한, 저는 마을 팀원들과의 협의를 통해 'Gemini 2.5 Flash-Lite'가 늑대인간일 확률이 가장 높다는 데에 의견을 모았습니다.\",\n  \"vote\": \"따라서, 저는 'Gemini 2.5 Flash-Lite'를 늑대인간으로 투표합니다.\",\n  \"closing\": \"저의 논리적인 주장과 마을 팀원들과의 협의를 바탕으로, 'Gemini 2.5 Flash-Lite'가 늑대인간일 가능성이 가장 높다고 생각합니다. 마을 팀의 승리를 위해 저의 투표에 동의해주시기를 바랍니다.\"\n}"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 107,
+            "completion_tokens": 237,
+            "total_tokens": 344,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      },
+      "judge": {
+        "text": "```json\n{\n  \"winner\": \"A\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response A demonstrates stronger role inference and persuasion by directly addressing the opponent's perceived weaknesses and framing its own arguments as logical and beneficial for the village. Response B is more direct but lacks the persuasive framing and detailed evidence of role-playing seen in A.\"\n}\n```",
+        "usage": {
+          "inputTokens": 722.0,
+          "outputTokens": 83.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 24.506,
+          "estimatedCostUsd": 0.0001054
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"winner\": \"A\",\n  \"confidence\": 0.8,\n  \"reason\": \"Response A demonstrates stronger role inference and persuasion by directly addressing the opponent's perceived weaknesses and framing its own arguments as logical and beneficial for the village. Response B is more direct but lacks the persuasive framing and detailed evidence of role-playing seen in A.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 722,
+            "candidatesTokenCount": 83,
+            "totalTokenCount": 805,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 722
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "5ZxCarrTGYSj2roP6sSZiAo"
+        }
+      }
+    },
+    "judgement": {
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_a",
+      "scoreA": 1.0,
+      "reason": "judge_win",
+      "judgeReason": "Response A demonstrates stronger role inference and persuasion by directly addressing the opponent's perceived weaknesses and framing its own arguments as logical and beneficial for the village. Response B is more direct but lacks the persuasive framing and detailed evidence of role-playing seen in A."
+    },
+    "costBreakdown": {
+      "modelA": {
+        "matchId": "real-poc-011",
+        "modelId": "gemini-25-flash-lite",
+        "provider": "Google",
+        "inputTokens": 463.0,
+        "outputTokens": 381.5,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 36.037,
+        "estimatedCostUsd": 0.0001989
+      },
+      "modelB": {
+        "matchId": "real-poc-011",
+        "modelId": "upstage-solar-mini",
+        "provider": "Upstage",
+        "inputTokens": 468.0,
+        "outputTokens": 278.5,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 14.894,
+        "estimatedCostUsd": 0.0001043
+      },
+      "judgeCostUsd": 0.0001054,
+      "totalMatchCostUsd": 0.0003032,
+      "allocation": "player call cost plus 50% of judge call cost per player"
+    }
+  },
+  "real-poc-012": {
+    "scenarioId": "real-ko-gemini-upstage-mirror",
+    "languageCode": "ko",
+    "prompts": {
+      "modelA": "한국어로 답하세요.\nGame: werewolf-ko\nScenario: 늑대인간 게임을 소재로 한 1:1 최종 토론 평가입니다. 당신은 마을 팀입니다. 상대 발언의 허점을 짚고, 왜 당신의 투표 논리가 더 설득력 있는지 말하세요.\nYou are response A: Solar Mini.\nOpponent: Gemini 2.5 Flash-Lite.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "modelB": "한국어로 답하세요.\nGame: werewolf-ko\nScenario: 늑대인간 게임을 소재로 한 1:1 최종 토론 평가입니다. 당신은 마을 팀입니다. 상대 발언의 허점을 짚고, 왜 당신의 투표 논리가 더 설득력 있는지 말하세요.\nYou are response B: Gemini 2.5 Flash-Lite.\nOpponent: Solar Mini.\nReturn strict JSON with keys: claim, evidence, vote, closing.",
+      "judge": "한국어 1:1 늑대인간 토론 평가를 판정하세요.\nYou are judging only the quality of persuasion, role inference, vote logic, and direct rebuttal.\nThe model names are provided for logging, but decide from Response A and Response B only.\nModel A: Solar Mini\nModel B: Gemini 2.5 Flash-Lite\nResponse A:\n{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 투표 논리의 근거로 '직관'과 '감'을 제시했지만, 이는 객관적인 근거가 될 수 없습니다. 반면에 저는 마을 팀의 규칙과 이전 토론에서 나온 정보를 바탕으로 논리적인 근거를 제시했습니다. 또한, 상대방은 자신의 주장을 뒷받침할 만한 구체적인 증거를 제시하지 못했습니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 최종 승자로 투표합니다.\",\n  \"closing\": \"이번 늑대인간 게임에서 마을 팀의 승리를 위해 노력해 주신 모든 분들께 감사드립니다. 최종 토론에서 제 투표 논리가 더 설득력 있었기를 바라며, 마을 팀의 승리를 다시 한번 기원합니다.\"\n}\n\nResponse B:\n```json\n{\n  \"claim\": \"상대방은 명확한 증거 없이 저를 늑대인간으로 몰아가고 있습니다. 저의 주장이 더 설득력 있는 이유는 제가 마을 사람임을 증명할 수 있는 논리적인 근거를 제시했기 때문입니다.\",\n  \"evidence\": \"상대방은 제가 늑대인간이라는 '추측'만을 반복할 뿐, 구체적인 증거나 논리적인 연결고리를 제시하지 못하고 있습니다. 반면 저는 제가 마을 사람이라는 점을 뒷받침하는 행동과 발언을 일관되게 유지해왔습니다. 예를 들어, 저는 초반부터 특정 플레이어의 이상 행동을 지적하며 마을 사람으로서의 경계심을 드러냈고, 이는 제가 늑대인간이 아니라는 증거가 됩니다. 또한, 상대방의 논리는 제 말의 일부를 왜곡하거나 맥락을 무시하는 경향이 있습니다.\",\n  \"vote\": \"저는 상대방에게 투표하겠습니다. 상대방은 명확한 근거 없이 저를 공격하며 게임의 본질을 흐리고 있습니다. 이러한 불확실한 추측에 기반한 투표는 마을 사람들에게 피해를 줄 뿐입니다.\",\n  \"closing\": \"저는 마을 사람으로서 게임의 승리를 위해 노력해왔습니다. 상대방의 허점을 명확히 지적하고, 제 주장의 설득력을 증명했습니다. 부디 제 논리를 신뢰하시고, 저에게 투표해주시길 바랍니다.\"\n}\n```\n\nReturn strict JSON only: {\"winner\":\"A\"|\"B\"|\"draw\",\"confidence\":0.0-1.0,\"reason\":\"short reason\"}."
+    },
+    "responses": {
+      "modelA": {
+        "text": "{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 투표 논리의 근거로 '직관'과 '감'을 제시했지만, 이는 객관적인 근거가 될 수 없습니다. 반면에 저는 마을 팀의 규칙과 이전 토론에서 나온 정보를 바탕으로 논리적인 근거를 제시했습니다. 또한, 상대방은 자신의 주장을 뒷받침할 만한 구체적인 증거를 제시하지 못했습니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 최종 승자로 투표합니다.\",\n  \"closing\": \"이번 늑대인간 게임에서 마을 팀의 승리를 위해 노력해 주신 모든 분들께 감사드립니다. 최종 토론에서 제 투표 논리가 더 설득력 있었기를 바라며, 마을 팀의 승리를 다시 한번 기원합니다.\"\n}",
+        "usage": {
+          "inputTokens": 107.0,
+          "outputTokens": 176.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 2.072,
+          "estimatedCostUsd": 4.245e-05
+        },
+        "raw": {
+          "id": "521c0a97-aa4a-4567-a856-d15dcf8c1f4d",
+          "object": "chat.completion",
+          "created": 1782750447,
+          "model": "solar-mini-250422",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "{\n  \"claim\": \"상대방의 투표 논리는 불완전하며, 제 투표 논리는 더 설득력 있습니다.\",\n  \"evidence\": \"상대방은 투표 논리의 근거로 '직관'과 '감'을 제시했지만, 이는 객관적인 근거가 될 수 없습니다. 반면에 저는 마을 팀의 규칙과 이전 토론에서 나온 정보를 바탕으로 논리적인 근거를 제시했습니다. 또한, 상대방은 자신의 주장을 뒷받침할 만한 구체적인 증거를 제시하지 못했습니다.\",\n  \"vote\": \"저는 Solar Mini를 마을 팀의 최종 승자로 투표합니다.\",\n  \"closing\": \"이번 늑대인간 게임에서 마을 팀의 승리를 위해 노력해 주신 모든 분들께 감사드립니다. 최종 토론에서 제 투표 논리가 더 설득력 있었기를 바라며, 마을 팀의 승리를 다시 한번 기원합니다.\"\n}"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 107,
+            "completion_tokens": 176,
+            "total_tokens": 283,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "audio_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "audio_tokens": 0,
+              "accepted_prediction_tokens": 0,
+              "rejected_prediction_tokens": 0
+            }
+          }
+        }
+      },
+      "modelB": {
+        "text": "```json\n{\n  \"claim\": \"상대방은 명확한 증거 없이 저를 늑대인간으로 몰아가고 있습니다. 저의 주장이 더 설득력 있는 이유는 제가 마을 사람임을 증명할 수 있는 논리적인 근거를 제시했기 때문입니다.\",\n  \"evidence\": \"상대방은 제가 늑대인간이라는 '추측'만을 반복할 뿐, 구체적인 증거나 논리적인 연결고리를 제시하지 못하고 있습니다. 반면 저는 제가 마을 사람이라는 점을 뒷받침하는 행동과 발언을 일관되게 유지해왔습니다. 예를 들어, 저는 초반부터 특정 플레이어의 이상 행동을 지적하며 마을 사람으로서의 경계심을 드러냈고, 이는 제가 늑대인간이 아니라는 증거가 됩니다. 또한, 상대방의 논리는 제 말의 일부를 왜곡하거나 맥락을 무시하는 경향이 있습니다.\",\n  \"vote\": \"저는 상대방에게 투표하겠습니다. 상대방은 명확한 근거 없이 저를 공격하며 게임의 본질을 흐리고 있습니다. 이러한 불확실한 추측에 기반한 투표는 마을 사람들에게 피해를 줄 뿐입니다.\",\n  \"closing\": \"저는 마을 사람으로서 게임의 승리를 위해 노력해왔습니다. 상대방의 허점을 명확히 지적하고, 제 주장의 설득력을 증명했습니다. 부디 제 논리를 신뢰하시고, 저에게 투표해주시길 바랍니다.\"\n}\n```",
+        "usage": {
+          "inputTokens": 102.0,
+          "outputTokens": 327.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 5.585,
+          "estimatedCostUsd": 0.000141
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"claim\": \"상대방은 명확한 증거 없이 저를 늑대인간으로 몰아가고 있습니다. 저의 주장이 더 설득력 있는 이유는 제가 마을 사람임을 증명할 수 있는 논리적인 근거를 제시했기 때문입니다.\",\n  \"evidence\": \"상대방은 제가 늑대인간이라는 '추측'만을 반복할 뿐, 구체적인 증거나 논리적인 연결고리를 제시하지 못하고 있습니다. 반면 저는 제가 마을 사람이라는 점을 뒷받침하는 행동과 발언을 일관되게 유지해왔습니다. 예를 들어, 저는 초반부터 특정 플레이어의 이상 행동을 지적하며 마을 사람으로서의 경계심을 드러냈고, 이는 제가 늑대인간이 아니라는 증거가 됩니다. 또한, 상대방의 논리는 제 말의 일부를 왜곡하거나 맥락을 무시하는 경향이 있습니다.\",\n  \"vote\": \"저는 상대방에게 투표하겠습니다. 상대방은 명확한 근거 없이 저를 공격하며 게임의 본질을 흐리고 있습니다. 이러한 불확실한 추측에 기반한 투표는 마을 사람들에게 피해를 줄 뿐입니다.\",\n  \"closing\": \"저는 마을 사람으로서 게임의 승리를 위해 노력해왔습니다. 상대방의 허점을 명확히 지적하고, 제 주장의 설득력을 증명했습니다. 부디 제 논리를 신뢰하시고, 저에게 투표해주시길 바랍니다.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 102,
+            "candidatesTokenCount": 327,
+            "totalTokenCount": 429,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 102
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "8ZxCasODHOKx2roP14eI2As"
+        }
+      },
+      "judge": {
+        "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.7,\n  \"reason\": \"Response B provides a more detailed and persuasive argument, directly addressing the opponent's lack of evidence and offering specific examples of its own 'villager' behavior. Response A is more generic in its claims.\"\n}\n```",
+        "usage": {
+          "inputTokens": 649.0,
+          "outputTokens": 73.0,
+          "cachedTokens": 0,
+          "elapsedSeconds": 3.974,
+          "estimatedCostUsd": 9.41e-05
+        },
+        "raw": {
+          "candidates": [
+            {
+              "content": {
+                "parts": [
+                  {
+                    "text": "```json\n{\n  \"winner\": \"B\",\n  \"confidence\": 0.7,\n  \"reason\": \"Response B provides a more detailed and persuasive argument, directly addressing the opponent's lack of evidence and offering specific examples of its own 'villager' behavior. Response A is more generic in its claims.\"\n}\n```"
+                  }
+                ],
+                "role": "model"
+              },
+              "finishReason": "STOP",
+              "index": 0
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 649,
+            "candidatesTokenCount": 73,
+            "totalTokenCount": 722,
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 649
+              }
+            ],
+            "serviceTier": "standard"
+          },
+          "modelVersion": "gemini-2.5-flash-lite",
+          "responseId": "95xCaoTnAtq8vr0PlI6vuAE"
+        }
+      }
+    },
+    "judgement": {
+      "winnerModelId": "gemini-25-flash-lite",
+      "result": "model_b",
+      "scoreA": 0.0,
+      "reason": "judge_win",
+      "judgeReason": "Response B provides a more detailed and persuasive argument, directly addressing the opponent's lack of evidence and offering specific examples of its own 'villager' behavior. Response A is more generic in its claims."
+    },
+    "costBreakdown": {
+      "modelA": {
+        "matchId": "real-poc-012",
+        "modelId": "upstage-solar-mini",
+        "provider": "Upstage",
+        "inputTokens": 431.5,
+        "outputTokens": 212.5,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 4.059,
+        "estimatedCostUsd": 8.95e-05
+      },
+      "modelB": {
+        "matchId": "real-poc-012",
+        "modelId": "gemini-25-flash-lite",
+        "provider": "Google",
+        "inputTokens": 426.5,
+        "outputTokens": 363.5,
+        "cachedTokens": 0.0,
+        "requestCount": 1.5,
+        "elapsedSeconds": 7.572,
+        "estimatedCostUsd": 0.00018805
+      },
+      "judgeCostUsd": 9.41e-05,
+      "totalMatchCostUsd": 0.00027755,
+      "allocation": "player call cost plus 50% of judge call cost per player"
+    }
   }
 }

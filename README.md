@@ -8,14 +8,14 @@ The first implementation is intentionally split into two tracks:
 
 - Frontend MVP: Vite React app backed by `public/data/fightall.generated.json`, with `public/data/fightall.sample.json` kept as a fallback fixture.
 - Game Arena spike: Python tooling under `tools/game_arena_spike/` that proves an offline runner can export GLADI-compatible JSON.
-- GLADI runner: Python tooling under `tools/fightall_runner/` that can produce mock league data or a small real OpenAI/Gemini API PoC league with Elo and cost snapshots.
+- GLADI runner: Python tooling under `tools/fightall_runner/` that can produce mock league data or a small real OpenAI/Gemini/Upstage API PoC league with Elo and cost snapshots.
 
 ## Current Scope
 
 Included:
 
 - Dashboard leaderboard and rating trend overview.
-- Game/language scope controls for `Werewolf - English` and `늑대인간 - 한국어`.
+- Game/language scope controls for `Werewolf Debate - English` and `늑대인간 토론 - 한국어`.
 - AI Players roster for browsing models as league participants.
 - Model detail with rating graph, overall record, game records, opponent records, and recent matches.
 - Head-to-head detail between two models.
@@ -23,7 +23,7 @@ Included:
 - Static JSON data-source boundary via `loadLeagueData()`.
 - Mock Game Arena export spike with Apache 2.0 attribution notes.
 - Mock runner generated data with five candidate models, including Upstage Solar as the Korean model anchor.
-- Real API PoC runner for a 4-match OpenAI vs Gemini Werewolf league.
+- Real API PoC runner for a 12-match OpenAI, Gemini, and Upstage Solar Mini Werewolf debate evaluation league.
 
 Not included in this MVP:
 
@@ -73,11 +73,11 @@ The default runner preset creates 40 matches:
 
 Use `--preset smoke` for a smaller language-balanced development run.
 
-For the real OpenAI/Gemini PoC runner:
+For the real API PoC runner:
 
 ```bash
 cp .env.example .env.local
-# Add OPENAI_API_KEY and GEMINI_API_KEY to .env.local.
+# Add OPENAI_API_KEY, GEMINI_API_KEY, and UPSTAGE_API_KEY to .env.local.
 python3 -m tools.fightall_runner.real_poc --doctor
 python3 -m tools.fightall_runner.real_poc \
   --output public/data/fightall.generated.json \
@@ -85,12 +85,24 @@ python3 -m tools.fightall_runner.real_poc \
   --budget-cap-usd 2
 ```
 
-The real PoC creates 4 matches:
+The base real PoC creates 4 OpenAI vs Gemini matches:
 
 ```txt
 OpenAI GPT-4.1 Nano × Gemini 2.5 Flash-Lite
 2 languages × 2 mirror matches = 4 matches
 ```
+
+Append Upstage Solar Mini after the base run:
+
+```bash
+python3 -m tools.fightall_runner.real_poc \
+  --append-upstage \
+  --output public/data/fightall.generated.json \
+  --logs tools/fightall_runner/out/real_poc_turn_logs.json \
+  --budget-cap-usd 2
+```
+
+The appended PoC preserves `real-poc-001` through `real-poc-004`, adds `real-poc-005` through `real-poc-012`, and produces 12 matches with 24 player cost snapshots.
 
 Each player cost snapshot includes that player's API call plus 50% of the judge call cost, so dashboard cost per match and cost per win include judge spend.
 
