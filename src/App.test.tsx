@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import App from "./App";
 import sampleData from "../public/data/fightall.sample.json";
 
@@ -14,6 +14,11 @@ function renderApp(route = "/") {
 }
 
 describe("FightAll app", () => {
+  beforeEach(() => {
+    localStorage.clear();
+    document.documentElement.removeAttribute("data-theme");
+  });
+
   it("renders dashboard rows, rating chart, and navigates to model detail", async () => {
     renderApp("/");
 
@@ -22,15 +27,15 @@ describe("FightAll app", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/sample league data/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /all league/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /werewolf english/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /늑대인간 한국어/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
     expect(screen.getByTestId("rating-overview-chart")).toBeInTheDocument();
 
     const leaderboard = screen.getByRole("table", { name: /leaderboard/i });
     expect(within(leaderboard).getByText(/claude opus/i)).toBeInTheDocument();
     expect(within(leaderboard).getAllByText(/2026-sample/i)[0]).toBeInTheDocument();
 
-    await userEvent.click(screen.getByRole("button", { name: /늑대인간 한국어/i }));
+    await userEvent.click(screen.getByRole("button", { name: /늑대인간 - 한국어/i }));
     expect(screen.getByText(/korean social deduction/i)).toBeInTheDocument();
 
     await userEvent.click(
@@ -40,6 +45,39 @@ describe("FightAll app", () => {
       await screen.findByRole("heading", { name: /claude opus/i }),
     ).toBeInTheDocument();
     expect(screen.getByTestId("model-rating-chart")).toBeInTheDocument();
+  });
+
+  it("keeps the topbar product-focused without the Game Arena link", () => {
+    renderApp("/");
+
+    expect(screen.getByRole("link", { name: /leaderboard/i })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /game arena/i })).not.toBeInTheDocument();
+  });
+
+  it("persists the selected theme mode", async () => {
+    renderApp("/");
+
+    expect(document.documentElement).toHaveAttribute("data-theme", "system");
+
+    await userEvent.click(screen.getByRole("button", { name: /theme: dark/i }));
+
+    expect(document.documentElement).toHaveAttribute("data-theme", "dark");
+    expect(localStorage.getItem("fightall-theme")).toBe("dark");
+  });
+
+  it("switches the UI between English and Korean while preserving data names", async () => {
+    renderApp("/");
+
+    expect(screen.getByText(/Sample league data/i)).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: /한국어로 보기/i }));
+
+    expect(screen.getByText(/샘플 리그 데이터/i)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: /리그 범위/i })).toBeInTheDocument();
+    expect(screen.queryByText(/Sample league data/i)).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
+    expect(localStorage.getItem("fightall-language")).toBe("ko");
   });
 
   it("renders graph-first model detail and links to head-to-head", () => {

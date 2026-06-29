@@ -17,7 +17,67 @@
   --good: #138a43;
   --bad: #c0392b;
   --warning: #b7791f;
+  --topbar-bg: rgba(247, 248, 251, 0.92);
+  --chart-grid: #d7dde8;
+  --stat-icon-bg: #eaf0ff;
+  --control-hover: #f8fbff;
+  --good-bg: #e8f6ee;
+  --bad-bg: #faecea;
+  --hero-blue: rgba(37, 99, 235, 0.1);
+  --hero-green: rgba(19, 138, 67, 0.1);
   --shadow: 0 14px 40px rgba(20, 32, 52, 0.08);
+}
+
+:root[data-theme="dark"] {
+  color: #edf3ff;
+  background: #111827;
+  --bg: #111827;
+  --surface: #172033;
+  --surface-muted: #202b3e;
+  --text: #edf3ff;
+  --muted: #a9b4c7;
+  --line: #324158;
+  --accent: #6da2ff;
+  --accent-strong: #9ec0ff;
+  --good: #61d394;
+  --bad: #ff8a80;
+  --warning: #f6c66a;
+  --topbar-bg: rgba(17, 24, 39, 0.92);
+  --chart-grid: #344159;
+  --stat-icon-bg: #24385f;
+  --control-hover: #26334a;
+  --good-bg: rgba(39, 174, 96, 0.16);
+  --bad-bg: rgba(231, 76, 60, 0.16);
+  --hero-blue: rgba(96, 165, 250, 0.13);
+  --hero-green: rgba(74, 222, 128, 0.1);
+  --shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    color: #edf3ff;
+    background: #111827;
+    --bg: #111827;
+    --surface: #172033;
+    --surface-muted: #202b3e;
+    --text: #edf3ff;
+    --muted: #a9b4c7;
+    --line: #324158;
+    --accent: #6da2ff;
+    --accent-strong: #9ec0ff;
+    --good: #61d394;
+    --bad: #ff8a80;
+    --warning: #f6c66a;
+    --topbar-bg: rgba(17, 24, 39, 0.92);
+    --chart-grid: #344159;
+    --stat-icon-bg: #24385f;
+    --control-hover: #26334a;
+    --good-bg: rgba(39, 174, 96, 0.16);
+    --bad-bg: rgba(231, 76, 60, 0.16);
+    --hero-blue: rgba(96, 165, 250, 0.13);
+    --hero-green: rgba(74, 222, 128, 0.1);
+    --shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
+  }
 }
 
 * {
@@ -65,10 +125,10 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 18px;
   padding: 14px clamp(18px, 4vw, 48px);
   border-bottom: 1px solid var(--line);
-  background: rgba(247, 248, 251, 0.92);
+  background: var(--topbar-bg);
   backdrop-filter: blur(12px);
 }
 
@@ -94,6 +154,73 @@ select {
   font-size: 0.92rem;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.icon-control-group,
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 36px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-muted);
+}
+
+.icon-control-group button,
+.language-switcher button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 28px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.icon-control-group button {
+  padding: 0 8px;
+}
+
+.language-switcher button {
+  width: 34px;
+  padding: 0;
+}
+
+.icon-control-group button:hover,
+.icon-control-group button:focus-visible,
+.language-switcher button:hover,
+.language-switcher button:focus-visible,
+.icon-control-group button.active,
+.language-switcher button.active {
+  color: var(--text);
+  background: var(--surface);
+}
+
+.icon-control-group svg,
+.language-switcher svg {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+}
+
+.language-switcher > svg {
+  margin: 0 3px 0 5px;
+  color: var(--muted);
+}
+
 main {
   width: min(1180px, calc(100vw - 32px));
   margin: 0 auto;
@@ -115,8 +242,8 @@ main {
   border: 1px solid var(--line);
   border-radius: 8px;
   background:
-    linear-gradient(120deg, rgba(37, 99, 235, 0.1), transparent 44%),
-    linear-gradient(240deg, rgba(19, 138, 67, 0.1), transparent 40%),
+    linear-gradient(120deg, var(--hero-blue), transparent 44%),
+    linear-gradient(240deg, var(--hero-green), transparent 40%),
     var(--surface);
   box-shadow: var(--shadow);
 }
@@ -180,7 +307,7 @@ main {
   place-items: center;
   border-radius: 8px;
   color: var(--accent);
-  background: #eaf0ff;
+  background: var(--stat-icon-bg);
 }
 
 .stat-icon svg {
@@ -278,7 +405,7 @@ main {
 .segmented-control button:hover,
 .segmented-control button:focus-visible {
   color: var(--accent-strong);
-  background: #f8fbff;
+  background: var(--control-hover);
 }
 
 .segmented-control button.active {
@@ -355,12 +482,12 @@ tbody tr:last-child td {
 
 .delta-badge.up {
   color: var(--good);
-  background: #e8f6ee;
+  background: var(--good-bg);
 }
 
 .delta-badge.down {
   color: var(--bad);
-  background: #faecea;
+  background: var(--bad-bg);
 }
 
 .momentum-list,
@@ -513,9 +640,20 @@ dd {
     flex-direction: column;
   }
 
-  .topbar nav {
+  .topbar nav,
+  .topbar-actions {
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+  }
+
+  .topbar-actions {
+    flex-wrap: wrap;
+    margin-left: 0;
+  }
+
+  .icon-control-group {
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   main {

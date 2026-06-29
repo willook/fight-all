@@ -6,6 +6,10 @@ import {
   BarChart3,
   CircleDollarSign,
   Clock,
+  Languages,
+  Monitor,
+  Moon,
+  Sun,
   Swords,
   Trophy,
 } from "lucide-react";
@@ -30,7 +34,6 @@ import {
 } from "./domain/selectors";
 import type {
   ArenaModel,
-  CostSummary,
   LeagueData,
   MatchSummary,
   RatingPoint,
@@ -42,10 +45,242 @@ type AppProps = {
   initialData?: LeagueData;
 };
 
-const chartColors = ["#2563eb", "#16a34a", "#dc2626", "#9333ea", "#d97706"];
+type ThemeMode = "system" | "light" | "dark";
+type Language = "en" | "ko";
+type Copy = (typeof translations)[Language];
 
-function formatDate(value: string) {
-  return new Intl.DateTimeFormat("en", {
+const chartColors = ["#2563eb", "#16a34a", "#dc2626", "#9333ea", "#d97706"];
+const themeStorageKey = "fightall-theme";
+const languageStorageKey = "fightall-language";
+const themeModes: ThemeMode[] = ["system", "light", "dark"];
+
+const translations = {
+  en: {
+    appNav: "Main",
+    leaderboard: "Leaderboard",
+    sampleLeagueData: "Sample league data",
+    heroCopy:
+      "A record-first AI model arena MVP for comparing Werewolf ratings, opponent records, and cost efficiency across English and Korean sample leagues.",
+    leader: "Leader",
+    rating: "rating",
+    bestRecentMove: "Best recent move",
+    latestDelta: "latest delta",
+    costEfficient: "Cost-efficient",
+    perWin: "per win",
+    gameAndLanguage: "Game and language",
+    gameLanguageFilter: "Game language filter",
+    leagueScope: "League scope",
+    allLeague: "All League",
+    overallLeagueNote:
+      "Overall view combines the English and Korean Werewolf sample leagues without treating one language as the universal ranking.",
+    ratingTrendOverview: "Rating trend overview",
+    leagueRatingMovement: "League rating movement",
+    momentum: "Momentum",
+    risingAndFalling: "Rising and falling",
+    currentStandings: "Current standings",
+    rank: "Rank",
+    model: "Model",
+    provider: "Provider",
+    version: "Version",
+    delta: "Delta",
+    record: "Record",
+    recentForm: "Recent form",
+    costPerWin: "Cost / win",
+    currentRating: "Current rating",
+    ratingHistory: "Rating history",
+    graphFirstModelDetail: "Graph-first model detail",
+    overallRecord: "Overall record",
+    winRate: "win rate",
+    latestFiveMatches: "Latest five matches",
+    averageTime: "Average time",
+    totalRequests: "total requests",
+    total: "total",
+    byGame: "By game",
+    gameRecords: "Game records",
+    opponents: "Opponents",
+    opponent: "Opponent",
+    opponentRecords: "Opponent records",
+    latestMeeting: "Latest meeting",
+    detail: "Detail",
+    latestResults: "Latest results",
+    recentMatches: "Recent matches",
+    recentMeetings: "Recent meetings",
+    match: "Match",
+    game: "Game",
+    models: "Models",
+    result: "Result",
+    turns: "Turns",
+    played: "Played",
+    directRecord: "Direct record",
+    gameBreakdown: "Game breakdown",
+    matchHistory: "Match history",
+    headToHeadCopy:
+      "Head-to-head results, per-game splits, recent meetings, and cost/time comparison computed from match history.",
+    duration: "Duration",
+    participants: "Participants",
+    matchSummary: "Match summary",
+    modelA: "Model A",
+    modelB: "Model B",
+    outcome: "Outcome",
+    spend: "Spend",
+    costAndTokens: "Cost and tokens",
+    input: "Input",
+    output: "Output",
+    cached: "Cached",
+    requests: "Requests",
+    elapsed: "Elapsed",
+    cost: "Cost",
+    elo: "Elo",
+    ratingChanges: "Rating changes",
+    noData: "n/a",
+    draw: "Draw",
+    won: "won",
+    notFound: "Not found",
+    dataError: "Data error",
+    notFoundCopy: "This record is not available in the bundled sample league data.",
+    backToLeaderboard: "Back to leaderboard",
+    loading: "Loading FightAll league data...",
+    themeSystem: "System",
+    themeLight: "Light",
+    themeDark: "Dark",
+    themeSystemLabel: "Theme: System",
+    themeLightLabel: "Theme: Light",
+    themeDarkLabel: "Theme: Dark",
+    languageControl: "Language",
+    viewInEnglish: "View in English",
+    viewInKorean: "한국어로 보기",
+    avg: "avg",
+    wins: "W",
+    losses: "L",
+    draws: "D",
+  },
+  ko: {
+    appNav: "주요 메뉴",
+    leaderboard: "리더보드",
+    sampleLeagueData: "샘플 리그 데이터",
+    heroCopy:
+      "영어와 한국어 늑대인간 샘플 리그의 레이팅, 상대 전적, 비용 효율을 비교하는 기록 기반 AI 모델 아레나 MVP입니다.",
+    leader: "선두",
+    rating: "레이팅",
+    bestRecentMove: "최근 상승",
+    latestDelta: "최근 변화",
+    costEfficient: "비용 효율",
+    perWin: "승당",
+    gameAndLanguage: "게임과 언어",
+    gameLanguageFilter: "게임 언어 필터",
+    leagueScope: "리그 범위",
+    allLeague: "전체 리그",
+    overallLeagueNote:
+      "전체 보기는 영어와 한국어 늑대인간 샘플 리그를 함께 보여주며, 특정 언어 하나를 보편 순위처럼 취급하지 않습니다.",
+    ratingTrendOverview: "레이팅 추이",
+    leagueRatingMovement: "리그 레이팅 변화",
+    momentum: "모멘텀",
+    risingAndFalling: "상승과 하락",
+    currentStandings: "현재 순위",
+    rank: "순위",
+    model: "모델",
+    provider: "제공사",
+    version: "버전",
+    delta: "변화",
+    record: "전적",
+    recentForm: "최근 흐름",
+    costPerWin: "승당 비용",
+    currentRating: "현재 레이팅",
+    ratingHistory: "레이팅 기록",
+    graphFirstModelDetail: "그래프 중심 모델 상세",
+    overallRecord: "전체 전적",
+    winRate: "승률",
+    latestFiveMatches: "최근 5경기",
+    averageTime: "평균 시간",
+    totalRequests: "총 요청",
+    total: "합계",
+    byGame: "게임별",
+    gameRecords: "게임별 전적",
+    opponents: "상대",
+    opponent: "상대 모델",
+    opponentRecords: "상대 전적",
+    latestMeeting: "최근 맞대결",
+    detail: "상세",
+    latestResults: "최근 결과",
+    recentMatches: "최근 경기",
+    recentMeetings: "최근 맞대결",
+    match: "경기",
+    game: "게임",
+    models: "모델",
+    result: "결과",
+    turns: "턴",
+    played: "일시",
+    directRecord: "직접 전적",
+    gameBreakdown: "게임별 분석",
+    matchHistory: "경기 기록",
+    headToHeadCopy:
+      "경기 기록에서 계산한 맞대결 결과, 게임별 구분, 최근 경기, 비용/시간 비교입니다.",
+    duration: "소요 시간",
+    participants: "참가 모델",
+    matchSummary: "경기 요약",
+    modelA: "모델 A",
+    modelB: "모델 B",
+    outcome: "판정",
+    spend: "사용량",
+    costAndTokens: "비용과 토큰",
+    input: "입력",
+    output: "출력",
+    cached: "캐시",
+    requests: "요청",
+    elapsed: "응답 시간",
+    cost: "비용",
+    elo: "Elo",
+    ratingChanges: "레이팅 변화",
+    noData: "없음",
+    draw: "무승부",
+    won: "승리",
+    notFound: "찾을 수 없음",
+    dataError: "데이터 오류",
+    notFoundCopy: "번들된 샘플 리그 데이터에서 이 기록을 찾을 수 없습니다.",
+    backToLeaderboard: "리더보드로 돌아가기",
+    loading: "FightAll 리그 데이터를 불러오는 중...",
+    themeSystem: "시스템",
+    themeLight: "라이트",
+    themeDark: "다크",
+    themeSystemLabel: "테마: 시스템",
+    themeLightLabel: "테마: 라이트",
+    themeDarkLabel: "테마: 다크",
+    languageControl: "언어",
+    viewInEnglish: "View in English",
+    viewInKorean: "한국어로 보기",
+    avg: "평균",
+    wins: "승",
+    losses: "패",
+    draws: "무",
+  },
+} as const;
+
+function getInitialTheme(): ThemeMode {
+  if (typeof window === "undefined") {
+    return "system";
+  }
+
+  const saved = window.localStorage.getItem(themeStorageKey);
+  return saved === "light" || saved === "dark" || saved === "system"
+    ? saved
+    : "system";
+}
+
+function getInitialLanguage(): Language {
+  if (typeof window === "undefined") {
+    return "en";
+  }
+
+  const saved = window.localStorage.getItem(languageStorageKey);
+  if (saved === "en" || saved === "ko") {
+    return saved;
+  }
+
+  return window.navigator.language.toLowerCase().startsWith("ko") ? "ko" : "en";
+}
+
+function formatDate(value: string, language: Language) {
+  return new Intl.DateTimeFormat(language === "ko" ? "ko-KR" : "en", {
     month: "short",
     day: "numeric",
     hour: "2-digit",
@@ -53,54 +288,48 @@ function formatDate(value: string) {
   }).format(new Date(value));
 }
 
-function formatShortDate(value: string) {
-  return new Intl.DateTimeFormat("en", {
+function formatShortDate(value: string, language: Language) {
+  return new Intl.DateTimeFormat(language === "ko" ? "ko-KR" : "en", {
     month: "short",
     day: "numeric",
   }).format(new Date(value));
 }
 
 function formatDelta(value: number) {
-  if (value > 0) {
-    return `+${value}`;
-  }
-
-  return String(value);
+  return value > 0 ? `+${value}` : String(value);
 }
 
-function formatMoney(value: number | null) {
-  if (value === null) {
-    return "n/a";
-  }
-
-  return `$${value.toFixed(3)}`;
+function formatMoney(value: number | null, t: Copy) {
+  return value === null ? t.noData : `$${value.toFixed(3)}`;
 }
 
 function formatPercent(value: number) {
   return `${Math.round(value * 100)}%`;
 }
 
-function formatDuration(seconds: number) {
+function formatDuration(seconds: number, language: Language) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
 
   if (minutes === 0) {
-    return `${remainingSeconds}s`;
+    return language === "ko" ? `${remainingSeconds}초` : `${remainingSeconds}s`;
   }
 
-  return `${minutes}m ${remainingSeconds}s`;
+  return language === "ko"
+    ? `${minutes}분 ${remainingSeconds}초`
+    : `${minutes}m ${remainingSeconds}s`;
 }
 
-function recordText(record: RecordSummary) {
-  return `${record.wins}W ${record.losses}L ${record.draws}D`;
+function recordText(record: RecordSummary, t: Copy) {
+  return `${record.wins}${t.wins} ${record.losses}${t.losses} ${record.draws}${t.draws}`;
 }
 
-function matchOutcomeText(data: LeagueData, match: MatchSummary) {
+function matchOutcomeText(data: LeagueData, match: MatchSummary, t: Copy) {
   if (!match.winnerModelId) {
-    return "Draw";
+    return t.draw;
   }
 
-  return `${modelName(data, match.winnerModelId)} won`;
+  return `${modelName(data, match.winnerModelId)} ${t.won}`;
 }
 
 function modelName(data: LeagueData, modelId: string) {
@@ -111,25 +340,13 @@ function gameName(data: LeagueData, gameId: string) {
   return data.games.find((game) => game.id === gameId)?.name ?? gameId;
 }
 
-function gameFilterLabel(gameId: string) {
-  if (gameId === "werewolf-en") {
-    return "Werewolf English";
-  }
-
-  if (gameId === "werewolf-ko") {
-    return "늑대인간 한국어";
-  }
-
-  return gameId;
-}
-
-function EmptyState({ title }: { title: string }) {
+function EmptyState({ title, t }: { title: string; t: Copy }) {
   return (
     <section className="empty-state">
       <h1>{title}</h1>
-      <p>This record is not available in the bundled sample league data.</p>
+      <p>{t.notFoundCopy}</p>
       <Link className="button-link" to="/">
-        Back to leaderboard
+        {t.backToLeaderboard}
       </Link>
     </section>
   );
@@ -173,9 +390,11 @@ function StatTile({
 function RatingOverviewChart({
   data,
   gameId,
+  language,
 }: {
   data: LeagueData;
   gameId: string | null;
+  language: Language;
 }) {
   const rows = useMemo(() => {
     const byDate = new Map<string, Record<string, string | number>>();
@@ -184,8 +403,9 @@ function RatingOverviewChart({
     );
 
     for (const snapshot of snapshots) {
-      const label = formatShortDate(snapshot.recordedAt);
-      const row = byDate.get(snapshot.recordedAt) ?? { date: label };
+      const row = byDate.get(snapshot.recordedAt) ?? {
+        date: formatShortDate(snapshot.recordedAt, language),
+      };
       row[snapshot.modelId] = snapshot.rating;
       byDate.set(snapshot.recordedAt, row);
     }
@@ -193,15 +413,37 @@ function RatingOverviewChart({
     return [...byDate.entries()]
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([, row]) => row);
-  }, [data, gameId]);
+  }, [data, gameId, language]);
 
   return (
     <div className="chart-frame" data-testid="rating-overview-chart">
-      <LineChart width={760} height={300} data={rows} margin={{ left: 8, right: 24 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#d7dde8" />
-        <XAxis dataKey="date" tickLine={false} axisLine={false} />
-        <YAxis tickLine={false} axisLine={false} width={44} domain={["dataMin - 20", "dataMax + 20"]} />
-        <Tooltip />
+      <LineChart
+        width={760}
+        height={300}
+        data={rows}
+        margin={{ left: 8, right: 24 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
+        <XAxis
+          dataKey="date"
+          tickLine={false}
+          axisLine={false}
+          stroke="var(--muted)"
+        />
+        <YAxis
+          tickLine={false}
+          axisLine={false}
+          width={44}
+          domain={["dataMin - 20", "dataMax + 20"]}
+          stroke="var(--muted)"
+        />
+        <Tooltip
+          contentStyle={{
+            background: "var(--surface)",
+            borderColor: "var(--line)",
+            color: "var(--text)",
+          }}
+        />
         <Legend />
         {data.models.map((model, index) => (
           <Line
@@ -220,26 +462,51 @@ function RatingOverviewChart({
   );
 }
 
-function ModelRatingChart({ series }: { series: RatingPoint[] }) {
+function ModelRatingChart({
+  series,
+  language,
+  t,
+}: {
+  series: RatingPoint[];
+  language: Language;
+  t: Copy;
+}) {
   return (
     <div className="chart-frame" data-testid="model-rating-chart">
       <LineChart
         width={760}
         height={300}
         data={series.map((point) => ({
-          date: formatShortDate(point.recordedAt),
+          date: formatShortDate(point.recordedAt, language),
           rating: point.rating,
         }))}
         margin={{ left: 8, right: 24 }}
       >
-        <CartesianGrid strokeDasharray="3 3" stroke="#d7dde8" />
-        <XAxis dataKey="date" tickLine={false} axisLine={false} />
-        <YAxis tickLine={false} axisLine={false} width={44} domain={["dataMin - 20", "dataMax + 20"]} />
-        <Tooltip />
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
+        <XAxis
+          dataKey="date"
+          tickLine={false}
+          axisLine={false}
+          stroke="var(--muted)"
+        />
+        <YAxis
+          tickLine={false}
+          axisLine={false}
+          width={44}
+          domain={["dataMin - 20", "dataMax + 20"]}
+          stroke="var(--muted)"
+        />
+        <Tooltip
+          contentStyle={{
+            background: "var(--surface)",
+            borderColor: "var(--line)",
+            color: "var(--text)",
+          }}
+        />
         <Line
           type="monotone"
           dataKey="rating"
-          name="Rating"
+          name={t.rating}
           stroke="#2563eb"
           strokeWidth={3}
           dot={{ r: 4 }}
@@ -249,30 +516,15 @@ function ModelRatingChart({ series }: { series: RatingPoint[] }) {
   );
 }
 
-function CostBlock({ summary }: { summary: CostSummary }) {
-  return (
-    <dl className="metric-list">
-      <div>
-        <dt>Total cost</dt>
-        <dd>{formatMoney(summary.totalCostUsd)}</dd>
-      </div>
-      <div>
-        <dt>Cost per win</dt>
-        <dd>{formatMoney(summary.costPerWin)}</dd>
-      </div>
-      <div>
-        <dt>Requests</dt>
-        <dd>{summary.totalRequests.toLocaleString()}</dd>
-      </div>
-      <div>
-        <dt>Avg time</dt>
-        <dd>{formatDuration(Math.round(summary.averageElapsedSeconds))}</dd>
-      </div>
-    </dl>
-  );
-}
-
-function Dashboard({ data }: { data: LeagueData }) {
+function Dashboard({
+  data,
+  language,
+  t,
+}: {
+  data: LeagueData;
+  language: Language;
+  t: Copy;
+}) {
   const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
   const selectedGame =
     selectedGameId === null
@@ -289,32 +541,28 @@ function Dashboard({ data }: { data: LeagueData }) {
     <div className="page-stack">
       <section className="hero-band">
         <div>
-          <p className="eyebrow">Sample league data</p>
+          <p className="eyebrow">{t.sampleLeagueData}</p>
           <h1>FightAll</h1>
-          <p>
-            A record-first AI model arena MVP for comparing Werewolf ratings,
-            opponent records, and cost efficiency across English and Korean sample
-            leagues.
-          </p>
+          <p>{t.heroCopy}</p>
         </div>
         <div className="hero-stats">
           <StatTile
             icon={<Trophy aria-hidden="true" />}
-            label="Leader"
+            label={t.leader}
             value={topModel.model.name}
-            detail={`${topModel.currentRating} rating`}
+            detail={`${topModel.currentRating} ${t.rating}`}
           />
           <StatTile
             icon={<Activity aria-hidden="true" />}
-            label="Best recent move"
+            label={t.bestRecentMove}
             value={rising.model.name}
-            detail={`${formatDelta(rising.ratingDelta)} latest delta`}
+            detail={`${formatDelta(rising.ratingDelta)} ${t.latestDelta}`}
           />
           <StatTile
             icon={<CircleDollarSign aria-hidden="true" />}
-            label="Cost-efficient"
+            label={t.costEfficient}
             value={efficient.model.name}
-            detail={`${formatMoney(efficient.costSummary.costPerWin)} per win`}
+            detail={`${formatMoney(efficient.costSummary.costPerWin, t)} ${t.perWin}`}
           />
         </div>
       </section>
@@ -322,17 +570,17 @@ function Dashboard({ data }: { data: LeagueData }) {
       <section className="panel">
         <div className="section-heading compact">
           <div>
-            <span>Game and language</span>
-            <h2>League scope</h2>
+            <span>{t.gameAndLanguage}</span>
+            <h2>{t.leagueScope}</h2>
           </div>
         </div>
-        <div className="segmented-control" aria-label="Game language filter">
+        <div className="segmented-control" aria-label={t.gameLanguageFilter}>
           <button
             className={selectedGameId === null ? "active" : ""}
             type="button"
             onClick={() => setSelectedGameId(null)}
           >
-            All League
+            {t.allLeague}
           </button>
           {data.games.map((game) => (
             <button
@@ -341,14 +589,12 @@ function Dashboard({ data }: { data: LeagueData }) {
               type="button"
               onClick={() => setSelectedGameId(game.id)}
             >
-              {gameFilterLabel(game.id)}
+              {game.name}
             </button>
           ))}
         </div>
         <p className="language-note">
-          {selectedGame
-            ? selectedGame.description
-            : "Overall view combines the English and Korean Werewolf sample leagues without treating one language as the universal ranking."}
+          {selectedGame ? selectedGame.description : t.overallLeagueNote}
         </p>
       </section>
 
@@ -356,18 +602,22 @@ function Dashboard({ data }: { data: LeagueData }) {
         <div className="panel wide">
           <div className="section-heading">
             <div>
-              <span>Rating trend overview</span>
-              <h2>League rating movement</h2>
+              <span>{t.ratingTrendOverview}</span>
+              <h2>{t.leagueRatingMovement}</h2>
             </div>
             <BarChart3 aria-hidden="true" />
           </div>
-          <RatingOverviewChart data={data} gameId={selectedGameId} />
+          <RatingOverviewChart
+            data={data}
+            gameId={selectedGameId}
+            language={language}
+          />
         </div>
         <div className="panel">
           <div className="section-heading compact">
             <div>
-              <span>Momentum</span>
-              <h2>Rising and falling</h2>
+              <span>{t.momentum}</span>
+              <h2>{t.risingAndFalling}</h2>
             </div>
           </div>
           <ol className="momentum-list">
@@ -386,24 +636,24 @@ function Dashboard({ data }: { data: LeagueData }) {
       <section className="panel">
         <div className="section-heading">
           <div>
-            <span>Current standings</span>
-            <h2>{selectedGame ? selectedGame.name : "Leaderboard"}</h2>
+            <span>{t.currentStandings}</span>
+            <h2>{selectedGame ? selectedGame.name : t.leaderboard}</h2>
           </div>
           <Swords aria-hidden="true" />
         </div>
         <div className="table-scroll">
-          <table aria-label="Leaderboard">
+          <table aria-label={t.leaderboard}>
             <thead>
               <tr>
-                <th>Rank</th>
-                <th>Model</th>
-                <th>Provider</th>
-                <th>Version</th>
-                <th>Rating</th>
-                <th>Delta</th>
-                <th>Record</th>
-                <th>Recent form</th>
-                <th>Cost / win</th>
+                <th>{t.rank}</th>
+                <th>{t.model}</th>
+                <th>{t.provider}</th>
+                <th>{t.version}</th>
+                <th>{t.rating}</th>
+                <th>{t.delta}</th>
+                <th>{t.record}</th>
+                <th>{t.recentForm}</th>
+                <th>{t.costPerWin}</th>
               </tr>
             </thead>
             <tbody>
@@ -419,9 +669,9 @@ function Dashboard({ data }: { data: LeagueData }) {
                   <td>
                     <DeltaBadge value={row.ratingDelta} />
                   </td>
-                  <td>{recordText(row.overallRecord)}</td>
-                  <td>{recordText(row.recentForm)}</td>
-                  <td>{formatMoney(row.costSummary.costPerWin)}</td>
+                  <td>{recordText(row.overallRecord, t)}</td>
+                  <td>{recordText(row.recentForm, t)}</td>
+                  <td>{formatMoney(row.costSummary.costPerWin, t)}</td>
                 </tr>
               ))}
             </tbody>
@@ -435,9 +685,11 @@ function Dashboard({ data }: { data: LeagueData }) {
 function ModelProfile({
   model,
   currentRating,
+  t,
 }: {
   model: ArenaModel;
   currentRating: number;
+  t: Copy;
 }) {
   return (
     <aside className="profile-panel">
@@ -452,11 +704,11 @@ function ModelProfile({
       </div>
       <dl className="profile-rating">
         <div>
-          <dt>Current rating</dt>
+          <dt>{t.currentRating}</dt>
           <dd>{currentRating}</dd>
         </div>
         <div>
-          <dt>Version</dt>
+          <dt>{t.version}</dt>
           <dd>{model.version}</dd>
         </div>
       </dl>
@@ -470,12 +722,16 @@ function GameRecordItem({
   modelId,
   name,
   record,
+  language,
+  t,
 }: {
   data: LeagueData;
   gameId: string;
   modelId: string;
   name: string;
   record: RecordSummary;
+  language: Language;
+  t: Copy;
 }) {
   const ratingSeries = getRatingSeries(data, modelId, gameId);
   const costSummary = getModelCostSummary(data, modelId, gameId);
@@ -489,22 +745,31 @@ function GameRecordItem({
       <span>
         {name}
         <small>
-          {formatDelta(ratingDelta)} rating ·{" "}
-          {formatMoney(costSummary.costPerWin)} / win ·{" "}
-          {formatDuration(Math.round(costSummary.averageElapsedSeconds))} avg
+          {formatDelta(ratingDelta)} {t.rating} ·{" "}
+          {formatMoney(costSummary.costPerWin, t)} {t.perWin} ·{" "}
+          {formatDuration(Math.round(costSummary.averageElapsedSeconds), language)}{" "}
+          {t.avg}
         </small>
       </span>
-      <strong>{recordText(record)}</strong>
+      <strong>{recordText(record, t)}</strong>
     </li>
   );
 }
 
-function ModelDetailPage({ data }: { data: LeagueData }) {
+function ModelDetailPage({
+  data,
+  language,
+  t,
+}: {
+  data: LeagueData;
+  language: Language;
+  t: Copy;
+}) {
   const { modelId } = useParams();
   const detail = modelId ? getModelDetail(data, modelId) : null;
 
   if (!detail) {
-    return <EmptyState title="Not found" />;
+    return <EmptyState title={t.notFound} t={t} />;
   }
 
   return (
@@ -512,7 +777,7 @@ function ModelDetailPage({ data }: { data: LeagueData }) {
       <section className="model-header">
         <div>
           <Link className="back-link" to="/">
-            Leaderboard
+            {t.leaderboard}
           </Link>
           <h1>{detail.model.name}</h1>
           <p>{detail.model.profile.tagline}</p>
@@ -526,39 +791,50 @@ function ModelDetailPage({ data }: { data: LeagueData }) {
         <div className="panel wide">
           <div className="section-heading">
             <div>
-              <span>Rating history</span>
-              <h2>Graph-first model detail</h2>
+              <span>{t.ratingHistory}</span>
+              <h2>{t.graphFirstModelDetail}</h2>
             </div>
           </div>
-          <ModelRatingChart series={detail.ratingSeries} />
+          <ModelRatingChart
+            series={detail.ratingSeries}
+            language={language}
+            t={t}
+          />
         </div>
-        <ModelProfile model={detail.model} currentRating={detail.currentRating} />
+        <ModelProfile
+          model={detail.model}
+          currentRating={detail.currentRating}
+          t={t}
+        />
       </section>
 
       <section className="stats-strip">
         <StatTile
           icon={<Trophy aria-hidden="true" />}
-          label="Overall record"
-          value={recordText(detail.overallRecord)}
-          detail={`${formatPercent(detail.overallRecord.winRate)} win rate`}
+          label={t.overallRecord}
+          value={recordText(detail.overallRecord, t)}
+          detail={`${formatPercent(detail.overallRecord.winRate)} ${t.winRate}`}
         />
         <StatTile
           icon={<Activity aria-hidden="true" />}
-          label="Recent form"
-          value={recordText(detail.recentForm)}
-          detail="Latest five matches"
+          label={t.recentForm}
+          value={recordText(detail.recentForm, t)}
+          detail={t.latestFiveMatches}
         />
         <StatTile
           icon={<Clock aria-hidden="true" />}
-          label="Average time"
-          value={formatDuration(Math.round(detail.costSummary.averageElapsedSeconds))}
-          detail={`${detail.costSummary.totalRequests} total requests`}
+          label={t.averageTime}
+          value={formatDuration(
+            Math.round(detail.costSummary.averageElapsedSeconds),
+            language,
+          )}
+          detail={`${detail.costSummary.totalRequests} ${t.totalRequests}`}
         />
         <StatTile
           icon={<CircleDollarSign aria-hidden="true" />}
-          label="Cost per win"
-          value={formatMoney(detail.costSummary.costPerWin)}
-          detail={`${formatMoney(detail.costSummary.totalCostUsd)} total`}
+          label={t.costPerWin}
+          value={formatMoney(detail.costSummary.costPerWin, t)}
+          detail={`${formatMoney(detail.costSummary.totalCostUsd, t)} ${t.total}`}
         />
       </section>
 
@@ -566,8 +842,8 @@ function ModelDetailPage({ data }: { data: LeagueData }) {
         <div className="panel">
           <div className="section-heading compact">
             <div>
-              <span>By game</span>
-              <h2>Game records</h2>
+              <span>{t.byGame}</span>
+              <h2>{t.gameRecords}</h2>
             </div>
           </div>
           <ul className="breakdown-list">
@@ -579,6 +855,8 @@ function ModelDetailPage({ data }: { data: LeagueData }) {
                 modelId={detail.model.id}
                 name={row.game.name}
                 record={row.record}
+                language={language}
+                t={t}
               />
             ))}
           </ul>
@@ -587,29 +865,31 @@ function ModelDetailPage({ data }: { data: LeagueData }) {
         <div className="panel wide">
           <div className="section-heading compact">
             <div>
-              <span>Opponents</span>
-              <h2>Opponent records</h2>
+              <span>{t.opponents}</span>
+              <h2>{t.opponentRecords}</h2>
             </div>
           </div>
           <div className="table-scroll">
-            <table aria-label="Opponent records">
+            <table aria-label={t.opponentRecords}>
               <thead>
                 <tr>
-                  <th>Opponent</th>
-                  <th>Record</th>
-                  <th>Win rate</th>
-                  <th>Latest meeting</th>
-                  <th>Detail</th>
+                  <th>{t.opponent}</th>
+                  <th>{t.record}</th>
+                  <th>{t.winRate}</th>
+                  <th>{t.latestMeeting}</th>
+                  <th>{t.detail}</th>
                 </tr>
               </thead>
               <tbody>
                 {detail.opponentRecords.map((row) => (
                   <tr key={row.opponent.id}>
                     <td>{row.opponent.name}</td>
-                    <td>{recordText(row.record)}</td>
+                    <td>{recordText(row.record, t)}</td>
                     <td>{formatPercent(row.record.winRate)}</td>
                     <td>
-                      {row.latestMatch ? formatDate(row.latestMatch.playedAt) : "n/a"}
+                      {row.latestMatch
+                        ? formatDate(row.latestMatch.playedAt, language)
+                        : t.noData}
                     </td>
                     <td>
                       <Link to={`/models/${detail.model.id}/vs/${row.opponent.id}`}>
@@ -627,11 +907,11 @@ function ModelDetailPage({ data }: { data: LeagueData }) {
       <section className="panel">
         <div className="section-heading compact">
           <div>
-            <span>Latest results</span>
-            <h2>Recent matches</h2>
+            <span>{t.latestResults}</span>
+            <h2>{t.recentMatches}</h2>
           </div>
         </div>
-        <MatchTable data={data} matches={detail.recentMatches} />
+        <MatchTable data={data} matches={detail.recentMatches} language={language} t={t} />
       </section>
     </div>
   );
@@ -640,21 +920,25 @@ function ModelDetailPage({ data }: { data: LeagueData }) {
 function MatchTable({
   data,
   matches,
+  language,
+  t,
 }: {
   data: LeagueData;
   matches: MatchSummary[];
+  language: Language;
+  t: Copy;
 }) {
   return (
     <div className="table-scroll">
-      <table aria-label="Recent matches">
+      <table aria-label={t.recentMatches}>
         <thead>
           <tr>
-            <th>Match</th>
-            <th>Game</th>
-            <th>Models</th>
-            <th>Result</th>
-            <th>Turns</th>
-            <th>Played</th>
+            <th>{t.match}</th>
+            <th>{t.game}</th>
+            <th>{t.models}</th>
+            <th>{t.result}</th>
+            <th>{t.turns}</th>
+            <th>{t.played}</th>
           </tr>
         </thead>
         <tbody>
@@ -670,10 +954,10 @@ function MatchTable({
               <td>
                 {match.winnerModelId
                   ? modelName(data, match.winnerModelId)
-                  : "Draw"}
+                  : t.draw}
               </td>
               <td>{match.turns}</td>
-              <td>{formatDate(match.playedAt)}</td>
+              <td>{formatDate(match.playedAt, language)}</td>
             </tr>
           ))}
         </tbody>
@@ -682,13 +966,21 @@ function MatchTable({
   );
 }
 
-function HeadToHeadPage({ data }: { data: LeagueData }) {
+function HeadToHeadPage({
+  data,
+  language,
+  t,
+}: {
+  data: LeagueData;
+  language: Language;
+  t: Copy;
+}) {
   const { modelId, opponentId } = useParams();
   const detail =
     modelId && opponentId ? getHeadToHead(data, modelId, opponentId) : null;
 
   if (!detail) {
-    return <EmptyState title="Not found" />;
+    return <EmptyState title={t.notFound} t={t} />;
   }
 
   return (
@@ -701,31 +993,28 @@ function HeadToHeadPage({ data }: { data: LeagueData }) {
           <h1>
             {detail.model.name} vs {detail.opponent.name}
           </h1>
-          <p>
-            Head-to-head results, per-game splits, recent meetings, and cost/time
-            comparison computed from match history.
-          </p>
+          <p>{t.headToHeadCopy}</p>
         </div>
       </section>
 
       <section className="stats-strip">
         <StatTile
           icon={<Swords aria-hidden="true" />}
-          label="Direct record"
-          value={recordText(detail.record)}
-          detail={`${formatPercent(detail.record.winRate)} win rate`}
+          label={t.directRecord}
+          value={recordText(detail.record, t)}
+          detail={`${formatPercent(detail.record.winRate)} ${t.winRate}`}
         />
         <StatTile
           icon={<CircleDollarSign aria-hidden="true" />}
-          label={`${detail.model.name} cost`}
-          value={formatMoney(detail.costComparison.model.totalCostUsd)}
-          detail={`${formatMoney(detail.costComparison.model.costPerWin)} per win`}
+          label={`${detail.model.name} ${t.cost}`}
+          value={formatMoney(detail.costComparison.model.totalCostUsd, t)}
+          detail={`${formatMoney(detail.costComparison.model.costPerWin, t)} ${t.perWin}`}
         />
         <StatTile
           icon={<CircleDollarSign aria-hidden="true" />}
-          label={`${detail.opponent.name} cost`}
-          value={formatMoney(detail.costComparison.opponent.totalCostUsd)}
-          detail={`${formatMoney(detail.costComparison.opponent.costPerWin)} per win`}
+          label={`${detail.opponent.name} ${t.cost}`}
+          value={formatMoney(detail.costComparison.opponent.totalCostUsd, t)}
+          detail={`${formatMoney(detail.costComparison.opponent.costPerWin, t)} ${t.perWin}`}
         />
       </section>
 
@@ -733,15 +1022,15 @@ function HeadToHeadPage({ data }: { data: LeagueData }) {
         <div className="panel">
           <div className="section-heading compact">
             <div>
-              <span>By game</span>
-              <h2>Game breakdown</h2>
+              <span>{t.byGame}</span>
+              <h2>{t.gameBreakdown}</h2>
             </div>
           </div>
           <ul className="breakdown-list">
             {detail.gameBreakdown.map((row) => (
               <li key={row.game.id}>
                 <span>{row.game.name}</span>
-                <strong>{recordText(row.record)}</strong>
+                <strong>{recordText(row.record, t)}</strong>
               </li>
             ))}
           </ul>
@@ -749,23 +1038,31 @@ function HeadToHeadPage({ data }: { data: LeagueData }) {
         <div className="panel wide">
           <div className="section-heading compact">
             <div>
-              <span>Recent meetings</span>
-              <h2>Match history</h2>
+              <span>{t.recentMeetings}</span>
+              <h2>{t.matchHistory}</h2>
             </div>
           </div>
-          <MatchTable data={data} matches={detail.meetings} />
+          <MatchTable data={data} matches={detail.meetings} language={language} t={t} />
         </div>
       </section>
     </div>
   );
 }
 
-function MatchDetailPage({ data }: { data: LeagueData }) {
+function MatchDetailPage({
+  data,
+  language,
+  t,
+}: {
+  data: LeagueData;
+  language: Language;
+  t: Copy;
+}) {
   const { matchId } = useParams();
   const detail = matchId ? getMatchDetail(data, matchId) : null;
 
   if (!detail) {
-    return <EmptyState title="Not found" />;
+    return <EmptyState title={t.notFound} t={t} />;
   }
 
   return (
@@ -773,7 +1070,7 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
       <section className="model-header">
         <div>
           <Link className="back-link" to="/">
-            Leaderboard
+            {t.leaderboard}
           </Link>
           <h1>{detail.match.id}</h1>
           <p>{detail.match.summary}</p>
@@ -783,21 +1080,21 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
       <section className="stats-strip">
         <StatTile
           icon={<Swords aria-hidden="true" />}
-          label="Result"
-          value={detail.winner?.name ?? "Draw"}
+          label={t.result}
+          value={detail.winner?.name ?? t.draw}
           detail={`${detail.modelA.name} vs ${detail.modelB.name}`}
         />
         <StatTile
           icon={<BarChart3 aria-hidden="true" />}
-          label="Game"
+          label={t.game}
           value={detail.game.name}
-          detail={`${detail.match.turns} turns`}
+          detail={`${detail.match.turns} ${t.turns}`}
         />
         <StatTile
           icon={<Clock aria-hidden="true" />}
-          label="Duration"
-          value={formatDuration(detail.match.durationSeconds)}
-          detail={formatDate(detail.match.playedAt)}
+          label={t.duration}
+          value={formatDuration(detail.match.durationSeconds, language)}
+          detail={formatDate(detail.match.playedAt, language)}
         />
       </section>
 
@@ -805,26 +1102,26 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
         <div className="panel">
           <div className="section-heading compact">
             <div>
-              <span>Participants</span>
-              <h2>Match summary</h2>
+              <span>{t.participants}</span>
+              <h2>{t.matchSummary}</h2>
             </div>
           </div>
           <dl className="metric-list">
             <div>
-              <dt>Model A</dt>
+              <dt>{t.modelA}</dt>
               <dd>
                 <Link to={`/models/${detail.modelA.id}`}>{detail.modelA.name}</Link>
               </dd>
             </div>
             <div>
-              <dt>Model B</dt>
+              <dt>{t.modelB}</dt>
               <dd>
                 <Link to={`/models/${detail.modelB.id}`}>{detail.modelB.name}</Link>
               </dd>
             </div>
             <div>
-              <dt>Outcome</dt>
-              <dd>{matchOutcomeText(data, detail.match)}</dd>
+              <dt>{t.outcome}</dt>
+              <dd>{matchOutcomeText(data, detail.match, t)}</dd>
             </div>
           </dl>
         </div>
@@ -832,21 +1129,21 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
         <div className="panel wide">
           <div className="section-heading compact">
             <div>
-              <span>Spend</span>
-              <h2>Cost and tokens</h2>
+              <span>{t.spend}</span>
+              <h2>{t.costAndTokens}</h2>
             </div>
           </div>
           <div className="table-scroll">
-            <table aria-label="Cost and tokens">
+            <table aria-label={t.costAndTokens}>
               <thead>
                 <tr>
-                  <th>Model</th>
-                  <th>Input</th>
-                  <th>Output</th>
-                  <th>Cached</th>
-                  <th>Requests</th>
-                  <th>Elapsed</th>
-                  <th>Cost</th>
+                  <th>{t.model}</th>
+                  <th>{t.input}</th>
+                  <th>{t.output}</th>
+                  <th>{t.cached}</th>
+                  <th>{t.requests}</th>
+                  <th>{t.elapsed}</th>
+                  <th>{t.cost}</th>
                 </tr>
               </thead>
               <tbody>
@@ -857,8 +1154,8 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
                     <td>{cost.outputTokens.toLocaleString()}</td>
                     <td>{cost.cachedTokens.toLocaleString()}</td>
                     <td>{cost.requestCount}</td>
-                    <td>{formatDuration(cost.elapsedSeconds)}</td>
-                    <td>{formatMoney(cost.estimatedCostUsd)}</td>
+                    <td>{formatDuration(cost.elapsedSeconds, language)}</td>
+                    <td>{formatMoney(cost.estimatedCostUsd, t)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -870,17 +1167,17 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
       <section className="panel">
         <div className="section-heading compact">
           <div>
-            <span>Elo</span>
-            <h2>Rating changes</h2>
+            <span>{t.elo}</span>
+            <h2>{t.ratingChanges}</h2>
           </div>
         </div>
         <div className="table-scroll">
-          <table className="compact-table" aria-label="Rating changes">
+          <table className="compact-table" aria-label={t.ratingChanges}>
             <thead>
               <tr>
-                <th>Model</th>
-                <th>Rating</th>
-                <th>Delta</th>
+                <th>{t.model}</th>
+                <th>{t.rating}</th>
+                <th>{t.delta}</th>
               </tr>
             </thead>
             <tbody>
@@ -901,7 +1198,92 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
   );
 }
 
-function AppShell({ data }: { data: LeagueData }) {
+function ThemeIcon({ mode }: { mode: ThemeMode }) {
+  if (mode === "dark") {
+    return <Moon aria-hidden="true" />;
+  }
+
+  if (mode === "light") {
+    return <Sun aria-hidden="true" />;
+  }
+
+  return <Monitor aria-hidden="true" />;
+}
+
+function SettingsControls({
+  theme,
+  setTheme,
+  language,
+  setLanguage,
+  t,
+}: {
+  theme: ThemeMode;
+  setTheme: (theme: ThemeMode) => void;
+  language: Language;
+  setLanguage: (language: Language) => void;
+  t: Copy;
+}) {
+  const themeLabels = {
+    system: { text: t.themeSystem, aria: t.themeSystemLabel },
+    light: { text: t.themeLight, aria: t.themeLightLabel },
+    dark: { text: t.themeDark, aria: t.themeDarkLabel },
+  };
+
+  return (
+    <div className="topbar-actions">
+      <div className="icon-control-group" aria-label="Theme">
+        {themeModes.map((mode) => (
+          <button
+            aria-label={themeLabels[mode].aria}
+            className={theme === mode ? "active" : ""}
+            key={mode}
+            type="button"
+            onClick={() => setTheme(mode)}
+            title={themeLabels[mode].text}
+          >
+            <ThemeIcon mode={mode} />
+            <span>{themeLabels[mode].text}</span>
+          </button>
+        ))}
+      </div>
+      <div className="language-switcher" aria-label={t.languageControl}>
+        <Languages aria-hidden="true" />
+        <button
+          aria-label={t.viewInEnglish}
+          className={language === "en" ? "active" : ""}
+          type="button"
+          onClick={() => setLanguage("en")}
+        >
+          EN
+        </button>
+        <button
+          aria-label={t.viewInKorean}
+          className={language === "ko" ? "active" : ""}
+          type="button"
+          onClick={() => setLanguage("ko")}
+        >
+          KO
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function AppShell({
+  data,
+  language,
+  setLanguage,
+  theme,
+  setTheme,
+  t,
+}: {
+  data: LeagueData;
+  language: Language;
+  setLanguage: (language: Language) => void;
+  theme: ThemeMode;
+  setTheme: (theme: ThemeMode) => void;
+  t: Copy;
+}) {
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -909,21 +1291,36 @@ function AppShell({ data }: { data: LeagueData }) {
           <Swords aria-hidden="true" />
           <span>FightAll</span>
         </Link>
-        <nav aria-label="Main">
-          <Link to="/">Leaderboard</Link>
-          <a href="https://github.com/google-deepmind/game_arena">Game Arena</a>
+        <nav aria-label={t.appNav}>
+          <Link to="/">{t.leaderboard}</Link>
         </nav>
+        <SettingsControls
+          theme={theme}
+          setTheme={setTheme}
+          language={language}
+          setLanguage={setLanguage}
+          t={t}
+        />
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Dashboard data={data} />} />
-          <Route path="/models/:modelId" element={<ModelDetailPage data={data} />} />
+          <Route
+            path="/"
+            element={<Dashboard data={data} language={language} t={t} />}
+          />
+          <Route
+            path="/models/:modelId"
+            element={<ModelDetailPage data={data} language={language} t={t} />}
+          />
           <Route
             path="/models/:modelId/vs/:opponentId"
-            element={<HeadToHeadPage data={data} />}
+            element={<HeadToHeadPage data={data} language={language} t={t} />}
           />
-          <Route path="/matches/:matchId" element={<MatchDetailPage data={data} />} />
-          <Route path="*" element={<EmptyState title="Not found" />} />
+          <Route
+            path="/matches/:matchId"
+            element={<MatchDetailPage data={data} language={language} t={t} />}
+          />
+          <Route path="*" element={<EmptyState title={t.notFound} t={t} />} />
         </Routes>
       </main>
     </div>
@@ -931,6 +1328,8 @@ function AppShell({ data }: { data: LeagueData }) {
 }
 
 export default function App({ initialData }: AppProps) {
+  const [theme, setTheme] = useState<ThemeMode>(getInitialTheme);
+  const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const [data, setData] = useState<LeagueData | null>(initialData ?? null);
   const [error, setError] = useState<string | null>(() => {
     if (!initialData) {
@@ -940,6 +1339,17 @@ export default function App({ initialData }: AppProps) {
     const errors = validateLeagueData(initialData);
     return errors.length > 0 ? errors.join(", ") : null;
   });
+  const t = translations[language];
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem(themeStorageKey, theme);
+  }, [theme]);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    window.localStorage.setItem(languageStorageKey, language);
+  }, [language]);
 
   useEffect(() => {
     if (initialData) {
@@ -954,16 +1364,25 @@ export default function App({ initialData }: AppProps) {
   }, [initialData]);
 
   if (error) {
-    return <EmptyState title="Data error" />;
+    return <EmptyState title={t.dataError} t={t} />;
   }
 
   if (!data) {
     return (
       <div className="app-shell loading-shell">
-        <p>Loading FightAll league data...</p>
+        <p>{t.loading}</p>
       </div>
     );
   }
 
-  return <AppShell data={data} />;
+  return (
+    <AppShell
+      data={data}
+      language={language}
+      setLanguage={setLanguage}
+      theme={theme}
+      setTheme={setTheme}
+      t={t}
+    />
+  );
 }
