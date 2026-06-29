@@ -126,10 +126,16 @@ describe("FightAll app", () => {
 
     expect(document.documentElement).toHaveAttribute("data-theme", "system");
 
-    await userEvent.selectOptions(screen.getByRole("combobox", { name: /Theme/i }), "dark");
+    await userEvent.click(
+      screen.getByRole("button", { name: /Theme: System/i }),
+    );
+    await userEvent.click(screen.getByRole("menuitemradio", { name: /Dark/i }));
 
     expect(document.documentElement).toHaveAttribute("data-theme", "dark");
     expect(localStorage.getItem("fightall-theme")).toBe("dark");
+    expect(screen.getByRole("button", { name: /Theme: Dark/i })).toHaveClass(
+      "settings-menu-button",
+    );
   });
 
   it("switches the UI and game display names while preserving model data names", async () => {
@@ -140,7 +146,10 @@ describe("FightAll app", () => {
     expect(screen.getByRole("button", { name: /Werewolf - Korean/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /늑대인간 - 한국어/i })).not.toBeInTheDocument();
 
-    await userEvent.selectOptions(screen.getByRole("combobox", { name: /Language/i }), "ko");
+    await userEvent.click(screen.getByRole("button", { name: /Language: EN/i }));
+    await userEvent.click(
+      screen.getByRole("menuitemradio", { name: /한국어/i }),
+    );
 
     expect(screen.getByText(/FightAll 리그/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /리그 범위/i })).toBeInTheDocument();
@@ -150,6 +159,9 @@ describe("FightAll app", () => {
     expect(screen.queryByRole("button", { name: /Werewolf - Korean/i })).not.toBeInTheDocument();
     expect(screen.getAllByText(/Claude/i).length).toBeGreaterThan(0);
     expect(localStorage.getItem("fightall-language")).toBe("ko");
+    expect(screen.getByRole("button", { name: /언어: KO/i })).toHaveClass(
+      "settings-menu-button",
+    );
   });
 
   it("renders graph-first model detail and links to head-to-head", () => {

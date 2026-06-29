@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { ActionList, ActionMenu, BaseStyles, ThemeProvider } from "@primer/react";
 import {
   Activity,
   ArrowDown,
@@ -1481,39 +1482,62 @@ function SettingsControls({
   setLanguage: (language: Language) => void;
   t: Copy;
 }) {
-  const themeLabels = {
-    system: { text: t.themeSystem, aria: t.themeSystemLabel },
-    light: { text: t.themeLight, aria: t.themeLightLabel },
-    dark: { text: t.themeDark, aria: t.themeDarkLabel },
+  const themeLabels: Record<ThemeMode, string> = {
+    system: t.themeSystem,
+    light: t.themeLight,
+    dark: t.themeDark,
   };
+  const languageLabel = language === "ko" ? "KO" : "EN";
 
   return (
     <div className="topbar-actions">
-      <label className="select-control">
-        <span>{t.themeControl}</span>
-        <select
-          aria-label={t.themeControl}
-          value={theme}
-          onChange={(event) => setTheme(event.currentTarget.value as ThemeMode)}
+      <ActionMenu>
+        <ActionMenu.Button
+          aria-label={`${t.themeControl}: ${themeLabels[theme]}`}
+          className="settings-menu-button"
         >
-          {themeModes.map((mode) => (
-            <option key={mode} value={mode}>
-              {themeLabels[mode].text}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label className="select-control">
-        <span>{t.languageControl}</span>
-        <select
-          aria-label={t.languageControl}
-          value={language}
-          onChange={(event) => setLanguage(event.currentTarget.value as Language)}
+          <span className="settings-menu-label">{t.themeControl}</span>
+          <span className="settings-menu-value">{themeLabels[theme]}</span>
+        </ActionMenu.Button>
+        <ActionMenu.Overlay width="small">
+          <ActionList selectionVariant="single">
+            {themeModes.map((mode) => (
+              <ActionList.Item
+                key={mode}
+                onSelect={() => setTheme(mode)}
+                selected={theme === mode}
+              >
+                {themeLabels[mode]}
+              </ActionList.Item>
+            ))}
+          </ActionList>
+        </ActionMenu.Overlay>
+      </ActionMenu>
+      <ActionMenu>
+        <ActionMenu.Button
+          aria-label={`${t.languageControl}: ${languageLabel}`}
+          className="settings-menu-button settings-menu-button--language"
         >
-          <option value="en">English</option>
-          <option value="ko">한국어</option>
-        </select>
-      </label>
+          <span className="settings-menu-label">{t.languageControl}</span>
+          <span className="settings-menu-value">{languageLabel}</span>
+        </ActionMenu.Button>
+        <ActionMenu.Overlay width="small">
+          <ActionList selectionVariant="single">
+            <ActionList.Item
+              onSelect={() => setLanguage("en")}
+              selected={language === "en"}
+            >
+              English
+            </ActionList.Item>
+            <ActionList.Item
+              onSelect={() => setLanguage("ko")}
+              selected={language === "ko"}
+            >
+              한국어
+            </ActionList.Item>
+          </ActionList>
+        </ActionMenu.Overlay>
+      </ActionMenu>
     </div>
   );
 }
@@ -1629,14 +1653,24 @@ export default function App({ initialData }: AppProps) {
     );
   }
 
+  const primerColorMode = theme === "system" ? "auto" : theme;
+
   return (
-    <AppShell
-      data={data}
-      language={language}
-      setLanguage={setLanguage}
-      theme={theme}
-      setTheme={setTheme}
-      t={t}
-    />
+    <ThemeProvider
+      colorMode={primerColorMode}
+      dayScheme="light"
+      nightScheme="dark"
+    >
+      <BaseStyles>
+        <AppShell
+          data={data}
+          language={language}
+          setLanguage={setLanguage}
+          theme={theme}
+          setTheme={setTheme}
+          t={t}
+        />
+      </BaseStyles>
+    </ThemeProvider>
   );
 }

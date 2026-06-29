@@ -7,5 +7,10 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     setupFiles: "./src/test/setup.ts",
+    server: {
+      deps: {
+        inline: ["@primer/react", "@primer/behaviors", "@primer/react-brand"],
+      },
+    },
   },
 });
