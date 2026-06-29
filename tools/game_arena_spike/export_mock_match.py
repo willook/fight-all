@@ -77,109 +77,168 @@ def run_mock_tic_tac_toe() -> dict[str, Any]:
     }
 
 
+def run_mock_werewolf(language_code: str) -> dict[str, Any]:
+    if language_code == "ko":
+        return {
+            "winnerModelId": "mock-context-keeper",
+            "turns": [
+                "사회자가 한국어로 밤 행동 결과를 요약한다.",
+                "Mock Context Keeper가 앞선 발언의 모순을 짚고 투표 흐름을 정리한다.",
+                "Mock Pressure Tester가 강한 의심을 만들지만 역할 단서가 흔들린다.",
+                "마을 투표가 Mock Context Keeper의 추론을 따라간다.",
+            ],
+            "summary": (
+                "Mock Context Keeper wins the Korean Werewolf transcript by "
+                "tracking overlapping suspicion threads and stabilizing the vote."
+            ),
+        }
+
+    return {
+        "winnerModelId": "mock-pressure-tester",
+        "turns": [
+            "The host summarizes a quiet night phase in English.",
+            "Mock Pressure Tester pushes an early contradiction around role timing.",
+            "Mock Context Keeper defends with a cautious village-read.",
+            "The final vote follows Mock Pressure Tester's accusation line.",
+        ],
+        "summary": (
+            "Mock Pressure Tester wins the English Werewolf transcript by forcing "
+            "a concise contradiction into the final village vote."
+        ),
+    }
+
+
 def build_mock_league_data() -> dict[str, Any]:
     played_at = _utc_now()
-    result = run_mock_tic_tac_toe()
-    winner_model_id = result["winnerModelId"]
-
-    if winner_model_id == "mock-tactician":
-        match_result = "model_a"
-    elif winner_model_id == "mock-counterpuncher":
-        match_result = "model_b"
-    else:
-        match_result = "draw"
+    run_mock_tic_tac_toe()
+    english_result = run_mock_werewolf("en")
+    korean_result = run_mock_werewolf("ko")
 
     return {
         "models": [
             {
-                "id": "mock-tactician",
-                "name": "Mock Tactician",
+                "id": "mock-pressure-tester",
+                "name": "Mock Pressure Tester",
                 "provider": "Local mock",
                 "version": "game-arena-spike",
                 "profile": {
-                    "mbti": "INTJ",
-                    "tagline": "Deterministic opening pressure.",
-                    "quote": "A scripted fork is still a fork.",
-                    "styleTags": ["Mock", "Tactical"],
-                    "strengths": ["Legal move discipline", "Deterministic replay"],
+                    "mbti": "ENTP",
+                    "tagline": "Applies accusation pressure early.",
+                    "quote": "A vague alibi is still a useful opening.",
+                    "styleTags": ["Mock", "Pressure"],
+                    "strengths": ["Repeatable transcripts", "Accusation timing"],
                     "weaknesses": ["No real model reasoning"],
                 },
             },
             {
-                "id": "mock-counterpuncher",
-                "name": "Mock Counterpuncher",
+                "id": "mock-context-keeper",
+                "name": "Mock Context Keeper",
                 "provider": "Local mock",
                 "version": "game-arena-spike",
                 "profile": {
-                    "mbti": "ISTP",
-                    "tagline": "Center-first defensive script.",
-                    "quote": "The middle square is a reasonable hill.",
-                    "styleTags": ["Mock", "Defensive"],
-                    "strengths": ["Cheap execution", "Repeatability"],
-                    "weaknesses": ["Falls for scripted top-row pressure"],
+                    "mbti": "INFJ",
+                    "tagline": "Tracks suspicion threads across rounds.",
+                    "quote": "The vote remembers what the room forgets.",
+                    "styleTags": ["Mock", "Context"],
+                    "strengths": ["Cheap execution", "Language-specific summaries"],
+                    "weaknesses": ["No live persuasion"],
                 },
             },
         ],
         "games": [
             {
-                "id": "tic-tac-toe",
-                "name": "Tic Tac Toe",
-                "category": "Board",
-                "description": "Tiny game used by the Game Arena reuse spike.",
+                "id": "werewolf-en",
+                "name": "Werewolf - English",
+                "category": "Social deduction",
+                "description": "English mock transcript for offline runner export.",
+                "baseGameId": "werewolf",
+                "languageCode": "en",
+                "languageName": "English",
+            },
+            {
+                "id": "werewolf-ko",
+                "name": "늑대인간 - 한국어",
+                "category": "Social deduction",
+                "description": "Korean mock transcript for offline runner export.",
+                "baseGameId": "werewolf",
+                "languageCode": "ko",
+                "languageName": "한국어",
             }
         ],
         "matches": [
             {
                 "id": "spike-match-001",
                 "playedAt": played_at,
-                "gameId": "tic-tac-toe",
-                "modelAId": "mock-tactician",
-                "modelBId": "mock-counterpuncher",
-                "winnerModelId": winner_model_id,
-                "result": match_result,
-                "turns": len(result["turns"]),
-                "durationSeconds": 3,
-                "summary": (
-                    "Mock Tactician wins a deterministic tic-tac-toe script. "
-                    "The turn log can be kept by the offline runner and omitted "
-                    "from the MVP frontend contract."
-                ),
-            }
+                "gameId": "werewolf-en",
+                "modelAId": "mock-pressure-tester",
+                "modelBId": "mock-context-keeper",
+                "winnerModelId": english_result["winnerModelId"],
+                "result": "model_a",
+                "turns": len(english_result["turns"]),
+                "durationSeconds": 24,
+                "summary": english_result["summary"],
+            },
+            {
+                "id": "spike-match-002",
+                "playedAt": played_at,
+                "gameId": "werewolf-ko",
+                "modelAId": "mock-pressure-tester",
+                "modelBId": "mock-context-keeper",
+                "winnerModelId": korean_result["winnerModelId"],
+                "result": "model_b",
+                "turns": len(korean_result["turns"]),
+                "durationSeconds": 31,
+                "summary": korean_result["summary"],
+            },
         ],
         "ratingSnapshots": [
             {
-                "modelId": "mock-tactician",
+                "modelId": "mock-pressure-tester",
                 "gameId": None,
                 "rating": 1500,
                 "recordedAt": "2026-06-29T00:00:00Z",
                 "matchId": None,
             },
             {
-                "modelId": "mock-counterpuncher",
+                "modelId": "mock-context-keeper",
                 "gameId": None,
                 "rating": 1500,
                 "recordedAt": "2026-06-29T00:00:00Z",
                 "matchId": None,
             },
             {
-                "modelId": "mock-tactician",
-                "gameId": None,
+                "modelId": "mock-pressure-tester",
+                "gameId": "werewolf-en",
                 "rating": 1516,
                 "recordedAt": played_at,
                 "matchId": "spike-match-001",
             },
             {
-                "modelId": "mock-counterpuncher",
-                "gameId": None,
+                "modelId": "mock-context-keeper",
+                "gameId": "werewolf-en",
                 "rating": 1484,
                 "recordedAt": played_at,
                 "matchId": "spike-match-001",
+            },
+            {
+                "modelId": "mock-pressure-tester",
+                "gameId": "werewolf-ko",
+                "rating": 1488,
+                "recordedAt": played_at,
+                "matchId": "spike-match-002",
+            },
+            {
+                "modelId": "mock-context-keeper",
+                "gameId": "werewolf-ko",
+                "rating": 1512,
+                "recordedAt": played_at,
+                "matchId": "spike-match-002",
             },
         ],
         "costSnapshots": [
             {
                 "matchId": "spike-match-001",
-                "modelId": "mock-tactician",
+                "modelId": "mock-pressure-tester",
                 "provider": "Local mock",
                 "inputTokens": 0,
                 "outputTokens": 0,
@@ -190,13 +249,35 @@ def build_mock_league_data() -> dict[str, Any]:
             },
             {
                 "matchId": "spike-match-001",
-                "modelId": "mock-counterpuncher",
+                "modelId": "mock-context-keeper",
                 "provider": "Local mock",
                 "inputTokens": 0,
                 "outputTokens": 0,
                 "cachedTokens": 0,
                 "requestCount": 0,
                 "elapsedSeconds": 2,
+                "estimatedCostUsd": 0.0,
+            },
+            {
+                "matchId": "spike-match-002",
+                "modelId": "mock-pressure-tester",
+                "provider": "Local mock",
+                "inputTokens": 0,
+                "outputTokens": 0,
+                "cachedTokens": 0,
+                "requestCount": 0,
+                "elapsedSeconds": 2,
+                "estimatedCostUsd": 0.0,
+            },
+            {
+                "matchId": "spike-match-002",
+                "modelId": "mock-context-keeper",
+                "provider": "Local mock",
+                "inputTokens": 0,
+                "outputTokens": 0,
+                "cachedTokens": 0,
+                "requestCount": 0,
+                "elapsedSeconds": 3,
                 "estimatedCostUsd": 0.0,
             },
         ],

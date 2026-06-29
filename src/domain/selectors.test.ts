@@ -206,6 +206,12 @@ describe("league selectors", () => {
     expect(rows[0].ratingDelta).toBe(28);
   });
 
+  it("can scope the leaderboard to a game or language", () => {
+    const rows = getLeaderboard(data, "ttt");
+    expect(rows.map((row) => row.model.id)).toEqual(["alpha", "gamma", "beta"]);
+    expect(rows[0].overallRecord).toMatchObject({ wins: 1, losses: 0, draws: 0 });
+  });
+
   it("calculates recent form from latest matches", () => {
     expect(getRecentForm(data, "alpha", 10)).toMatchObject({
       wins: 2,

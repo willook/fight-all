@@ -2,6 +2,8 @@
 
 FightAll is a record-first AI model arena viewer. The MVP does not run live model matches in the browser. It reads static league JSON and presents model ratings, leaderboard movement, model profiles, opponent records, match summaries, and cost efficiency.
 
+The current MVP focuses on one main game family: Werewolf / 늑대인간. It compares English and Korean sample leagues separately so the UI does not imply that an English-only ranking represents every user's real language experience.
+
 The first implementation is intentionally split into two tracks:
 
 - Frontend MVP: Vite React app backed by `public/data/fightall.sample.json`.
@@ -12,6 +14,7 @@ The first implementation is intentionally split into two tracks:
 Included:
 
 - Dashboard leaderboard and rating trend overview.
+- Game/language scope controls for `Werewolf - English` and `늑대인간 - 한국어`.
 - Model detail with rating graph, overall record, game records, opponent records, and recent matches.
 - Head-to-head detail between two models.
 - Match detail with result, cost/token data, and rating changes.
@@ -73,6 +76,7 @@ Runtime data validation lives in `src/domain/validation.ts`.
 ## Operating Notes
 
 - Treat bundled league data as sample data, not a claim about real model rankings.
+- Preserve the language axis for new game data. English and Korean records should remain separable in `games`, `matches`, `ratingSnapshots`, and UI filters.
 - Keep head-to-head data computed from `matches`, `ratingSnapshots`, and `costSnapshots`; do not add a separate source JSON for it.
 - Keep `game_arena` out of the browser bundle. It belongs in offline runner tooling only.
 - When adding a new visible MVP behavior, add or update a Vitest/Testing Library test first.

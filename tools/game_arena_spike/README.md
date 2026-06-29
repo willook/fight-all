@@ -2,6 +2,8 @@
 
 This spike keeps `google-deepmind/game_arena` out of the browser app. FightAll should reuse it, if adopted, as an offline runner that produces match records and optional turn logs. The React MVP only consumes the smaller `LeagueData` JSON contract.
 
+The MVP game direction is Werewolf / 늑대인간 split by language. The mock export therefore writes `werewolf-en` and `werewolf-ko` LeagueData records. The tiny tic-tac-toe script remains in this spike as a dependency smoke shape for Game Arena-style legal-move adapters, not as the product's sample league.
+
 ## Dependency Pin
 
 `game_arena` is pinned for inspection and future runner work:
@@ -20,6 +22,8 @@ The local test path uses mock models and does not require provider API keys.
 - Request, response, token, and duration logging as the source for FightAll cost snapshots.
 
 FightAll should wrap those pieces and export `LeagueData`. It should not expose Game Arena internals directly to the frontend.
+
+Werewolf-style social deduction will likely need a FightAll custom runner around Game Arena patterns rather than a direct browser-side adapter. The reusable surface is orchestration, prompt/parser shape, transcript logging, and result export.
 
 ## Commands
 

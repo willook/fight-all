@@ -26,6 +26,9 @@ export type GameDefinition = {
   name: string;
   category: string;
   description: string;
+  baseGameId?: string;
+  languageCode?: string;
+  languageName?: string;
 };
 
 export type MatchSummary = {

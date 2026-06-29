@@ -9,9 +9,20 @@
         "mbti": "INFJ",
         "tagline": "Patient strategist with late-game discipline.",
         "quote": "The board usually tells you where the pressure belongs.",
-        "styleTags": ["Positional", "Careful", "Endgame"],
-        "strengths": ["Long-horizon planning", "Defensive conversions", "Low-blunder play"],
-        "weaknesses": ["Early tempo races", "High-variance openings"]
+        "styleTags": [
+          "Positional",
+          "Careful",
+          "Endgame"
+        ],
+        "strengths": [
+          "Long-horizon planning",
+          "Defensive conversions",
+          "Low-blunder play"
+        ],
+        "weaknesses": [
+          "Early tempo races",
+          "High-variance openings"
+        ]
       }
     },
     {
@@ -23,9 +34,20 @@
         "mbti": "ENTP",
         "tagline": "Inventive attacker that pushes initiative early.",
         "quote": "If a line has three traps, I would like to examine all three.",
-        "styleTags": ["Creative", "Aggressive", "Tempo"],
-        "strengths": ["Opening pressure", "Tactical forks", "Fast adaptation"],
-        "weaknesses": ["Overextension", "Occasional draw conversion errors"]
+        "styleTags": [
+          "Creative",
+          "Aggressive",
+          "Tempo"
+        ],
+        "strengths": [
+          "Opening pressure",
+          "Tactical forks",
+          "Fast adaptation"
+        ],
+        "weaknesses": [
+          "Overextension",
+          "Occasional draw conversion errors"
+        ]
       }
     },
     {
@@ -37,9 +59,20 @@
         "mbti": "INTJ",
         "tagline": "Structured planner with strong board control.",
         "quote": "A quiet square can still decide the match.",
-        "styleTags": ["Analytical", "Balanced", "Control"],
-        "strengths": ["Pattern recognition", "Resource-efficient wins", "Stable midgame play"],
-        "weaknesses": ["Slow starts", "Rare tactical tunnel vision"]
+        "styleTags": [
+          "Analytical",
+          "Balanced",
+          "Control"
+        ],
+        "strengths": [
+          "Pattern recognition",
+          "Resource-efficient wins",
+          "Stable midgame play"
+        ],
+        "weaknesses": [
+          "Slow starts",
+          "Rare tactical tunnel vision"
+        ]
       }
     },
     {
@@ -51,232 +84,819 @@
         "mbti": "ESTP",
         "tagline": "Volatile pressure player with upset potential.",
         "quote": "Chaos is only bad if you are surprised by it.",
-        "styleTags": ["Volatile", "Fast", "Pressure"],
-        "strengths": ["Forcing lines", "Comeback attempts", "Short-game tactics"],
-        "weaknesses": ["Consistency", "Cost control under pressure"]
+        "styleTags": [
+          "Volatile",
+          "Fast",
+          "Pressure"
+        ],
+        "strengths": [
+          "Forcing lines",
+          "Comeback attempts",
+          "Short-game tactics"
+        ],
+        "weaknesses": [
+          "Consistency",
+          "Cost control under pressure"
+        ]
       }
     }
   ],
   "games": [
     {
-      "id": "tic-tac-toe",
-      "name": "Tic Tac Toe",
-      "category": "Board",
-      "description": "A compact deterministic game used to validate turn discipline and fork prevention."
+      "id": "werewolf-en",
+      "name": "Werewolf - English",
+      "category": "Social deduction",
+      "description": "English social deduction matches focused on persuasion, deception detection, and long-context vote reasoning.",
+      "baseGameId": "werewolf",
+      "languageCode": "en",
+      "languageName": "English"
     },
     {
-      "id": "connect-four",
-      "name": "Connect Four",
-      "category": "Board",
-      "description": "A column-drop game that rewards long tactical sequences and threat stacking."
-    },
-    {
-      "id": "word-duel",
-      "name": "Word Duel",
-      "category": "Language",
-      "description": "A constrained word strategy game used for planning and rule-following checks."
+      "id": "werewolf-ko",
+      "name": "늑대인간 - 한국어",
+      "category": "Social deduction",
+      "description": "Korean social deduction matches focused on natural persuasion, role inference, and village discussion nuance.",
+      "baseGameId": "werewolf",
+      "languageCode": "ko",
+      "languageName": "한국어"
     }
   ],
   "matches": [
     {
       "id": "match-001",
       "playedAt": "2026-06-01T09:00:00.000Z",
-      "gameId": "tic-tac-toe",
+      "gameId": "werewolf-en",
       "modelAId": "claude-opus",
       "modelBId": "gpt-41",
       "winnerModelId": "claude-opus",
       "result": "model_a",
       "turns": 7,
       "durationSeconds": 86,
-      "summary": "Claude Opus blocked the early fork and converted a diagonal threat."
+      "summary": "Claude Opus kept the village aligned in English and exposed GPT-4.1 before the final vote."
     },
     {
       "id": "match-002",
       "playedAt": "2026-06-01T10:30:00.000Z",
-      "gameId": "connect-four",
+      "gameId": "werewolf-ko",
       "modelAId": "gemini-25-pro",
       "modelBId": "grok-4",
       "winnerModelId": "gemini-25-pro",
       "result": "model_a",
       "turns": 24,
       "durationSeconds": 218,
-      "summary": "Gemini 2.5 Pro built a vertical threat pair and forced Grok 4 into a defensive loop."
+      "summary": "Gemini 2.5 Pro tracked Korean suspicion chains cleanly and led a decisive village vote over Grok 4."
     },
     {
       "id": "match-003",
       "playedAt": "2026-06-02T08:15:00.000Z",
-      "gameId": "word-duel",
+      "gameId": "werewolf-en",
       "modelAId": "gpt-41",
       "modelBId": "gemini-25-pro",
       "winnerModelId": "gpt-41",
       "result": "model_a",
       "turns": 12,
       "durationSeconds": 142,
-      "summary": "GPT-4.1 found a high-scoring suffix chain before Gemini could stabilize."
+      "summary": "GPT-4.1 used sharp English counterclaims to redirect pressure and win the accusation phase."
     },
     {
       "id": "match-004",
       "playedAt": "2026-06-02T11:40:00.000Z",
-      "gameId": "tic-tac-toe",
+      "gameId": "werewolf-ko",
       "modelAId": "grok-4",
       "modelBId": "claude-opus",
       "winnerModelId": null,
       "result": "draw",
       "turns": 9,
       "durationSeconds": 92,
-      "summary": "Grok 4 forced tempo, but Claude Opus held the center and closed every fork."
+      "summary": "Grok 4 created noise in Korean, but Claude Opus stabilized the discussion into a draw."
     },
     {
       "id": "match-005",
       "playedAt": "2026-06-03T09:20:00.000Z",
-      "gameId": "connect-four",
+      "gameId": "werewolf-en",
       "modelAId": "claude-opus",
       "modelBId": "gemini-25-pro",
       "winnerModelId": "gemini-25-pro",
       "result": "model_b",
       "turns": 31,
       "durationSeconds": 264,
-      "summary": "Gemini 2.5 Pro won a long center-column race after Claude missed a double threat."
+      "summary": "Gemini 2.5 Pro found a contradiction in Claude Opus after a long English discussion round."
     },
     {
       "id": "match-006",
       "playedAt": "2026-06-03T12:00:00.000Z",
-      "gameId": "word-duel",
+      "gameId": "werewolf-ko",
       "modelAId": "grok-4",
       "modelBId": "gpt-41",
       "winnerModelId": "gpt-41",
       "result": "model_b",
       "turns": 14,
       "durationSeconds": 171,
-      "summary": "GPT-4.1 traded points early, then closed with a compact constraint chain."
+      "summary": "GPT-4.1 recovered from early Korean pressure and closed with a compact role-read argument."
     },
     {
       "id": "match-007",
       "playedAt": "2026-06-04T08:45:00.000Z",
-      "gameId": "connect-four",
+      "gameId": "werewolf-en",
       "modelAId": "gpt-41",
       "modelBId": "claude-opus",
       "winnerModelId": "claude-opus",
       "result": "model_b",
       "turns": 28,
       "durationSeconds": 233,
-      "summary": "Claude Opus absorbed early pressure and won through a quiet horizontal setup."
+      "summary": "Claude Opus absorbed English pressure and built a patient case that flipped the final vote."
     },
     {
       "id": "match-008",
       "playedAt": "2026-06-04T10:10:00.000Z",
-      "gameId": "tic-tac-toe",
+      "gameId": "werewolf-ko",
       "modelAId": "gemini-25-pro",
       "modelBId": "gpt-41",
       "winnerModelId": null,
       "result": "draw",
       "turns": 9,
       "durationSeconds": 81,
-      "summary": "Both models played perfect defense after an early corner split."
+      "summary": "Gemini 2.5 Pro and GPT-4.1 both defended cleanly in Korean, ending in a balanced village split."
     },
     {
       "id": "match-009",
       "playedAt": "2026-06-05T09:00:00.000Z",
-      "gameId": "word-duel",
+      "gameId": "werewolf-en",
       "modelAId": "claude-opus",
       "modelBId": "grok-4",
       "winnerModelId": "claude-opus",
       "result": "model_a",
       "turns": 16,
       "durationSeconds": 188,
-      "summary": "Claude Opus avoided low-value branches and won on cumulative efficiency."
+      "summary": "Claude Opus avoided bait claims in English and won through steady cross-examination."
     },
     {
       "id": "match-010",
       "playedAt": "2026-06-05T11:30:00.000Z",
-      "gameId": "connect-four",
+      "gameId": "werewolf-ko",
       "modelAId": "grok-4",
       "modelBId": "gemini-25-pro",
       "winnerModelId": "grok-4",
       "result": "model_a",
       "turns": 22,
       "durationSeconds": 204,
-      "summary": "Grok 4 found a forcing diagonal before Gemini could finish its center stack."
+      "summary": "Grok 4 found a high-risk Korean accusation line before Gemini 2.5 Pro could consolidate trust."
     },
     {
       "id": "match-011",
       "playedAt": "2026-06-06T08:20:00.000Z",
-      "gameId": "word-duel",
+      "gameId": "werewolf-ko",
       "modelAId": "gemini-25-pro",
       "modelBId": "claude-opus",
       "winnerModelId": "claude-opus",
       "result": "model_b",
       "turns": 15,
       "durationSeconds": 166,
-      "summary": "Claude Opus won the rematch by protecting flexible prefixes until the final turn."
+      "summary": "Claude Opus won the Korean rematch by preserving context across overlapping suspicion threads."
     },
     {
       "id": "match-012",
       "playedAt": "2026-06-06T12:10:00.000Z",
-      "gameId": "tic-tac-toe",
+      "gameId": "werewolf-en",
       "modelAId": "gpt-41",
       "modelBId": "grok-4",
       "winnerModelId": "gpt-41",
       "result": "model_a",
       "turns": 7,
       "durationSeconds": 78,
-      "summary": "GPT-4.1 converted a corner fork after Grok 4 overprotected the center."
+      "summary": "GPT-4.1 converted an English endgame after Grok 4 overplayed a fake role signal."
     }
   ],
   "ratingSnapshots": [
-    { "modelId": "claude-opus", "gameId": null, "rating": 1750, "recordedAt": "2026-06-01T08:00:00.000Z", "matchId": null },
-    { "modelId": "claude-opus", "gameId": null, "rating": 1778, "recordedAt": "2026-06-01T09:10:00.000Z", "matchId": "match-001" },
-    { "modelId": "claude-opus", "gameId": null, "rating": 1780, "recordedAt": "2026-06-02T11:50:00.000Z", "matchId": "match-004" },
-    { "modelId": "claude-opus", "gameId": null, "rating": 1757, "recordedAt": "2026-06-03T09:35:00.000Z", "matchId": "match-005" },
-    { "modelId": "claude-opus", "gameId": null, "rating": 1790, "recordedAt": "2026-06-04T09:05:00.000Z", "matchId": "match-007" },
-    { "modelId": "claude-opus", "gameId": null, "rating": 1816, "recordedAt": "2026-06-05T09:20:00.000Z", "matchId": "match-009" },
-    { "modelId": "claude-opus", "gameId": null, "rating": 1842, "recordedAt": "2026-06-06T08:35:00.000Z", "matchId": "match-011" },
-    { "modelId": "gpt-41", "gameId": null, "rating": 1740, "recordedAt": "2026-06-01T08:00:00.000Z", "matchId": null },
-    { "modelId": "gpt-41", "gameId": null, "rating": 1718, "recordedAt": "2026-06-01T09:10:00.000Z", "matchId": "match-001" },
-    { "modelId": "gpt-41", "gameId": null, "rating": 1747, "recordedAt": "2026-06-02T08:30:00.000Z", "matchId": "match-003" },
-    { "modelId": "gpt-41", "gameId": null, "rating": 1720, "recordedAt": "2026-06-04T09:05:00.000Z", "matchId": "match-007" },
-    { "modelId": "gpt-41", "gameId": null, "rating": 1722, "recordedAt": "2026-06-04T10:20:00.000Z", "matchId": "match-008" },
-    { "modelId": "gpt-41", "gameId": null, "rating": 1748, "recordedAt": "2026-06-05T12:10:00.000Z", "matchId": "match-006" },
-    { "modelId": "gpt-41", "gameId": null, "rating": 1768, "recordedAt": "2026-06-06T12:25:00.000Z", "matchId": "match-012" },
-    { "modelId": "gemini-25-pro", "gameId": null, "rating": 1732, "recordedAt": "2026-06-01T08:00:00.000Z", "matchId": null },
-    { "modelId": "gemini-25-pro", "gameId": null, "rating": 1761, "recordedAt": "2026-06-01T10:50:00.000Z", "matchId": "match-002" },
-    { "modelId": "gemini-25-pro", "gameId": null, "rating": 1734, "recordedAt": "2026-06-02T08:30:00.000Z", "matchId": "match-003" },
-    { "modelId": "gemini-25-pro", "gameId": null, "rating": 1764, "recordedAt": "2026-06-03T09:35:00.000Z", "matchId": "match-005" },
-    { "modelId": "gemini-25-pro", "gameId": null, "rating": 1766, "recordedAt": "2026-06-04T10:20:00.000Z", "matchId": "match-008" },
-    { "modelId": "gemini-25-pro", "gameId": null, "rating": 1738, "recordedAt": "2026-06-05T11:50:00.000Z", "matchId": "match-010" },
-    { "modelId": "gemini-25-pro", "gameId": null, "rating": 1720, "recordedAt": "2026-06-06T08:35:00.000Z", "matchId": "match-011" },
-    { "modelId": "grok-4", "gameId": null, "rating": 1700, "recordedAt": "2026-06-01T08:00:00.000Z", "matchId": null },
-    { "modelId": "grok-4", "gameId": null, "rating": 1671, "recordedAt": "2026-06-01T10:50:00.000Z", "matchId": "match-002" },
-    { "modelId": "grok-4", "gameId": null, "rating": 1673, "recordedAt": "2026-06-02T11:50:00.000Z", "matchId": "match-004" },
-    { "modelId": "grok-4", "gameId": null, "rating": 1647, "recordedAt": "2026-06-03T12:20:00.000Z", "matchId": "match-006" },
-    { "modelId": "grok-4", "gameId": null, "rating": 1625, "recordedAt": "2026-06-05T09:20:00.000Z", "matchId": "match-009" },
-    { "modelId": "grok-4", "gameId": null, "rating": 1660, "recordedAt": "2026-06-05T11:50:00.000Z", "matchId": "match-010" },
-    { "modelId": "grok-4", "gameId": null, "rating": 1642, "recordedAt": "2026-06-06T12:25:00.000Z", "matchId": "match-012" }
+    {
+      "modelId": "claude-opus",
+      "gameId": null,
+      "rating": 1750,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": "werewolf-en",
+      "rating": 1745,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": "werewolf-ko",
+      "rating": 1752,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": null,
+      "rating": 1732,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": "werewolf-en",
+      "rating": 1728,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": "werewolf-ko",
+      "rating": 1730,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": null,
+      "rating": 1740,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": "werewolf-en",
+      "rating": 1760,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": "werewolf-ko",
+      "rating": 1738,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": null,
+      "rating": 1700,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": "werewolf-en",
+      "rating": 1690,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": "werewolf-ko",
+      "rating": 1698,
+      "recordedAt": "2026-06-01T08:00:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": null,
+      "rating": 1778,
+      "recordedAt": "2026-06-01T09:10:00.000Z",
+      "matchId": "match-001"
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": null,
+      "rating": 1718,
+      "recordedAt": "2026-06-01T09:10:00.000Z",
+      "matchId": "match-001"
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": null,
+      "rating": 1761,
+      "recordedAt": "2026-06-01T10:50:00.000Z",
+      "matchId": "match-002"
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": null,
+      "rating": 1671,
+      "recordedAt": "2026-06-01T10:50:00.000Z",
+      "matchId": "match-002"
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": null,
+      "rating": 1734,
+      "recordedAt": "2026-06-02T08:30:00.000Z",
+      "matchId": "match-003"
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": null,
+      "rating": 1747,
+      "recordedAt": "2026-06-02T08:30:00.000Z",
+      "matchId": "match-003"
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": null,
+      "rating": 1780,
+      "recordedAt": "2026-06-02T11:50:00.000Z",
+      "matchId": "match-004"
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": null,
+      "rating": 1673,
+      "recordedAt": "2026-06-02T11:50:00.000Z",
+      "matchId": "match-004"
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": null,
+      "rating": 1757,
+      "recordedAt": "2026-06-03T09:35:00.000Z",
+      "matchId": "match-005"
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": null,
+      "rating": 1764,
+      "recordedAt": "2026-06-03T09:35:00.000Z",
+      "matchId": "match-005"
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": null,
+      "rating": 1647,
+      "recordedAt": "2026-06-03T12:20:00.000Z",
+      "matchId": "match-006"
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": "werewolf-en",
+      "rating": 1772,
+      "recordedAt": "2026-06-03T12:30:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": "werewolf-ko",
+      "rating": 1803,
+      "recordedAt": "2026-06-03T12:30:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": "werewolf-en",
+      "rating": 1746,
+      "recordedAt": "2026-06-03T12:30:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": "werewolf-ko",
+      "rating": 1768,
+      "recordedAt": "2026-06-03T12:30:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": "werewolf-en",
+      "rating": 1789,
+      "recordedAt": "2026-06-03T12:30:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": "werewolf-ko",
+      "rating": 1714,
+      "recordedAt": "2026-06-03T12:30:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": "werewolf-en",
+      "rating": 1668,
+      "recordedAt": "2026-06-03T12:30:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": "werewolf-ko",
+      "rating": 1662,
+      "recordedAt": "2026-06-03T12:30:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": null,
+      "rating": 1790,
+      "recordedAt": "2026-06-04T09:05:00.000Z",
+      "matchId": "match-007"
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": null,
+      "rating": 1720,
+      "recordedAt": "2026-06-04T09:05:00.000Z",
+      "matchId": "match-007"
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": null,
+      "rating": 1766,
+      "recordedAt": "2026-06-04T10:20:00.000Z",
+      "matchId": "match-008"
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": null,
+      "rating": 1722,
+      "recordedAt": "2026-06-04T10:20:00.000Z",
+      "matchId": "match-008"
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": null,
+      "rating": 1816,
+      "recordedAt": "2026-06-05T09:20:00.000Z",
+      "matchId": "match-009"
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": null,
+      "rating": 1625,
+      "recordedAt": "2026-06-05T09:20:00.000Z",
+      "matchId": "match-009"
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": null,
+      "rating": 1738,
+      "recordedAt": "2026-06-05T11:50:00.000Z",
+      "matchId": "match-010"
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": null,
+      "rating": 1660,
+      "recordedAt": "2026-06-05T11:50:00.000Z",
+      "matchId": "match-010"
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": null,
+      "rating": 1748,
+      "recordedAt": "2026-06-05T12:10:00.000Z",
+      "matchId": "match-006"
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": null,
+      "rating": 1842,
+      "recordedAt": "2026-06-06T08:35:00.000Z",
+      "matchId": "match-011"
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": null,
+      "rating": 1720,
+      "recordedAt": "2026-06-06T08:35:00.000Z",
+      "matchId": "match-011"
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": null,
+      "rating": 1768,
+      "recordedAt": "2026-06-06T12:25:00.000Z",
+      "matchId": "match-012"
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": null,
+      "rating": 1642,
+      "recordedAt": "2026-06-06T12:25:00.000Z",
+      "matchId": "match-012"
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": "werewolf-en",
+      "rating": 1810,
+      "recordedAt": "2026-06-06T12:40:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "claude-opus",
+      "gameId": "werewolf-ko",
+      "rating": 1858,
+      "recordedAt": "2026-06-06T12:40:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": "werewolf-en",
+      "rating": 1774,
+      "recordedAt": "2026-06-06T12:40:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "gameId": "werewolf-ko",
+      "rating": 1794,
+      "recordedAt": "2026-06-06T12:40:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": "werewolf-en",
+      "rating": 1832,
+      "recordedAt": "2026-06-06T12:40:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "gpt-41",
+      "gameId": "werewolf-ko",
+      "rating": 1696,
+      "recordedAt": "2026-06-06T12:40:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": "werewolf-en",
+      "rating": 1651,
+      "recordedAt": "2026-06-06T12:40:00.000Z",
+      "matchId": null
+    },
+    {
+      "modelId": "grok-4",
+      "gameId": "werewolf-ko",
+      "rating": 1639,
+      "recordedAt": "2026-06-06T12:40:00.000Z",
+      "matchId": null
+    }
   ],
   "costSnapshots": [
-    { "matchId": "match-001", "modelId": "claude-opus", "provider": "Anthropic", "inputTokens": 920, "outputTokens": 210, "cachedTokens": 120, "requestCount": 7, "elapsedSeconds": 42, "estimatedCostUsd": 0.046 },
-    { "matchId": "match-001", "modelId": "gpt-41", "provider": "OpenAI", "inputTokens": 880, "outputTokens": 260, "cachedTokens": 80, "requestCount": 7, "elapsedSeconds": 39, "estimatedCostUsd": 0.038 },
-    { "matchId": "match-002", "modelId": "gemini-25-pro", "provider": "Google", "inputTokens": 1620, "outputTokens": 430, "cachedTokens": 180, "requestCount": 12, "elapsedSeconds": 96, "estimatedCostUsd": 0.031 },
-    { "matchId": "match-002", "modelId": "grok-4", "provider": "xAI", "inputTokens": 1580, "outputTokens": 510, "cachedTokens": 60, "requestCount": 12, "elapsedSeconds": 105, "estimatedCostUsd": 0.052 },
-    { "matchId": "match-003", "modelId": "gpt-41", "provider": "OpenAI", "inputTokens": 1310, "outputTokens": 390, "cachedTokens": 140, "requestCount": 8, "elapsedSeconds": 70, "estimatedCostUsd": 0.044 },
-    { "matchId": "match-003", "modelId": "gemini-25-pro", "provider": "Google", "inputTokens": 1260, "outputTokens": 320, "cachedTokens": 110, "requestCount": 8, "elapsedSeconds": 74, "estimatedCostUsd": 0.025 },
-    { "matchId": "match-004", "modelId": "grok-4", "provider": "xAI", "inputTokens": 910, "outputTokens": 330, "cachedTokens": 70, "requestCount": 9, "elapsedSeconds": 51, "estimatedCostUsd": 0.041 },
-    { "matchId": "match-004", "modelId": "claude-opus", "provider": "Anthropic", "inputTokens": 960, "outputTokens": 250, "cachedTokens": 160, "requestCount": 9, "elapsedSeconds": 55, "estimatedCostUsd": 0.049 },
-    { "matchId": "match-005", "modelId": "claude-opus", "provider": "Anthropic", "inputTokens": 1940, "outputTokens": 520, "cachedTokens": 200, "requestCount": 15, "elapsedSeconds": 118, "estimatedCostUsd": 0.087 },
-    { "matchId": "match-005", "modelId": "gemini-25-pro", "provider": "Google", "inputTokens": 1880, "outputTokens": 470, "cachedTokens": 220, "requestCount": 15, "elapsedSeconds": 111, "estimatedCostUsd": 0.038 },
-    { "matchId": "match-006", "modelId": "grok-4", "provider": "xAI", "inputTokens": 1460, "outputTokens": 610, "cachedTokens": 90, "requestCount": 10, "elapsedSeconds": 91, "estimatedCostUsd": 0.059 },
-    { "matchId": "match-006", "modelId": "gpt-41", "provider": "OpenAI", "inputTokens": 1390, "outputTokens": 420, "cachedTokens": 190, "requestCount": 10, "elapsedSeconds": 77, "estimatedCostUsd": 0.048 },
-    { "matchId": "match-007", "modelId": "gpt-41", "provider": "OpenAI", "inputTokens": 1810, "outputTokens": 590, "cachedTokens": 180, "requestCount": 14, "elapsedSeconds": 106, "estimatedCostUsd": 0.061 },
-    { "matchId": "match-007", "modelId": "claude-opus", "provider": "Anthropic", "inputTokens": 1860, "outputTokens": 430, "cachedTokens": 240, "requestCount": 14, "elapsedSeconds": 101, "estimatedCostUsd": 0.074 },
-    { "matchId": "match-008", "modelId": "gemini-25-pro", "provider": "Google", "inputTokens": 840, "outputTokens": 190, "cachedTokens": 130, "requestCount": 9, "elapsedSeconds": 44, "estimatedCostUsd": 0.018 },
-    { "matchId": "match-008", "modelId": "gpt-41", "provider": "OpenAI", "inputTokens": 820, "outputTokens": 230, "cachedTokens": 120, "requestCount": 9, "elapsedSeconds": 41, "estimatedCostUsd": 0.032 },
-    { "matchId": "match-009", "modelId": "claude-opus", "provider": "Anthropic", "inputTokens": 1510, "outputTokens": 360, "cachedTokens": 190, "requestCount": 11, "elapsedSeconds": 84, "estimatedCostUsd": 0.063 },
-    { "matchId": "match-009", "modelId": "grok-4", "provider": "xAI", "inputTokens": 1480, "outputTokens": 520, "cachedTokens": 70, "requestCount": 11, "elapsedSeconds": 97, "estimatedCostUsd": 0.057 },
-    { "matchId": "match-010", "modelId": "grok-4", "provider": "xAI", "inputTokens": 1710, "outputTokens": 640, "cachedTokens": 100, "requestCount": 12, "elapsedSeconds": 112, "estimatedCostUsd": 0.066 },
-    { "matchId": "match-010", "modelId": "gemini-25-pro", "provider": "Google", "inputTokens": 1690, "outputTokens": 390, "cachedTokens": 210, "requestCount": 12, "elapsedSeconds": 101, "estimatedCostUsd": 0.034 },
-    { "matchId": "match-011", "modelId": "gemini-25-pro", "provider": "Google", "inputTokens": 1320, "outputTokens": 310, "cachedTokens": 160, "requestCount": 10, "elapsedSeconds": 79, "estimatedCostUsd": 0.027 },
-    { "matchId": "match-011", "modelId": "claude-opus", "provider": "Anthropic", "inputTokens": 1370, "outputTokens": 340, "cachedTokens": 210, "requestCount": 10, "elapsedSeconds": 82, "estimatedCostUsd": 0.058 },
-    { "matchId": "match-012", "modelId": "gpt-41", "provider": "OpenAI", "inputTokens": 870, "outputTokens": 280, "cachedTokens": 100, "requestCount": 7, "elapsedSeconds": 38, "estimatedCostUsd": 0.035 },
-    { "matchId": "match-012", "modelId": "grok-4", "provider": "xAI", "inputTokens": 900, "outputTokens": 360, "cachedTokens": 60, "requestCount": 7, "elapsedSeconds": 46, "estimatedCostUsd": 0.039 }
+    {
+      "matchId": "match-001",
+      "modelId": "claude-opus",
+      "provider": "Anthropic",
+      "inputTokens": 920,
+      "outputTokens": 210,
+      "cachedTokens": 120,
+      "requestCount": 7,
+      "elapsedSeconds": 42,
+      "estimatedCostUsd": 0.046
+    },
+    {
+      "matchId": "match-001",
+      "modelId": "gpt-41",
+      "provider": "OpenAI",
+      "inputTokens": 880,
+      "outputTokens": 260,
+      "cachedTokens": 80,
+      "requestCount": 7,
+      "elapsedSeconds": 39,
+      "estimatedCostUsd": 0.038
+    },
+    {
+      "matchId": "match-002",
+      "modelId": "gemini-25-pro",
+      "provider": "Google",
+      "inputTokens": 1620,
+      "outputTokens": 430,
+      "cachedTokens": 180,
+      "requestCount": 12,
+      "elapsedSeconds": 96,
+      "estimatedCostUsd": 0.031
+    },
+    {
+      "matchId": "match-002",
+      "modelId": "grok-4",
+      "provider": "xAI",
+      "inputTokens": 1580,
+      "outputTokens": 510,
+      "cachedTokens": 60,
+      "requestCount": 12,
+      "elapsedSeconds": 105,
+      "estimatedCostUsd": 0.052
+    },
+    {
+      "matchId": "match-003",
+      "modelId": "gpt-41",
+      "provider": "OpenAI",
+      "inputTokens": 1310,
+      "outputTokens": 390,
+      "cachedTokens": 140,
+      "requestCount": 8,
+      "elapsedSeconds": 70,
+      "estimatedCostUsd": 0.044
+    },
+    {
+      "matchId": "match-003",
+      "modelId": "gemini-25-pro",
+      "provider": "Google",
+      "inputTokens": 1260,
+      "outputTokens": 320,
+      "cachedTokens": 110,
+      "requestCount": 8,
+      "elapsedSeconds": 74,
+      "estimatedCostUsd": 0.025
+    },
+    {
+      "matchId": "match-004",
+      "modelId": "grok-4",
+      "provider": "xAI",
+      "inputTokens": 910,
+      "outputTokens": 330,
+      "cachedTokens": 70,
+      "requestCount": 9,
+      "elapsedSeconds": 51,
+      "estimatedCostUsd": 0.041
+    },
+    {
+      "matchId": "match-004",
+      "modelId": "claude-opus",
+      "provider": "Anthropic",
+      "inputTokens": 960,
+      "outputTokens": 250,
+      "cachedTokens": 160,
+      "requestCount": 9,
+      "elapsedSeconds": 55,
+      "estimatedCostUsd": 0.049
+    },
+    {
+      "matchId": "match-005",
+      "modelId": "claude-opus",
+      "provider": "Anthropic",
+      "inputTokens": 1940,
+      "outputTokens": 520,
+      "cachedTokens": 200,
+      "requestCount": 15,
+      "elapsedSeconds": 118,
+      "estimatedCostUsd": 0.087
+    },
+    {
+      "matchId": "match-005",
+      "modelId": "gemini-25-pro",
+      "provider": "Google",
+      "inputTokens": 1880,
+      "outputTokens": 470,
+      "cachedTokens": 220,
+      "requestCount": 15,
+      "elapsedSeconds": 111,
+      "estimatedCostUsd": 0.038
+    },
+    {
+      "matchId": "match-006",
+      "modelId": "grok-4",
+      "provider": "xAI",
+      "inputTokens": 1460,
+      "outputTokens": 610,
+      "cachedTokens": 90,
+      "requestCount": 10,
+      "elapsedSeconds": 91,
+      "estimatedCostUsd": 0.059
+    },
+    {
+      "matchId": "match-006",
+      "modelId": "gpt-41",
+      "provider": "OpenAI",
+      "inputTokens": 1390,
+      "outputTokens": 420,
+      "cachedTokens": 190,
+      "requestCount": 10,
+      "elapsedSeconds": 77,
+      "estimatedCostUsd": 0.048
+    },
+    {
+      "matchId": "match-007",
+      "modelId": "gpt-41",
+      "provider": "OpenAI",
+      "inputTokens": 1810,
+      "outputTokens": 590,
+      "cachedTokens": 180,
+      "requestCount": 14,
+      "elapsedSeconds": 106,
+      "estimatedCostUsd": 0.061
+    },
+    {
+      "matchId": "match-007",
+      "modelId": "claude-opus",
+      "provider": "Anthropic",
+      "inputTokens": 1860,
+      "outputTokens": 430,
+      "cachedTokens": 240,
+      "requestCount": 14,
+      "elapsedSeconds": 101,
+      "estimatedCostUsd": 0.074
+    },
+    {
+      "matchId": "match-008",
+      "modelId": "gemini-25-pro",
+      "provider": "Google",
+      "inputTokens": 840,
+      "outputTokens": 190,
+      "cachedTokens": 130,
+      "requestCount": 9,
+      "elapsedSeconds": 44,
+      "estimatedCostUsd": 0.018
+    },
+    {
+      "matchId": "match-008",
+      "modelId": "gpt-41",
+      "provider": "OpenAI",
+      "inputTokens": 820,
+      "outputTokens": 230,
+      "cachedTokens": 120,
+      "requestCount": 9,
+      "elapsedSeconds": 41,
+      "estimatedCostUsd": 0.032
+    },
+    {
+      "matchId": "match-009",
+      "modelId": "claude-opus",
+      "provider": "Anthropic",
+      "inputTokens": 1510,
+      "outputTokens": 360,
+      "cachedTokens": 190,
+      "requestCount": 11,
+      "elapsedSeconds": 84,
+      "estimatedCostUsd": 0.063
+    },
+    {
+      "matchId": "match-009",
+      "modelId": "grok-4",
+      "provider": "xAI",
+      "inputTokens": 1480,
+      "outputTokens": 520,
+      "cachedTokens": 70,
+      "requestCount": 11,
+      "elapsedSeconds": 97,
+      "estimatedCostUsd": 0.057
+    },
+    {
+      "matchId": "match-010",
+      "modelId": "grok-4",
+      "provider": "xAI",
+      "inputTokens": 1710,
+      "outputTokens": 640,
+      "cachedTokens": 100,
+      "requestCount": 12,
+      "elapsedSeconds": 112,
+      "estimatedCostUsd": 0.066
+    },
+    {
+      "matchId": "match-010",
+      "modelId": "gemini-25-pro",
+      "provider": "Google",
+      "inputTokens": 1690,
+      "outputTokens": 390,
+      "cachedTokens": 210,
+      "requestCount": 12,
+      "elapsedSeconds": 101,
+      "estimatedCostUsd": 0.034
+    },
+    {
+      "matchId": "match-011",
+      "modelId": "gemini-25-pro",
+      "provider": "Google",
+      "inputTokens": 1320,
+      "outputTokens": 310,
+      "cachedTokens": 160,
+      "requestCount": 10,
+      "elapsedSeconds": 79,
+      "estimatedCostUsd": 0.027
+    },
+    {
+      "matchId": "match-011",
+      "modelId": "claude-opus",
+      "provider": "Anthropic",
+      "inputTokens": 1370,
+      "outputTokens": 340,
+      "cachedTokens": 210,
+      "requestCount": 10,
+      "elapsedSeconds": 82,
+      "estimatedCostUsd": 0.058
+    },
+    {
+      "matchId": "match-012",
+      "modelId": "gpt-41",
+      "provider": "OpenAI",
+      "inputTokens": 870,
+      "outputTokens": 280,
+      "cachedTokens": 100,
+      "requestCount": 7,
+      "elapsedSeconds": 38,
+      "estimatedCostUsd": 0.035
+    },
+    {
+      "matchId": "match-012",
+      "modelId": "grok-4",
+      "provider": "xAI",
+      "inputTokens": 900,
+      "outputTokens": 360,
+      "cachedTokens": 60,
+      "requestCount": 7,
+      "elapsedSeconds": 46,
+      "estimatedCostUsd": 0.039
+    }
   ]
 }

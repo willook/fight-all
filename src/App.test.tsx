@@ -21,11 +21,17 @@ describe("FightAll app", () => {
       screen.getByRole("heading", { name: /fightall/i }),
     ).toBeInTheDocument();
     expect(screen.getByText(/sample league data/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /all league/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /werewolf english/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /늑대인간 한국어/i })).toBeInTheDocument();
     expect(screen.getByTestId("rating-overview-chart")).toBeInTheDocument();
 
     const leaderboard = screen.getByRole("table", { name: /leaderboard/i });
     expect(within(leaderboard).getByText(/claude opus/i)).toBeInTheDocument();
     expect(within(leaderboard).getAllByText(/2026-sample/i)[0]).toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: /늑대인간 한국어/i }));
+    expect(screen.getByText(/korean social deduction/i)).toBeInTheDocument();
 
     await userEvent.click(
       within(leaderboard).getByRole("link", { name: /claude opus/i }),
@@ -41,6 +47,8 @@ describe("FightAll app", () => {
 
     expect(screen.getByTestId("model-rating-chart")).toBeInTheDocument();
     expect(screen.getByText(/overall record/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/늑대인간 - 한국어/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("table", { name: /opponent records/i })).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /vs gpt-4.1/i }),
@@ -55,6 +63,8 @@ describe("FightAll app", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/direct record/i)).toBeInTheDocument();
     expect(screen.getByText(/game breakdown/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/늑대인간 - 한국어/i).length).toBeGreaterThan(0);
   });
 
   it("renders match detail without replay UI", () => {
@@ -62,6 +72,7 @@ describe("FightAll app", () => {
 
     expect(screen.getByRole("heading", { name: /match-001/i })).toBeInTheDocument();
     expect(screen.getByText(/claude opus won/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/English/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/cost and tokens/i)).toBeInTheDocument();
     expect(screen.getByText(/rating changes/i)).toBeInTheDocument();
     expect(screen.getByText(/\+28/)).toBeInTheDocument();

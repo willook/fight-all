@@ -254,6 +254,46 @@ main {
   color: var(--accent);
 }
 
+.segmented-control {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-muted);
+}
+
+.segmented-control button {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  background: transparent;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.segmented-control button:hover,
+.segmented-control button:focus-visible {
+  color: var(--accent-strong);
+  background: #f8fbff;
+}
+
+.segmented-control button.active {
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: 0 2px 8px rgba(20, 32, 52, 0.08);
+}
+
+.language-note {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 .chart-frame {
   width: 100%;
   overflow-x: auto;
@@ -346,6 +386,14 @@ tbody tr:last-child td {
 .momentum-list li:last-child,
 .breakdown-list li:last-child {
   border-bottom: 0;
+}
+
+.breakdown-list small {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .profile-panel {

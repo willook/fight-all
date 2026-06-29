@@ -56,9 +56,11 @@ function getGame(data: LeagueData, gameId: string): GameDefinition | undefined {
   return data.games.find((game) => game.id === gameId);
 }
 
-function getModelMatches(data: LeagueData, modelId: string) {
+function getModelMatches(data: LeagueData, modelId: string, gameId?: string | null) {
   return data.matches.filter(
-    (match) => match.modelAId === modelId || match.modelBId === modelId,
+    (match) =>
+      (match.modelAId === modelId || match.modelBId === modelId) &&
+      (gameId === undefined || gameId === null || match.gameId === gameId),
   );
 }
 
@@ -94,13 +96,14 @@ export function getRatingSeries(
   modelId: string,
   gameId?: string | null,
 ): RatingPoint[] {
+  const targetGameId = gameId === undefined ? null : gameId;
   const snapshots = sortByDateAsc(
     data.ratingSnapshots.filter((snapshot) => {
       if (snapshot.modelId !== modelId) {
         return false;
       }
 
-      return gameId === undefined ? true : snapshot.gameId === gameId;
+      return snapshot.gameId === targetGameId;
     }),
   );
 
@@ -120,9 +123,10 @@ export function getRecentForm(
   data: LeagueData,
   modelId: string,
   limit = 5,
+  gameId?: string | null,
 ): RecordSummary {
   return getMatchRecord(
-    sortMatchesDesc(getModelMatches(data, modelId)).slice(0, limit),
+    sortMatchesDesc(getModelMatches(data, modelId, gameId)).slice(0, limit),
     modelId,
   );
 }
@@ -130,9 +134,21 @@ export function getRecentForm(
 export function getModelCostSummary(
   data: LeagueData,
   modelId: string,
+  gameId?: string | null,
 ): CostSummary {
-  const costs = data.costSnapshots.filter((cost) => cost.modelId === modelId);
-  const record = getMatchRecord(getModelMatches(data, modelId), modelId);
+  const matchIds =
+    gameId === undefined || gameId === null
+      ? null
+      : new Set(
+          data.matches
+            .filter((match) => match.gameId === gameId)
+            .map((match) => match.id),
+        );
+  const costs = data.costSnapshots.filter(
+    (cost) =>
+      cost.modelId === modelId && (matchIds === null || matchIds.has(cost.matchId)),
+  );
+  const record = getMatchRecord(getModelMatches(data, modelId, gameId), modelId);
   const totalCostUsd = costs.reduce(
     (sum, cost) => sum + cost.estimatedCostUsd,
     0,
@@ -158,18 +174,29 @@ export function getModelCostSummary(
   };
 }
 
-export function getLeaderboard(data: LeagueData): LeaderboardRow[] {
+export function getLeaderboard(
+  data: LeagueData,
+  gameId?: string | null,
+): LeaderboardRow[] {
   return data.models
     .map((model) => {
-      const series = getRatingSeries(data, model.id);
+      const scopedSeries =
+        gameId === undefined || gameId === null
+          ? []
+          : getRatingSeries(data, model.id, gameId);
+      const series =
+        scopedSeries.length > 0 ? scopedSeries : getRatingSeries(data, model.id);
 
       return {
         model,
         currentRating: series.at(-1)?.rating ?? 0,
         ratingDelta: getRatingDelta(series),
-        overallRecord: getMatchRecord(getModelMatches(data, model.id), model.id),
-        recentForm: getRecentForm(data, model.id),
-        costSummary: getModelCostSummary(data, model.id),
+        overallRecord: getMatchRecord(
+          getModelMatches(data, model.id, gameId),
+          model.id,
+        ),
+        recentForm: getRecentForm(data, model.id, 5, gameId),
+        costSummary: getModelCostSummary(data, model.id, gameId),
       };
     })
     .sort((a, b) => b.currentRating - a.currentRating);
@@ -303,8 +330,7 @@ export function getHeadToHead(
           meetings.filter((match) => match.gameId === game.id),
           modelId,
         ),
-      }))
-      .filter((row) => row.record.total > 0),
+      })),
     costComparison: {
       model: getHeadToHeadCosts(data, modelId, meetings),
       opponent: getHeadToHeadCosts(data, opponentId, meetings),

@@ -24,7 +24,9 @@ import {
   getHeadToHead,
   getLeaderboard,
   getMatchDetail,
+  getModelCostSummary,
   getModelDetail,
+  getRatingSeries,
 } from "./domain/selectors";
 import type {
   ArenaModel,
@@ -109,6 +111,18 @@ function gameName(data: LeagueData, gameId: string) {
   return data.games.find((game) => game.id === gameId)?.name ?? gameId;
 }
 
+function gameFilterLabel(gameId: string) {
+  if (gameId === "werewolf-en") {
+    return "Werewolf English";
+  }
+
+  if (gameId === "werewolf-ko") {
+    return "늑대인간 한국어";
+  }
+
+  return gameId;
+}
+
 function EmptyState({ title }: { title: string }) {
   return (
     <section className="empty-state">
@@ -156,15 +170,20 @@ function StatTile({
   );
 }
 
-function RatingOverviewChart({ data }: { data: LeagueData }) {
+function RatingOverviewChart({
+  data,
+  gameId,
+}: {
+  data: LeagueData;
+  gameId: string | null;
+}) {
   const rows = useMemo(() => {
     const byDate = new Map<string, Record<string, string | number>>();
+    const snapshots = data.ratingSnapshots.filter(
+      (snapshot) => snapshot.gameId === gameId,
+    );
 
-    for (const snapshot of data.ratingSnapshots) {
-      if (snapshot.gameId !== null) {
-        continue;
-      }
-
+    for (const snapshot of snapshots) {
       const label = formatShortDate(snapshot.recordedAt);
       const row = byDate.get(snapshot.recordedAt) ?? { date: label };
       row[snapshot.modelId] = snapshot.rating;
@@ -174,7 +193,7 @@ function RatingOverviewChart({ data }: { data: LeagueData }) {
     return [...byDate.entries()]
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([, row]) => row);
-  }, [data]);
+  }, [data, gameId]);
 
   return (
     <div className="chart-frame" data-testid="rating-overview-chart">
@@ -254,7 +273,12 @@ function CostBlock({ summary }: { summary: CostSummary }) {
 }
 
 function Dashboard({ data }: { data: LeagueData }) {
-  const leaderboard = getLeaderboard(data);
+  const [selectedGameId, setSelectedGameId] = useState<string | null>(null);
+  const selectedGame =
+    selectedGameId === null
+      ? null
+      : data.games.find((game) => game.id === selectedGameId) ?? null;
+  const leaderboard = getLeaderboard(data, selectedGameId);
   const topModel = leaderboard[0];
   const rising = [...leaderboard].sort((a, b) => b.ratingDelta - a.ratingDelta)[0];
   const efficient = [...leaderboard]
@@ -268,8 +292,9 @@ function Dashboard({ data }: { data: LeagueData }) {
           <p className="eyebrow">Sample league data</p>
           <h1>FightAll</h1>
           <p>
-            A record-first AI model arena MVP for comparing ratings, match
-            outcomes, opponent records, and cost efficiency from static JSON.
+            A record-first AI model arena MVP for comparing Werewolf ratings,
+            opponent records, and cost efficiency across English and Korean sample
+            leagues.
           </p>
         </div>
         <div className="hero-stats">
@@ -294,6 +319,39 @@ function Dashboard({ data }: { data: LeagueData }) {
         </div>
       </section>
 
+      <section className="panel">
+        <div className="section-heading compact">
+          <div>
+            <span>Game and language</span>
+            <h2>League scope</h2>
+          </div>
+        </div>
+        <div className="segmented-control" aria-label="Game language filter">
+          <button
+            className={selectedGameId === null ? "active" : ""}
+            type="button"
+            onClick={() => setSelectedGameId(null)}
+          >
+            All League
+          </button>
+          {data.games.map((game) => (
+            <button
+              className={selectedGameId === game.id ? "active" : ""}
+              key={game.id}
+              type="button"
+              onClick={() => setSelectedGameId(game.id)}
+            >
+              {gameFilterLabel(game.id)}
+            </button>
+          ))}
+        </div>
+        <p className="language-note">
+          {selectedGame
+            ? selectedGame.description
+            : "Overall view combines the English and Korean Werewolf sample leagues without treating one language as the universal ranking."}
+        </p>
+      </section>
+
       <section className="section-grid">
         <div className="panel wide">
           <div className="section-heading">
@@ -303,7 +361,7 @@ function Dashboard({ data }: { data: LeagueData }) {
             </div>
             <BarChart3 aria-hidden="true" />
           </div>
-          <RatingOverviewChart data={data} />
+          <RatingOverviewChart data={data} gameId={selectedGameId} />
         </div>
         <div className="panel">
           <div className="section-heading compact">
@@ -329,7 +387,7 @@ function Dashboard({ data }: { data: LeagueData }) {
         <div className="section-heading">
           <div>
             <span>Current standings</span>
-            <h2>Leaderboard</h2>
+            <h2>{selectedGame ? selectedGame.name : "Leaderboard"}</h2>
           </div>
           <Swords aria-hidden="true" />
         </div>
@@ -406,6 +464,41 @@ function ModelProfile({
   );
 }
 
+function GameRecordItem({
+  data,
+  gameId,
+  modelId,
+  name,
+  record,
+}: {
+  data: LeagueData;
+  gameId: string;
+  modelId: string;
+  name: string;
+  record: RecordSummary;
+}) {
+  const ratingSeries = getRatingSeries(data, modelId, gameId);
+  const costSummary = getModelCostSummary(data, modelId, gameId);
+  const ratingDelta =
+    ratingSeries.length < 2
+      ? 0
+      : ratingSeries.at(-1)!.rating - ratingSeries.at(-2)!.rating;
+
+  return (
+    <li>
+      <span>
+        {name}
+        <small>
+          {formatDelta(ratingDelta)} rating ·{" "}
+          {formatMoney(costSummary.costPerWin)} / win ·{" "}
+          {formatDuration(Math.round(costSummary.averageElapsedSeconds))} avg
+        </small>
+      </span>
+      <strong>{recordText(record)}</strong>
+    </li>
+  );
+}
+
 function ModelDetailPage({ data }: { data: LeagueData }) {
   const { modelId } = useParams();
   const detail = modelId ? getModelDetail(data, modelId) : null;
@@ -479,10 +572,14 @@ function ModelDetailPage({ data }: { data: LeagueData }) {
           </div>
           <ul className="breakdown-list">
             {detail.gameRecords.map((row) => (
-              <li key={row.game.id}>
-                <span>{row.game.name}</span>
-                <strong>{recordText(row.record)}</strong>
-              </li>
+              <GameRecordItem
+                key={row.game.id}
+                data={data}
+                gameId={row.game.id}
+                modelId={detail.model.id}
+                name={row.game.name}
+                record={row.record}
+              />
             ))}
           </ul>
         </div>
