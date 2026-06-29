@@ -25,6 +25,7 @@ describe("FightAll app", () => {
 
     const leaderboard = screen.getByRole("table", { name: /leaderboard/i });
     expect(within(leaderboard).getByText(/claude opus/i)).toBeInTheDocument();
+    expect(within(leaderboard).getAllByText(/2026-sample/i)[0]).toBeInTheDocument();
 
     await userEvent.click(
       within(leaderboard).getByRole("link", { name: /claude opus/i }),
@@ -60,7 +61,10 @@ describe("FightAll app", () => {
     renderApp("/matches/match-001");
 
     expect(screen.getByRole("heading", { name: /match-001/i })).toBeInTheDocument();
+    expect(screen.getByText(/claude opus won/i)).toBeInTheDocument();
     expect(screen.getByText(/cost and tokens/i)).toBeInTheDocument();
+    expect(screen.getByText(/rating changes/i)).toBeInTheDocument();
+    expect(screen.getByText(/\+28/)).toBeInTheDocument();
     expect(screen.queryByRole("tab", { name: /replay/i })).not.toBeInTheDocument();
   });
 

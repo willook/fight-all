@@ -93,6 +93,14 @@ function recordText(record: RecordSummary) {
   return `${record.wins}W ${record.losses}L ${record.draws}D`;
 }
 
+function matchOutcomeText(data: LeagueData, match: MatchSummary) {
+  if (!match.winnerModelId) {
+    return "Draw";
+  }
+
+  return `${modelName(data, match.winnerModelId)} won`;
+}
+
 function modelName(data: LeagueData, modelId: string) {
   return data.models.find((model) => model.id === modelId)?.name ?? modelId;
 }
@@ -332,6 +340,7 @@ function Dashboard({ data }: { data: LeagueData }) {
                 <th>Rank</th>
                 <th>Model</th>
                 <th>Provider</th>
+                <th>Version</th>
                 <th>Rating</th>
                 <th>Delta</th>
                 <th>Record</th>
@@ -347,6 +356,7 @@ function Dashboard({ data }: { data: LeagueData }) {
                     <Link to={`/models/${row.model.id}`}>{row.model.name}</Link>
                   </td>
                   <td>{row.model.provider}</td>
+                  <td>{row.model.version}</td>
                   <td>{row.currentRating}</td>
                   <td>
                     <DeltaBadge value={row.ratingDelta} />
@@ -717,7 +727,7 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
             </div>
             <div>
               <dt>Outcome</dt>
-              <dd>{detail.match.result}</dd>
+              <dd>{matchOutcomeText(data, detail.match)}</dd>
             </div>
           </dl>
         </div>
@@ -757,6 +767,37 @@ function MatchDetailPage({ data }: { data: LeagueData }) {
               </tbody>
             </table>
           </div>
+        </div>
+      </section>
+
+      <section className="panel">
+        <div className="section-heading compact">
+          <div>
+            <span>Elo</span>
+            <h2>Rating changes</h2>
+          </div>
+        </div>
+        <div className="table-scroll">
+          <table className="compact-table" aria-label="Rating changes">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Rating</th>
+                <th>Delta</th>
+              </tr>
+            </thead>
+            <tbody>
+              {detail.ratingChanges.map((point) => (
+                <tr key={`${point.modelId}-${point.recordedAt}`}>
+                  <td>{modelName(data, point.modelId)}</td>
+                  <td>{point.rating}</td>
+                  <td>
+                    <DeltaBadge value={point.deltaFromPrevious} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
     </div>
