@@ -89,6 +89,31 @@ describe("FightAll app", () => {
     );
   });
 
+  it("lets users hide and add models in the rating chart", async () => {
+    renderAppWithData("/", loadGeneratedData());
+
+    expect(
+      screen.getByRole("button", { name: /Hide Solar Pro 3 from rating chart/i }),
+    ).toBeInTheDocument();
+
+    await userEvent.click(
+      screen.getByRole("button", { name: /Hide Solar Pro 3 from rating chart/i }),
+    );
+
+    expect(
+      screen.queryByRole("button", { name: /Hide Solar Pro 3 from rating chart/i }),
+    ).not.toBeInTheDocument();
+
+    await userEvent.selectOptions(
+      screen.getByRole("combobox", { name: /Add model to rating chart/i }),
+      "solar-pro-3",
+    );
+
+    expect(
+      screen.getByRole("button", { name: /Hide Solar Pro 3 from rating chart/i }),
+    ).toBeInTheDocument();
+  });
+
   it("persists the selected theme mode", async () => {
     renderApp("/");
 

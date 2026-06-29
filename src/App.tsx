@@ -9,10 +9,12 @@ import {
   Languages,
   Monitor,
   Moon,
+  Plus,
   Sun,
   Swords,
   Trophy,
   Users,
+  X,
 } from "lucide-react";
 import { Link, Route, Routes, useParams } from "react-router-dom";
 import {
@@ -83,6 +85,11 @@ const translations = {
       "Overall view combines the English and Korean Werewolf sample leagues without treating one language as the universal ranking.",
     ratingTrendOverview: "Rating trend overview",
     leagueRatingMovement: "League rating movement",
+    ratingChartModels: "Chart models",
+    addModel: "Add model",
+    addModelToChart: "Add model to rating chart",
+    hideModelPrefix: "Hide",
+    hideModelSuffix: "from rating chart",
     momentum: "Momentum",
     risingAndFalling: "Rising and falling",
     currentStandings: "Current standings",
@@ -188,6 +195,11 @@ const translations = {
       "전체 보기는 영어와 한국어 늑대인간 샘플 리그를 함께 보여주며, 특정 언어 하나를 보편 순위처럼 취급하지 않습니다.",
     ratingTrendOverview: "레이팅 추이",
     leagueRatingMovement: "리그 레이팅 변화",
+    ratingChartModels: "차트 모델",
+    addModel: "모델 추가",
+    addModelToChart: "레이팅 차트에 모델 추가",
+    hideModelPrefix: "레이팅 차트에서",
+    hideModelSuffix: "숨기기",
     momentum: "모멘텀",
     risingAndFalling: "상승과 하락",
     currentStandings: "현재 순위",
@@ -374,6 +386,12 @@ function gameName(data: LeagueData, gameId: string, language: Language) {
   return game ? localizedGameName(game, language) : gameId;
 }
 
+function hideModelFromChartLabel(modelName: string, language: Language, t: Copy) {
+  return language === "ko"
+    ? `${t.hideModelPrefix} ${modelName} ${t.hideModelSuffix}`
+    : `${t.hideModelPrefix} ${modelName} ${t.hideModelSuffix}`;
+}
+
 function EmptyState({ title, t }: { title: string; t: Copy }) {
   return (
     <section className="empty-state">
@@ -425,11 +443,32 @@ function RatingOverviewChart({
   data,
   gameId,
   language,
+  t,
 }: {
   data: LeagueData;
   gameId: string | null;
   language: Language;
+  t: Copy;
 }) {
+  const [visibleModelIds, setVisibleModelIds] = useState(() =>
+    data.models.map((model) => model.id),
+  );
+  const visibleIdSet = useMemo(() => new Set(visibleModelIds), [visibleModelIds]);
+  const visibleModels = data.models.filter((model) => visibleIdSet.has(model.id));
+  const hiddenModels = data.models.filter((model) => !visibleIdSet.has(model.id));
+
+  useEffect(() => {
+    setVisibleModelIds((currentIds) => {
+      const validIds = currentIds.filter((modelId) =>
+        data.models.some((model) => model.id === modelId),
+      );
+
+      return validIds.length > 0
+        ? validIds
+        : data.models.map((model) => model.id);
+    });
+  }, [data.models]);
+
   const rows = useMemo(() => {
     const byDate = new Map<string, Record<string, string | number>>();
     const snapshots = data.ratingSnapshots.filter(
@@ -450,7 +489,54 @@ function RatingOverviewChart({
   }, [data, gameId, language]);
 
   return (
-    <div className="chart-frame" data-testid="rating-overview-chart">
+    <div className="chart-block" data-testid="rating-overview-chart">
+      <div className="chart-model-controls" aria-label={t.ratingChartModels}>
+        <div className="chart-model-list">
+          {visibleModels.map((model) => (
+            <span className="chart-model-chip" key={model.id}>
+              {model.name}
+              <button
+                aria-label={hideModelFromChartLabel(model.name, language, t)}
+                disabled={visibleModels.length === 1}
+                onClick={() => {
+                  setVisibleModelIds((currentIds) =>
+                    currentIds.filter((modelId) => modelId !== model.id),
+                  );
+                }}
+                title={hideModelFromChartLabel(model.name, language, t)}
+                type="button"
+              >
+                <X aria-hidden="true" size={14} />
+              </button>
+            </span>
+          ))}
+        </div>
+        <label className="chart-add-model">
+          <Plus aria-hidden="true" size={16} />
+          <select
+            aria-label={t.addModelToChart}
+            disabled={hiddenModels.length === 0}
+            onChange={(event) => {
+              const modelId = event.currentTarget.value;
+              if (!modelId) {
+                return;
+              }
+
+              setVisibleModelIds((currentIds) => [...currentIds, modelId]);
+              event.currentTarget.value = "";
+            }}
+            value=""
+          >
+            <option value="">{t.addModel}</option>
+            {hiddenModels.map((model) => (
+              <option key={model.id} value={model.id}>
+                {model.name}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+      <div className="chart-frame">
       <LineChart
         width={760}
         height={300}
@@ -479,19 +565,24 @@ function RatingOverviewChart({
           }}
         />
         <Legend />
-        {data.models.map((model, index) => (
-          <Line
-            key={model.id}
-            type="monotone"
-            dataKey={model.id}
-            name={model.name}
-            stroke={chartColors[index % chartColors.length]}
-            strokeWidth={2.5}
-            dot={false}
-            connectNulls
-          />
-        ))}
+        {visibleModels.map((model) => {
+          const modelIndex = data.models.findIndex((item) => item.id === model.id);
+
+          return (
+            <Line
+              key={model.id}
+              type="monotone"
+              dataKey={model.id}
+              name={model.name}
+              stroke={chartColors[modelIndex % chartColors.length]}
+              strokeWidth={2.5}
+              dot={false}
+              connectNulls
+            />
+          );
+        })}
       </LineChart>
+      </div>
     </div>
   );
 }
@@ -645,6 +736,7 @@ function Dashboard({
             data={data}
             gameId={selectedGameId}
             language={language}
+            t={t}
           />
         </div>
         <div className="panel">

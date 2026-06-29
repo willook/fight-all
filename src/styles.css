@@ -428,6 +428,88 @@ main {
   padding-bottom: 4px;
 }
 
+.chart-block {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.chart-model-controls {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.chart-model-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.chart-model-chip,
+.chart-add-model {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-muted);
+}
+
+.chart-model-chip {
+  gap: 6px;
+  padding: 5px 6px 5px 12px;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.chart-model-chip button {
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.chart-model-chip button:hover,
+.chart-model-chip button:focus-visible {
+  color: var(--accent-strong);
+  background: var(--control-hover);
+}
+
+.chart-model-chip button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.chart-add-model {
+  flex: 0 0 auto;
+  gap: 6px;
+  padding: 0 10px;
+  color: var(--accent);
+}
+
+.chart-add-model select {
+  max-width: 180px;
+  border: 0;
+  color: var(--text);
+  background: transparent;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 850;
+}
+
+.chart-add-model select:disabled {
+  color: var(--muted);
+}
+
 .table-scroll {
   width: 100%;
   overflow-x: auto;
