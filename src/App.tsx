@@ -35,6 +35,7 @@ import {
 } from "./domain/selectors";
 import type {
   ArenaModel,
+  GameDefinition,
   LeagueData,
   MatchSummary,
   RatingPoint,
@@ -349,8 +350,28 @@ function modelName(data: LeagueData, modelId: string) {
   return data.models.find((model) => model.id === modelId)?.name ?? modelId;
 }
 
-function gameName(data: LeagueData, gameId: string) {
-  return data.games.find((game) => game.id === gameId)?.name ?? gameId;
+function localizedGameName(game: GameDefinition, language: Language) {
+  if (game.baseGameId === "werewolf" || game.id.startsWith("werewolf-")) {
+    const languageName =
+      game.languageCode === "ko"
+        ? language === "ko"
+          ? "한국어"
+          : "Korean"
+        : language === "ko"
+          ? "영어"
+          : "English";
+
+    return language === "ko"
+      ? `늑대인간 - ${languageName}`
+      : `Werewolf - ${languageName}`;
+  }
+
+  return game.name;
+}
+
+function gameName(data: LeagueData, gameId: string, language: Language) {
+  const game = data.games.find((item) => item.id === gameId);
+  return game ? localizedGameName(game, language) : gameId;
 }
 
 function EmptyState({ title, t }: { title: string; t: Copy }) {
@@ -602,7 +623,7 @@ function Dashboard({
               type="button"
               onClick={() => setSelectedGameId(game.id)}
             >
-              {game.name}
+              {localizedGameName(game, language)}
             </button>
           ))}
         </div>
@@ -650,7 +671,9 @@ function Dashboard({
         <div className="section-heading">
           <div>
             <span>{t.currentStandings}</span>
-            <h2>{selectedGame ? selectedGame.name : t.leaderboard}</h2>
+            <h2>
+              {selectedGame ? localizedGameName(selectedGame, language) : t.leaderboard}
+            </h2>
           </div>
           <Swords aria-hidden="true" />
         </div>
@@ -777,7 +800,7 @@ function PlayersPage({
                     data={data}
                     gameId={gameRecord.game.id}
                     modelId={row.model.id}
-                    name={gameRecord.game.name}
+                    name={localizedGameName(gameRecord.game, language)}
                     record={gameRecord.record}
                     language={language}
                     t={t}
@@ -967,7 +990,7 @@ function ModelDetailPage({
                 data={data}
                 gameId={row.game.id}
                 modelId={detail.model.id}
-                name={row.game.name}
+                name={localizedGameName(row.game, language)}
                 record={row.record}
                 language={language}
                 t={t}
@@ -1061,7 +1084,7 @@ function MatchTable({
               <td>
                 <Link to={`/matches/${match.id}`}>{match.id}</Link>
               </td>
-              <td>{gameName(data, match.gameId)}</td>
+              <td>{gameName(data, match.gameId, language)}</td>
               <td>
                 {modelName(data, match.modelAId)} vs {modelName(data, match.modelBId)}
               </td>
@@ -1143,7 +1166,7 @@ function HeadToHeadPage({
           <ul className="breakdown-list">
             {detail.gameBreakdown.map((row) => (
               <li key={row.game.id}>
-                <span>{row.game.name}</span>
+                <span>{localizedGameName(row.game, language)}</span>
                 <strong>{recordText(row.record, t)}</strong>
               </li>
             ))}
@@ -1201,7 +1224,7 @@ function MatchDetailPage({
         <StatTile
           icon={<BarChart3 aria-hidden="true" />}
           label={t.game}
-          value={detail.game.name}
+          value={localizedGameName(detail.game, language)}
           detail={`${detail.match.turns} ${t.turns}`}
         />
         <StatTile

@@ -48,14 +48,14 @@ describe("FightAll app", () => {
     expect(screen.getByText(/generated league data/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /all league/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf - Korean/i })).toBeInTheDocument();
     expect(screen.getByTestId("rating-overview-chart")).toBeInTheDocument();
 
     const leaderboard = screen.getByRole("table", { name: /leaderboard/i });
     expect(within(leaderboard).getByText(/claude opus/i)).toBeInTheDocument();
     expect(within(leaderboard).getAllByText(/2026-sample/i)[0]).toBeInTheDocument();
 
-    await userEvent.click(screen.getByRole("button", { name: /늑대인간 - 한국어/i }));
+    await userEvent.click(screen.getByRole("button", { name: /Werewolf - Korean/i }));
     expect(screen.getByText(/korean social deduction/i)).toBeInTheDocument();
 
     await userEvent.click(
@@ -82,7 +82,7 @@ describe("FightAll app", () => {
     expect(screen.getAllByText(/Solar Pro 3/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/Upstage/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/늑대인간 - 한국어/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf - Korean/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("link", { name: /View Solar Pro 3/i })).toHaveAttribute(
       "href",
       "/models/solar-pro-3",
@@ -100,18 +100,23 @@ describe("FightAll app", () => {
     expect(localStorage.getItem("fightall-theme")).toBe("dark");
   });
 
-  it("switches the UI between English and Korean while preserving data names", async () => {
+  it("switches the UI and game display names while preserving model data names", async () => {
     renderApp("/");
 
     expect(screen.getByText(/Generated league data/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Werewolf - Korean/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /늑대인간 - 한국어/i })).not.toBeInTheDocument();
 
     await userEvent.click(screen.getByRole("button", { name: /한국어로 보기/i }));
 
     expect(screen.getByText(/생성 리그 데이터/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /리그 범위/i })).toBeInTheDocument();
     expect(screen.queryByText(/Generated league data/i)).not.toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /늑대인간 - 영어/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Werewolf - Korean/i })).not.toBeInTheDocument();
+    expect(screen.getAllByText(/Claude Opus/i).length).toBeGreaterThan(0);
     expect(localStorage.getItem("fightall-language")).toBe("ko");
   });
 
@@ -121,7 +126,7 @@ describe("FightAll app", () => {
     expect(screen.getByTestId("model-rating-chart")).toBeInTheDocument();
     expect(screen.getByText(/overall record/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/늑대인간 - 한국어/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf - Korean/i).length).toBeGreaterThan(0);
     expect(screen.getByRole("table", { name: /opponent records/i })).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /vs gpt-4.1/i }),
@@ -137,7 +142,7 @@ describe("FightAll app", () => {
     expect(screen.getByText(/direct record/i)).toBeInTheDocument();
     expect(screen.getByText(/game breakdown/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/늑대인간 - 한국어/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Werewolf - Korean/i).length).toBeGreaterThan(0);
   });
 
   it("renders match detail without replay UI", () => {
