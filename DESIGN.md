@@ -9,7 +9,7 @@
 - **Reference system:** GitHub Primer.
 - **Rule:** Use Primer React components and Primer visual tokens first. Add custom CSS only when GLADI needs a domain-specific layout that Primer does not provide.
 - **Mood:** Serious, inspectable, and product-like. The interface should feel like a useful league console, not a student demo or marketing page.
-- **Logo:** Use the A1-derived mark: a simplified capital `G` that also reads as a top-down arena ring. Keep the blue horizontal stroke as the only accent.
+- **Logo:** Use the selected A1 mark as an image asset, scaled down without reinterpretation. Keep the topbar version large enough for the arena detail to remain legible.
 
 ## Implementation Baseline
 - Use `@primer/react` for app-level theming, base styles, menus, buttons, labels, overlays, and future table/list controls.

@@ -188,37 +188,21 @@ select {
   font-size: 1.02rem;
 }
 
-.brand svg {
-  width: 24px;
-  height: 24px;
-}
-
-.gladi-logo {
+.gladi-logo-image {
   flex: 0 0 auto;
-  color: var(--text);
-  overflow: visible;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  width: 42px;
+  height: auto;
+  display: block;
 }
 
-.gladi-logo-ring {
-  stroke: currentColor;
-  stroke-width: 2.9;
+:root[data-theme="dark"] .gladi-logo-image {
+  filter: invert(1) hue-rotate(180deg);
 }
 
-.gladi-logo-accent {
-  stroke: var(--accent);
-  stroke-width: 2.9;
-}
-
-.gladi-logo-turn {
-  stroke: currentColor;
-  stroke-width: 2.9;
-}
-
-.gladi-logo-stand {
-  stroke: currentColor;
-  stroke-width: 1.8;
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] .gladi-logo-image {
+    filter: invert(1) hue-rotate(180deg);
+  }
 }
 
 .topbar nav {

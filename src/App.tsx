@@ -411,24 +411,13 @@ function EmptyState({ title, t }: { title: string; t: Copy }) {
 
 function GladiLogo() {
   return (
-    <svg
+    <img
+      alt=""
       aria-hidden="true"
-      className="gladi-logo"
-      data-mark="arena-g"
-      fill="none"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        className="gladi-logo-ring"
-        d="M18.9 5.8A8.8 8.8 0 1 0 19 18.3"
-      />
-      <path className="gladi-logo-accent" d="M12.5 12h7.4" />
-      <path className="gladi-logo-turn" d="M19.9 12v5.1" />
-      <path className="gladi-logo-stand" d="M7.7 18.5v2.2" />
-      <path className="gladi-logo-stand" d="M12 19.2v2.2" />
-      <path className="gladi-logo-stand" d="M16.3 18.5v2.2" />
-    </svg>
+      className="gladi-logo-image"
+      data-mark="a1-source"
+      src="/assets/gladi-a1-logo.png"
+    />
   );
 }
 

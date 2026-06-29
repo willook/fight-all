@@ -76,13 +76,14 @@ describe("GLADI app", () => {
     expect(screen.queryByRole("link", { name: /game arena/i })).not.toBeInTheDocument();
   });
 
-  it("renders the compact arena-G logo and aligned settings controls", () => {
+  it("renders the original A1 logo asset and aligned settings controls", () => {
     renderApp("/");
 
     const brand = screen.getByRole("link", { name: /^GLADI$/i });
-    const logo = brand.querySelector(".gladi-logo");
-    expect(logo).toHaveAttribute("data-mark", "arena-g");
-    expect(logo?.querySelector(".gladi-logo-turn")).toBeInTheDocument();
+    const logo = brand.querySelector(".gladi-logo-image");
+    expect(logo).toHaveAttribute("data-mark", "a1-source");
+    expect(logo).toHaveAttribute("src", expect.stringContaining("gladi-a1-logo"));
+    expect(brand.querySelector(".gladi-logo")).not.toBeInTheDocument();
 
     const themeButton = screen.getByRole("button", { name: /Theme: System/i });
     expect(within(themeButton).getByText("Theme")).toHaveClass(
