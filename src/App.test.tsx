@@ -45,15 +45,16 @@ describe("FightAll app", () => {
     expect(
       screen.getByRole("heading", { name: /fightall/i }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/generated league data/i)).toBeInTheDocument();
+    expect(screen.getByText(/FightAll League/i)).toBeInTheDocument();
+    expect(screen.queryByText(/MVP|sample|generated/i)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /all league/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - Korean/i })).toBeInTheDocument();
     expect(screen.getByTestId("rating-overview-chart")).toBeInTheDocument();
 
     const leaderboard = screen.getByRole("table", { name: /leaderboard/i });
-    expect(within(leaderboard).getByText(/claude opus/i)).toBeInTheDocument();
-    expect(within(leaderboard).getAllByText(/2026-sample/i)[0]).toBeInTheDocument();
+    expect(within(leaderboard).getAllByText(/claude/i).length).toBeGreaterThan(0);
+    expect(within(leaderboard).queryByText(/mock|sample/i)).not.toBeInTheDocument();
 
     await userEvent.click(screen.getByRole("button", { name: /Werewolf - Korean/i }));
     expect(screen.getByText(/korean social deduction/i)).toBeInTheDocument();
@@ -74,16 +75,22 @@ describe("FightAll app", () => {
     expect(screen.queryByRole("link", { name: /game arena/i })).not.toBeInTheDocument();
   });
 
-  it("renders AI Players as a model roster backed by generated match records", () => {
+  it("renders AI Players as a compact expandable roster", async () => {
     renderAppWithData("/players", loadGeneratedData());
 
     expect(screen.getByRole("link", { name: /AI Players/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /AI Players/i })).toBeInTheDocument();
     expect(screen.getAllByText(/Solar Pro 3/i).length).toBeGreaterThan(0);
     expect(screen.getByText(/Upstage/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Werewolf - Korean/i)).not.toBeInTheDocument();
+
+    await userEvent.click(
+      screen.getByRole("button", { name: /Expand Solar Pro 3/i }),
+    );
+
     expect(screen.getAllByText(/Werewolf - English/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Werewolf - Korean/i).length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: /View Solar Pro 3/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /View profile for Solar Pro 3/i })).toHaveAttribute(
       "href",
       "/models/solar-pro-3",
     );
@@ -119,7 +126,7 @@ describe("FightAll app", () => {
 
     expect(document.documentElement).toHaveAttribute("data-theme", "system");
 
-    await userEvent.click(screen.getByRole("button", { name: /theme: dark/i }));
+    await userEvent.selectOptions(screen.getByRole("combobox", { name: /Theme/i }), "dark");
 
     expect(document.documentElement).toHaveAttribute("data-theme", "dark");
     expect(localStorage.getItem("fightall-theme")).toBe("dark");
@@ -128,20 +135,20 @@ describe("FightAll app", () => {
   it("switches the UI and game display names while preserving model data names", async () => {
     renderApp("/");
 
-    expect(screen.getByText(/Generated league data/i)).toBeInTheDocument();
+    expect(screen.getByText(/FightAll League/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - English/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Werewolf - Korean/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /늑대인간 - 한국어/i })).not.toBeInTheDocument();
 
-    await userEvent.click(screen.getByRole("button", { name: /한국어로 보기/i }));
+    await userEvent.selectOptions(screen.getByRole("combobox", { name: /Language/i }), "ko");
 
-    expect(screen.getByText(/생성 리그 데이터/i)).toBeInTheDocument();
+    expect(screen.getByText(/FightAll 리그/i)).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /리그 범위/i })).toBeInTheDocument();
-    expect(screen.queryByText(/Generated league data/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/FightAll League/i)).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /늑대인간 - 영어/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /늑대인간 - 한국어/i })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Werewolf - Korean/i })).not.toBeInTheDocument();
-    expect(screen.getAllByText(/Claude Opus/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Claude/i).length).toBeGreaterThan(0);
     expect(localStorage.getItem("fightall-language")).toBe("ko");
   });
 
@@ -176,7 +183,7 @@ describe("FightAll app", () => {
     expect(screen.getByRole("heading", { name: /match-001/i })).toBeInTheDocument();
     expect(screen.getByText(/claude opus won/i)).toBeInTheDocument();
     expect(screen.getAllByText(/English/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/cost and tokens/i)).toBeInTheDocument();
+    expect(screen.getByText(/usage/i)).toBeInTheDocument();
     expect(screen.getByText(/rating changes/i)).toBeInTheDocument();
     expect(screen.getByText(/\+28/)).toBeInTheDocument();
     expect(screen.queryByRole("tab", { name: /replay/i })).not.toBeInTheDocument();

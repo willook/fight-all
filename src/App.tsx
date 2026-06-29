@@ -4,13 +4,11 @@ import {
   ArrowDown,
   ArrowUp,
   BarChart3,
+  ChevronDown,
+  ChevronUp,
   CircleDollarSign,
   Clock,
-  Languages,
-  Monitor,
-  Moon,
   Plus,
-  Sun,
   Swords,
   Trophy,
   Users,
@@ -63,14 +61,16 @@ const translations = {
     appNav: "Main",
     leaderboard: "Leaderboard",
     aiPlayers: "AI Players",
-    playersEyebrow: "Model roster",
+    playersEyebrow: "Roster",
     playersCopy:
-      "Browse FightAll models as league players with form, language records, and cost efficiency from generated match history.",
+      "Scan the lineup, expand a player, and jump into the full profile when a matchup looks interesting.",
     languageRecords: "Language records",
-    viewPlayer: "View",
-    sampleLeagueData: "Generated league data",
+    viewPlayer: "View profile",
+    expandPlayer: "Expand",
+    collapsePlayer: "Collapse",
+    sampleLeagueData: "FightAll League",
     heroCopy:
-      "A record-first AI model arena MVP for comparing Werewolf ratings, opponent records, and cost efficiency across English and Korean sample leagues.",
+      "Compare AI models by Werewolf ratings, head-to-head records, and language-specific results.",
     leader: "Leader",
     rating: "rating",
     bestRecentMove: "Best recent move",
@@ -82,7 +82,7 @@ const translations = {
     leagueScope: "League scope",
     allLeague: "All League",
     overallLeagueNote:
-      "Overall view combines the English and Korean Werewolf sample leagues without treating one language as the universal ranking.",
+      "View every Werewolf result together, or switch leagues to compare English and Korean play.",
     ratingTrendOverview: "Rating trend overview",
     leagueRatingMovement: "League rating movement",
     ratingChartModels: "Chart models",
@@ -103,7 +103,7 @@ const translations = {
     costPerWin: "Cost / win",
     currentRating: "Current rating",
     ratingHistory: "Rating history",
-    graphFirstModelDetail: "Graph-first model detail",
+    graphFirstModelDetail: "Model profile",
     overallRecord: "Overall record",
     winRate: "win rate",
     latestFiveMatches: "Latest five matches",
@@ -130,7 +130,7 @@ const translations = {
     gameBreakdown: "Game breakdown",
     matchHistory: "Match history",
     headToHeadCopy:
-      "Head-to-head results, per-game splits, recent meetings, and cost/time comparison computed from match history.",
+      "See who wins this matchup, where they win, and how expensive each run is.",
     duration: "Duration",
     participants: "Participants",
     matchSummary: "Match summary",
@@ -138,7 +138,7 @@ const translations = {
     modelB: "Model B",
     outcome: "Outcome",
     spend: "Spend",
-    costAndTokens: "Cost and tokens",
+    costAndTokens: "Usage",
     input: "Input",
     output: "Output",
     cached: "Cached",
@@ -152,7 +152,7 @@ const translations = {
     won: "won",
     notFound: "Not found",
     dataError: "Data error",
-    notFoundCopy: "This record is not available in the bundled sample league data.",
+    notFoundCopy: "We could not find that FightAll record.",
     backToLeaderboard: "Back to leaderboard",
     loading: "Loading FightAll league data...",
     themeSystem: "System",
@@ -162,6 +162,7 @@ const translations = {
     themeLightLabel: "Theme: Light",
     themeDarkLabel: "Theme: Dark",
     languageControl: "Language",
+    themeControl: "Theme",
     viewInEnglish: "View in English",
     viewInKorean: "한국어로 보기",
     avg: "avg",
@@ -173,14 +174,16 @@ const translations = {
     appNav: "주요 메뉴",
     leaderboard: "리더보드",
     aiPlayers: "AI 선수",
-    playersEyebrow: "모델 선수 명단",
+    playersEyebrow: "선수단",
     playersCopy:
-      "생성된 경기 기록에서 계산한 최근 흐름, 언어별 전적, 비용 효율을 기준으로 FightAll 모델을 리그 선수처럼 살펴봅니다.",
+      "순위표에서 선수를 펼쳐보고, 궁금한 모델은 상세 프로필에서 전적을 더 확인하세요.",
     languageRecords: "언어별 전적",
-    viewPlayer: "보기",
-    sampleLeagueData: "생성 리그 데이터",
+    viewPlayer: "프로필 보기",
+    expandPlayer: "펼치기",
+    collapsePlayer: "접기",
+    sampleLeagueData: "FightAll 리그",
     heroCopy:
-      "영어와 한국어 늑대인간 샘플 리그의 레이팅, 상대 전적, 비용 효율을 비교하는 기록 기반 AI 모델 아레나 MVP입니다.",
+      "AI 모델들이 늑대인간으로 겨룬 결과를 레이팅과 전적으로 비교하세요.",
     leader: "선두",
     rating: "레이팅",
     bestRecentMove: "최근 상승",
@@ -192,7 +195,7 @@ const translations = {
     leagueScope: "리그 범위",
     allLeague: "전체 리그",
     overallLeagueNote:
-      "전체 보기는 영어와 한국어 늑대인간 샘플 리그를 함께 보여주며, 특정 언어 하나를 보편 순위처럼 취급하지 않습니다.",
+      "전체 결과를 한 번에 보거나, 영어와 한국어 리그를 나눠 비교할 수 있습니다.",
     ratingTrendOverview: "레이팅 추이",
     leagueRatingMovement: "리그 레이팅 변화",
     ratingChartModels: "차트 모델",
@@ -213,7 +216,7 @@ const translations = {
     costPerWin: "승당 비용",
     currentRating: "현재 레이팅",
     ratingHistory: "레이팅 기록",
-    graphFirstModelDetail: "그래프 중심 모델 상세",
+    graphFirstModelDetail: "모델 프로필",
     overallRecord: "전체 전적",
     winRate: "승률",
     latestFiveMatches: "최근 5경기",
@@ -240,7 +243,7 @@ const translations = {
     gameBreakdown: "게임별 분석",
     matchHistory: "경기 기록",
     headToHeadCopy:
-      "경기 기록에서 계산한 맞대결 결과, 게임별 구분, 최근 경기, 비용/시간 비교입니다.",
+      "두 모델의 맞대결 승부, 강한 리그, 사용량 차이를 확인하세요.",
     duration: "소요 시간",
     participants: "참가 모델",
     matchSummary: "경기 요약",
@@ -248,7 +251,7 @@ const translations = {
     modelB: "모델 B",
     outcome: "판정",
     spend: "사용량",
-    costAndTokens: "비용과 토큰",
+    costAndTokens: "사용량",
     input: "입력",
     output: "출력",
     cached: "캐시",
@@ -262,7 +265,7 @@ const translations = {
     won: "승리",
     notFound: "찾을 수 없음",
     dataError: "데이터 오류",
-    notFoundCopy: "번들된 샘플 리그 데이터에서 이 기록을 찾을 수 없습니다.",
+    notFoundCopy: "해당 FightAll 기록을 찾을 수 없습니다.",
     backToLeaderboard: "리더보드로 돌아가기",
     loading: "FightAll 리그 데이터를 불러오는 중...",
     themeSystem: "시스템",
@@ -272,6 +275,7 @@ const translations = {
     themeLightLabel: "테마: 라이트",
     themeDarkLabel: "테마: 다크",
     languageControl: "언어",
+    themeControl: "테마",
     viewInEnglish: "View in English",
     viewInKorean: "한국어로 보기",
     avg: "평균",
@@ -776,7 +780,6 @@ function Dashboard({
                 <th>{t.rank}</th>
                 <th>{t.model}</th>
                 <th>{t.provider}</th>
-                <th>{t.version}</th>
                 <th>{t.rating}</th>
                 <th>{t.delta}</th>
                 <th>{t.record}</th>
@@ -792,7 +795,6 @@ function Dashboard({
                     <Link to={`/models/${row.model.id}`}>{row.model.name}</Link>
                   </td>
                   <td>{row.model.provider}</td>
-                  <td>{row.model.version}</td>
                   <td>{row.currentRating}</td>
                   <td>
                     <DeltaBadge value={row.ratingDelta} />
@@ -820,6 +822,9 @@ function PlayersPage({
   t: Copy;
 }) {
   const leaderboard = getLeaderboard(data);
+  const [expandedModelIds, setExpandedModelIds] = useState<Set<string>>(
+    () => new Set(),
+  );
   const playerRows = leaderboard
     .map((row) => {
       const detail = getModelDetail(data, row.model.id);
@@ -840,72 +845,112 @@ function PlayersPage({
         </div>
       </section>
 
-      <section className="player-grid" aria-label={t.aiPlayers}>
-        {playerRows.map((row, index) => (
-          <article className="player-card" key={row.model.id}>
-            <div className="player-card-header">
-              <div>
-                <span className="profile-provider">{row.model.provider}</span>
-                <h2>{row.model.name}</h2>
-                <p>{row.model.profile.tagline}</p>
-              </div>
-              <span className="rank-chip">#{index + 1}</span>
-            </div>
+      <section className="player-roster" aria-label={t.aiPlayers}>
+        {playerRows.map((row, index) => {
+            const isExpanded = expandedModelIds.has(row.model.id);
+            const toggleLabel = `${isExpanded ? t.collapsePlayer : t.expandPlayer} ${row.model.name}`;
 
-            <div className="tag-row compact-tags">
-              {row.model.profile.styleTags.map((tag) => (
-                <span key={tag}>{tag}</span>
-              ))}
-            </div>
+            return (
+              <article className="player-row" key={row.model.id}>
+                <div className="player-row-main">
+                  <span className="rank-chip">#{index + 1}</span>
+                  <div className="player-row-identity">
+                    <span className="profile-provider">{row.model.provider}</span>
+                    <h2>{row.model.name}</h2>
+                    <p>{row.model.profile.tagline}</p>
+                  </div>
+                  <dl className="player-row-metrics">
+                    <div>
+                      <dt>{t.rating}</dt>
+                      <dd>{row.currentRating}</dd>
+                    </div>
+                    <div>
+                      <dt>{t.delta}</dt>
+                      <dd>
+                        <DeltaBadge value={row.ratingDelta} />
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>{t.record}</dt>
+                      <dd>{recordText(row.overallRecord, t)}</dd>
+                    </div>
+                    <div>
+                      <dt>{t.costPerWin}</dt>
+                      <dd>{formatMoney(row.costSummary.costPerWin, t)}</dd>
+                    </div>
+                  </dl>
+                  <div className="player-row-actions">
+                    <button
+                      aria-expanded={isExpanded}
+                      aria-label={toggleLabel}
+                      className="ghost-button"
+                      type="button"
+                      onClick={() => {
+                        setExpandedModelIds((currentIds) => {
+                          const nextIds = new Set(currentIds);
+                          if (nextIds.has(row.model.id)) {
+                            nextIds.delete(row.model.id);
+                          } else {
+                            nextIds.add(row.model.id);
+                          }
 
-            <dl className="player-metrics">
-              <div>
-                <dt>{t.currentRating}</dt>
-                <dd>{row.currentRating}</dd>
-              </div>
-              <div>
-                <dt>{t.delta}</dt>
-                <dd>
-                  <DeltaBadge value={row.ratingDelta} />
-                </dd>
-              </div>
-              <div>
-                <dt>{t.overallRecord}</dt>
-                <dd>{recordText(row.overallRecord, t)}</dd>
-              </div>
-              <div>
-                <dt>{t.recentForm}</dt>
-                <dd>{recordText(row.recentForm, t)}</dd>
-              </div>
-              <div>
-                <dt>{t.costPerWin}</dt>
-                <dd>{formatMoney(row.costSummary.costPerWin, t)}</dd>
-              </div>
-            </dl>
+                          return nextIds;
+                        });
+                      }}
+                    >
+                      {isExpanded ? (
+                        <ChevronUp aria-hidden="true" size={16} />
+                      ) : (
+                        <ChevronDown aria-hidden="true" size={16} />
+                      )}
+                      <span>{isExpanded ? t.collapsePlayer : t.expandPlayer}</span>
+                    </button>
+                    <Link
+                      className="button-link player-link"
+                      to={`/models/${row.model.id}`}
+                      aria-label={`${t.viewPlayer} for ${row.model.name}`}
+                    >
+                      {t.viewPlayer}
+                    </Link>
+                  </div>
+                </div>
 
-            <div className="player-language-records">
-              <h3>{t.languageRecords}</h3>
-              <ul className="breakdown-list">
-                {row.detail.gameRecords.map((gameRecord) => (
-                  <GameRecordItem
-                    key={gameRecord.game.id}
-                    data={data}
-                    gameId={gameRecord.game.id}
-                    modelId={row.model.id}
-                    name={localizedGameName(gameRecord.game, language)}
-                    record={gameRecord.record}
-                    language={language}
-                    t={t}
-                  />
-                ))}
-              </ul>
-            </div>
-
-            <Link className="button-link player-link" to={`/models/${row.model.id}`}>
-              {t.viewPlayer} {row.model.name}
-            </Link>
-          </article>
-        ))}
+                {isExpanded ? (
+                  <div className="player-row-detail">
+                    <div>
+                      <h3>{t.latestFiveMatches}</h3>
+                      <p>{recordText(row.recentForm, t)}</p>
+                    </div>
+                    <div>
+                      <h3>{t.languageRecords}</h3>
+                      <ul className="breakdown-list">
+                        {row.detail.gameRecords.map((gameRecord) => (
+                          <GameRecordItem
+                            key={gameRecord.game.id}
+                            data={data}
+                            gameId={gameRecord.game.id}
+                            modelId={row.model.id}
+                            name={localizedGameName(gameRecord.game, language)}
+                            record={gameRecord.record}
+                            language={language}
+                            t={t}
+                          />
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3>{t.recentForm}</h3>
+                      <div className="tag-row compact-tags">
+                        {row.model.profile.styleTags.map((tag) => (
+                          <span key={tag}>{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+              </article>
+            );
+          })}
       </section>
     </div>
   );
@@ -935,10 +980,6 @@ function ModelProfile({
         <div>
           <dt>{t.currentRating}</dt>
           <dd>{currentRating}</dd>
-        </div>
-        <div>
-          <dt>{t.version}</dt>
-          <dd>{model.version}</dd>
         </div>
       </dl>
     </aside>
@@ -1427,18 +1468,6 @@ function MatchDetailPage({
   );
 }
 
-function ThemeIcon({ mode }: { mode: ThemeMode }) {
-  if (mode === "dark") {
-    return <Moon aria-hidden="true" />;
-  }
-
-  if (mode === "light") {
-    return <Sun aria-hidden="true" />;
-  }
-
-  return <Monitor aria-hidden="true" />;
-}
-
 function SettingsControls({
   theme,
   setTheme,
@@ -1460,40 +1489,31 @@ function SettingsControls({
 
   return (
     <div className="topbar-actions">
-      <div className="icon-control-group" aria-label="Theme">
-        {themeModes.map((mode) => (
-          <button
-            aria-label={themeLabels[mode].aria}
-            className={theme === mode ? "active" : ""}
-            key={mode}
-            type="button"
-            onClick={() => setTheme(mode)}
-            title={themeLabels[mode].text}
-          >
-            <ThemeIcon mode={mode} />
-            <span>{themeLabels[mode].text}</span>
-          </button>
-        ))}
-      </div>
-      <div className="language-switcher" aria-label={t.languageControl}>
-        <Languages aria-hidden="true" />
-        <button
-          aria-label={t.viewInEnglish}
-          className={language === "en" ? "active" : ""}
-          type="button"
-          onClick={() => setLanguage("en")}
+      <label className="select-control">
+        <span>{t.themeControl}</span>
+        <select
+          aria-label={t.themeControl}
+          value={theme}
+          onChange={(event) => setTheme(event.currentTarget.value as ThemeMode)}
         >
-          EN
-        </button>
-        <button
-          aria-label={t.viewInKorean}
-          className={language === "ko" ? "active" : ""}
-          type="button"
-          onClick={() => setLanguage("ko")}
+          {themeModes.map((mode) => (
+            <option key={mode} value={mode}>
+              {themeLabels[mode].text}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label className="select-control">
+        <span>{t.languageControl}</span>
+        <select
+          aria-label={t.languageControl}
+          value={language}
+          onChange={(event) => setLanguage(event.currentTarget.value as Language)}
         >
-          KO
-        </button>
-      </div>
+          <option value="en">English</option>
+          <option value="ko">한국어</option>
+        </select>
+      </label>
     </div>
   );
 }
