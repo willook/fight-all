@@ -39,7 +39,7 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite, usually `http://localhost:5173/`.
+The default dev server binds to the machine's Tailscale IP only. On this workspace, open `http://jindo:5173/` from the tailnet. Use `npm run dev:any` only when you intentionally need to expose Vite on every local interface.
 
 ## Verification
 

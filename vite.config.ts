@@ -3,6 +3,9 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    allowedHosts: ["jindo"],
+  },
   test: {
     environment: "jsdom",
     globals: true,
