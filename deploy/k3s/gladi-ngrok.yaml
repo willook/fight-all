@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gladi-ngrok
+  namespace: gladi
+  labels:
+    app: gladi-ngrok
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gladi-ngrok
+  template:
+    metadata:
+      labels:
+        app: gladi-ngrok
+    spec:
+      containers:
+        - name: ngrok
+          image: ngrok/ngrok:latest
+          imagePullPolicy: IfNotPresent
+          args:
+            - http
+            - --url=https://frantic-cognitive-outskirts.ngrok-free.dev
+            - --log=stdout
+            - http://gladi-web.gladi.svc.cluster.local:5173
+          env:
+            - name: NGROK_AUTHTOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: gladi-ngrok
+                  key: NGROK_AUTHTOKEN
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
