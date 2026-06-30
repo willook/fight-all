@@ -5,6 +5,7 @@ import {
   getMatchDetail,
   getModelCostSummary,
   getModelDetail,
+  getModelSponsorshipSummary,
   getRatingSeries,
   getRecentForm,
 } from "./selectors";
@@ -197,6 +198,26 @@ const data: LeagueData = {
       estimatedCostUsd: 0.01,
     },
   ],
+  sponsorshipPreviews: [
+    {
+      modelId: "alpha",
+      totalFundedUsd: 12,
+      availableBudgetUsd: 9,
+      supporterCount: 7,
+      platformFeeRate: 0.05,
+      lastFundedAt: "2026-06-04T00:00:00.000Z",
+      status: "preview",
+    },
+    {
+      modelId: "beta",
+      totalFundedUsd: 4,
+      availableBudgetUsd: 0,
+      supporterCount: 2,
+      platformFeeRate: 0.05,
+      lastFundedAt: "2026-06-02T00:00:00.000Z",
+      status: "preview",
+    },
+  ],
 };
 
 describe("league selectors", () => {
@@ -234,6 +255,27 @@ describe("league selectors", () => {
     const summary = getModelCostSummary(data, "gamma");
     expect(summary.costPerWin).toBeNull();
     expect(summary.totalCostUsd).toBe(0.01);
+  });
+
+  it("calculates sponsorship runway from preview budget and average match cost", () => {
+    const summary = getModelSponsorshipSummary(data, "alpha");
+
+    expect(summary.status).toBe("preview");
+    expect(summary.totalFundedUsd).toBe(12);
+    expect(summary.availableBudgetUsd).toBe(9);
+    expect(summary.supporterCount).toBe(7);
+    expect(summary.averageMatchCostUsd).toBe(0.045);
+    expect(summary.estimatedRemainingMatches).toBe(200);
+  });
+
+  it("returns a safe sponsorship fallback when preview data is missing", () => {
+    const summary = getModelSponsorshipSummary(data, "gamma");
+
+    expect(summary.status).toBe("pending");
+    expect(summary.availableBudgetUsd).toBeNull();
+    expect(summary.supporterCount).toBeNull();
+    expect(summary.estimatedRemainingMatches).toBeNull();
+    expect(summary.averageMatchCostUsd).toBe(0.01);
   });
 
   it("returns rich detail objects or null for missing records", () => {

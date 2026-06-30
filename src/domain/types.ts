@@ -4,6 +4,7 @@ export type LeagueData = {
   matches: MatchSummary[];
   ratingSnapshots: RatingSnapshot[];
   costSnapshots: CostSnapshot[];
+  sponsorshipPreviews: SponsorshipPreview[];
 };
 
 export type ArenaModel = {
@@ -64,6 +65,16 @@ export type CostSnapshot = {
   estimatedCostUsd: number;
 };
 
+export type SponsorshipPreview = {
+  modelId: string;
+  totalFundedUsd: number;
+  availableBudgetUsd: number;
+  supporterCount: number;
+  platformFeeRate: number;
+  lastFundedAt: string;
+  status: "preview";
+};
+
 export type RecordSummary = {
   wins: number;
   losses: number;
@@ -86,6 +97,17 @@ export type CostSummary = {
   averageElapsedSeconds: number;
   costPerMatch: number | null;
   costPerWin: number | null;
+};
+
+export type ModelSponsorshipSummary = {
+  status: "preview" | "pending";
+  totalFundedUsd: number | null;
+  availableBudgetUsd: number | null;
+  supporterCount: number | null;
+  platformFeeRate: number | null;
+  lastFundedAt: string | null;
+  averageMatchCostUsd: number | null;
+  estimatedRemainingMatches: number | null;
 };
 
 export type LeaderboardRow = {

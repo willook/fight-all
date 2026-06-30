@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BaseStyles, ThemeProvider } from "@primer/react";
 import {
   Activity,
@@ -15,7 +15,14 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import {
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import {
   CartesianGrid,
   Legend,
@@ -32,6 +39,7 @@ import {
   getMatchDetail,
   getModelCostSummary,
   getModelDetail,
+  getModelSponsorshipSummary,
   getRatingSeries,
 } from "./domain/selectors";
 import type {
@@ -39,6 +47,7 @@ import type {
   GameDefinition,
   LeagueData,
   MatchSummary,
+  ModelSponsorshipSummary,
   RatingPoint,
   RecordSummary,
 } from "./domain/types";
@@ -48,30 +57,38 @@ type AppProps = {
   initialData?: LeagueData;
 };
 
-type ThemeMode = "system" | "light" | "dark";
 type Language = "en" | "ko";
 type Copy = (typeof translations)[Language];
 
 const chartColors = ["#2563eb", "#16a34a", "#dc2626", "#9333ea", "#d97706"];
-const themeStorageKey = "fightall-theme";
+const legacyThemeStorageKey = "fightall-theme";
 const languageStorageKey = "fightall-language";
-const themeModes: ThemeMode[] = ["system", "light", "dark"];
 
 const translations = {
   en: {
     appNav: "Main",
     leaderboard: "Leaderboard",
-    aiPlayers: "AI Players",
-    playersEyebrow: "Roster",
+    aiPlayers: "Sponsor Models",
     playersCopy:
-      "Scan the lineup, expand a player, and jump into the full profile when a matchup looks interesting.",
+      "Support the models you want to see play more matches.",
     languageRecords: "Language records",
-    viewPlayer: "View profile",
+    viewPlayer: "Profile",
     expandPlayer: "Expand",
     collapsePlayer: "Collapse",
-    sampleLeagueData: "GLADI League",
+    sponsor: "Sponsor",
+    sponsorshipRunway: "Sponsorship runway",
+    remainingBudget: "Remaining budget",
+    totalFunded: "Total funded",
+    supporters: "Supporters",
+    averageMatchCost: "Avg. match cost",
+    estimatedMatchesLeft: "Estimated matches left",
+    preview: "Preview",
+    previewPending: "Preview pending",
+    paymentPreparing: "Payment coming soon",
+    sponsorshipUnavailable: "Payments are not open yet.",
+    comingSoon: "coming soon",
     heroCopy:
-      "Compare AI models by Werewolf debate ratings, head-to-head records, and language-specific results.",
+      "We rate AI models through a growing set of games to evaluate performance fairly.",
     leader: "Leader",
     rating: "rating",
     bestRecentMove: "Best recent move",
@@ -155,7 +172,7 @@ const translations = {
     dataError: "Data error",
     notFoundCopy: "We could not find that GLADI record.",
     backToLeaderboard: "Back to leaderboard",
-    loading: "Loading GLADI league data...",
+    loading: "Loading GLADI data...",
     themeSystem: "System",
     themeLight: "Light",
     themeDark: "Dark",
@@ -174,17 +191,27 @@ const translations = {
   ko: {
     appNav: "주요 메뉴",
     leaderboard: "리더보드",
-    aiPlayers: "AI 선수",
-    playersEyebrow: "선수단",
+    aiPlayers: "모델 후원",
     playersCopy:
-      "순위표에서 선수를 펼쳐보고, 궁금한 모델은 상세 프로필에서 전적을 더 확인하세요.",
+      "응원하는 모델이 더 많은 경기를 치를 수 있도록 후원해 주세요.",
     languageRecords: "언어별 전적",
     viewPlayer: "프로필 보기",
     expandPlayer: "펼치기",
     collapsePlayer: "접기",
-    sampleLeagueData: "GLADI 리그",
+    sponsor: "후원하기",
+    sponsorshipRunway: "후원 런웨이",
+    remainingBudget: "남은 예산",
+    totalFunded: "총 후원금",
+    supporters: "후원자",
+    averageMatchCost: "평균 경기 비용",
+    estimatedMatchesLeft: "예상 남은 경기",
+    preview: "프리뷰",
+    previewPending: "준비 중",
+    paymentPreparing: "결제 준비 중",
+    sponsorshipUnavailable: "아직 결제는 열리지 않았습니다.",
+    comingSoon: "준비 중",
     heroCopy:
-      "AI 모델들의 늑대인간 토론 평가 결과를 레이팅과 전적으로 비교하세요.",
+      "AI 모델의 공정한 성능 평가를 위해 다양한 게임을 통해 레이팅을 매깁니다.",
     leader: "선두",
     rating: "레이팅",
     bestRecentMove: "최근 상승",
@@ -268,7 +295,7 @@ const translations = {
     dataError: "데이터 오류",
     notFoundCopy: "해당 GLADI 기록을 찾을 수 없습니다.",
     backToLeaderboard: "리더보드로 돌아가기",
-    loading: "GLADI 리그 데이터를 불러오는 중...",
+    loading: "GLADI 데이터를 불러오는 중...",
     themeSystem: "시스템",
     themeLight: "라이트",
     themeDark: "다크",
@@ -286,17 +313,6 @@ const translations = {
   },
 } as const;
 
-function getInitialTheme(): ThemeMode {
-  if (typeof window === "undefined") {
-    return "system";
-  }
-
-  const saved = window.localStorage.getItem(themeStorageKey);
-  return saved === "light" || saved === "dark" || saved === "system"
-    ? saved
-    : "system";
-}
-
 function getInitialLanguage(): Language {
   if (typeof window === "undefined") {
     return "en";
@@ -308,6 +324,11 @@ function getInitialLanguage(): Language {
   }
 
   return window.navigator.language.toLowerCase().startsWith("ko") ? "ko" : "en";
+}
+
+function getLanguageFromSearch(search: string): Language | null {
+  const value = new URLSearchParams(search).get("lang")?.toLowerCase();
+  return value === "en" || value === "ko" ? value : null;
 }
 
 function formatDate(value: string, language: Language) {
@@ -331,7 +352,23 @@ function formatDelta(value: number) {
 }
 
 function formatMoney(value: number | null, t: Copy) {
-  return value === null ? t.noData : `$${value.toFixed(3)}`;
+  if (value === null) {
+    return t.noData;
+  }
+
+  if (value > 0 && value < 0.001) {
+    return `$${value.toFixed(6)}`;
+  }
+
+  return `$${value.toFixed(3)}`;
+}
+
+function formatCount(value: number | null, t: Copy) {
+  return value === null ? t.noData : value.toLocaleString();
+}
+
+function formatMatchRunway(value: number | null, t: Copy) {
+  return value === null ? t.noData : value.toLocaleString();
 }
 
 function formatPercent(value: number) {
@@ -468,6 +505,72 @@ function StatTile({
         <strong>{value}</strong>
         {detail ? <small>{detail}</small> : null}
       </div>
+    </div>
+  );
+}
+
+function SponsorshipStatusBadge({
+  summary,
+  t,
+}: {
+  summary: ModelSponsorshipSummary;
+  t: Copy;
+}) {
+  return (
+    <span className="status-badge">
+      {summary.status === "preview" ? t.preview : t.previewPending}
+    </span>
+  );
+}
+
+function SponsorshipRunway({
+  modelName,
+  summary,
+  t,
+}: {
+  modelName: string;
+  summary: ModelSponsorshipSummary;
+  t: Copy;
+}) {
+  return (
+    <div className="sponsorship-panel">
+      <div className="sponsorship-panel-header">
+        <div>
+          <span className="profile-provider">{t.sponsorshipRunway}</span>
+          <p>{t.sponsorshipUnavailable}</p>
+        </div>
+        <SponsorshipStatusBadge summary={summary} t={t} />
+      </div>
+      <dl className="sponsorship-metrics">
+        <div>
+          <dt>{t.remainingBudget}</dt>
+          <dd>{formatMoney(summary.availableBudgetUsd, t)}</dd>
+        </div>
+        <div>
+          <dt>{t.totalFunded}</dt>
+          <dd>{formatMoney(summary.totalFundedUsd, t)}</dd>
+        </div>
+        <div>
+          <dt>{t.supporters}</dt>
+          <dd>{formatCount(summary.supporterCount, t)}</dd>
+        </div>
+        <div>
+          <dt>{t.averageMatchCost}</dt>
+          <dd>{formatMoney(summary.averageMatchCostUsd, t)}</dd>
+        </div>
+        <div className="metric-highlight">
+          <dt>{t.estimatedMatchesLeft}</dt>
+          <dd>{formatMatchRunway(summary.estimatedRemainingMatches, t)}</dd>
+        </div>
+      </dl>
+      <button
+        aria-label={`${t.sponsor} ${modelName} ${t.comingSoon}`}
+        className="sponsor-button"
+        disabled
+        type="button"
+      >
+        {t.sponsor}
+      </button>
     </div>
   );
 }
@@ -699,7 +802,6 @@ function Dashboard({
     <div className="page-stack">
       <section className="hero-band">
         <div>
-          <p className="eyebrow">{t.sampleLeagueData}</p>
           <h1>GLADI</h1>
           <p>{t.heroCopy}</p>
         </div>
@@ -852,6 +954,8 @@ function PlayersPage({
   language: Language;
   t: Copy;
 }) {
+  const navigate = useNavigate();
+  const location = useLocation();
   const leaderboard = getLeaderboard(data);
   const [expandedModelIds, setExpandedModelIds] = useState<Set<string>>(
     () => new Set(),
@@ -859,7 +963,8 @@ function PlayersPage({
   const playerRows = leaderboard
     .map((row) => {
       const detail = getModelDetail(data, row.model.id);
-      return detail ? { ...row, detail } : null;
+      const sponsorship = getModelSponsorshipSummary(data, row.model.id);
+      return detail ? { ...row, detail, sponsorship } : null;
     })
     .filter((row): row is NonNullable<typeof row> => row !== null);
 
@@ -867,7 +972,6 @@ function PlayersPage({
     <div className="page-stack">
       <section className="model-header">
         <div>
-          <p className="eyebrow">{t.playersEyebrow}</p>
           <h1>{t.aiPlayers}</h1>
           <p>{t.playersCopy}</p>
         </div>
@@ -882,7 +986,19 @@ function PlayersPage({
             const toggleLabel = `${isExpanded ? t.collapsePlayer : t.expandPlayer} ${row.model.name}`;
 
             return (
-              <article className="player-row" key={row.model.id}>
+              <article
+                aria-label={row.model.name}
+                className="player-row clickable"
+                key={row.model.id}
+                onClick={() => navigate(`/models/${row.model.id}${location.search}`)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    navigate(`/models/${row.model.id}${location.search}`);
+                  }
+                }}
+                tabIndex={0}
+              >
                 <div className="player-row-main">
                   <span className="rank-chip">#{index + 1}</span>
                   <div className="player-row-identity">
@@ -892,31 +1008,40 @@ function PlayersPage({
                   </div>
                   <dl className="player-row-metrics">
                     <div>
-                      <dt>{t.rating}</dt>
-                      <dd>{row.currentRating}</dd>
+                      <dt>{t.remainingBudget}</dt>
+                      <dd>{formatMoney(row.sponsorship.availableBudgetUsd, t)}</dd>
                     </div>
                     <div>
-                      <dt>{t.delta}</dt>
+                      <dt>{t.supporters}</dt>
+                      <dd>{formatCount(row.sponsorship.supporterCount, t)}</dd>
+                    </div>
+                    <div>
+                      <dt>{t.averageMatchCost}</dt>
+                      <dd>{formatMoney(row.sponsorship.averageMatchCostUsd, t)}</dd>
+                    </div>
+                    <div>
+                      <dt>{t.estimatedMatchesLeft}</dt>
                       <dd>
-                        <DeltaBadge value={row.ratingDelta} />
+                        {formatMatchRunway(row.sponsorship.estimatedRemainingMatches, t)}
                       </dd>
-                    </div>
-                    <div>
-                      <dt>{t.record}</dt>
-                      <dd>{recordText(row.overallRecord, t)}</dd>
-                    </div>
-                    <div>
-                      <dt>{t.costPerWin}</dt>
-                      <dd>{formatMoney(row.costSummary.costPerWin, t)}</dd>
                     </div>
                   </dl>
                   <div className="player-row-actions">
+                    <button
+                      aria-label={`${t.sponsor} ${row.model.name} ${t.comingSoon}`}
+                      className="sponsor-button compact"
+                      disabled
+                      type="button"
+                    >
+                      {t.sponsor}
+                    </button>
                     <button
                       aria-expanded={isExpanded}
                       aria-label={toggleLabel}
                       className="ghost-button"
                       type="button"
-                      onClick={() => {
+                      onClick={(event) => {
+                        event.stopPropagation();
                         setExpandedModelIds((currentIds) => {
                           const nextIds = new Set(currentIds);
                           if (nextIds.has(row.model.id)) {
@@ -936,46 +1061,35 @@ function PlayersPage({
                       )}
                       <span>{isExpanded ? t.collapsePlayer : t.expandPlayer}</span>
                     </button>
-                    <Link
-                      className="button-link player-link"
-                      to={`/models/${row.model.id}`}
-                      aria-label={`${t.viewPlayer} for ${row.model.name}`}
-                    >
-                      {t.viewPlayer}
-                    </Link>
                   </div>
                 </div>
 
                 {isExpanded ? (
                   <div className="player-row-detail">
                     <div>
-                      <h3>{t.latestFiveMatches}</h3>
-                      <p>{recordText(row.recentForm, t)}</p>
+                      <h3>{t.totalFunded}</h3>
+                      <p>{formatMoney(row.sponsorship.totalFundedUsd, t)}</p>
                     </div>
                     <div>
-                      <h3>{t.languageRecords}</h3>
-                      <ul className="breakdown-list">
-                        {row.detail.gameRecords.map((gameRecord) => (
-                          <GameRecordItem
-                            key={gameRecord.game.id}
-                            data={data}
-                            gameId={gameRecord.game.id}
-                            modelId={row.model.id}
-                            name={localizedGameName(gameRecord.game, language)}
-                            record={gameRecord.record}
-                            language={language}
-                            t={t}
-                          />
-                        ))}
-                      </ul>
+                      <h3>{t.sponsorshipRunway}</h3>
+                      <dl className="inline-metrics">
+                        <div>
+                          <dt>{t.rating}</dt>
+                          <dd>{row.currentRating}</dd>
+                        </div>
+                        <div>
+                          <dt>{t.record}</dt>
+                          <dd>{recordText(row.overallRecord, t)}</dd>
+                        </div>
+                        <div>
+                          <dt>{t.costPerWin}</dt>
+                          <dd>{formatMoney(row.costSummary.costPerWin, t)}</dd>
+                        </div>
+                      </dl>
                     </div>
                     <div>
-                      <h3>{t.recentForm}</h3>
-                      <div className="tag-row compact-tags">
-                        {row.model.profile.styleTags.map((tag) => (
-                          <span key={tag}>{tag}</span>
-                        ))}
-                      </div>
+                      <h3>{t.paymentPreparing}</h3>
+                      <p className="muted-copy">{t.sponsorshipUnavailable}</p>
                     </div>
                   </div>
                 ) : null}
@@ -990,10 +1104,12 @@ function PlayersPage({
 function ModelProfile({
   model,
   currentRating,
+  sponsorship,
   t,
 }: {
   model: ArenaModel;
   currentRating: number;
+  sponsorship: ModelSponsorshipSummary;
   t: Copy;
 }) {
   return (
@@ -1013,6 +1129,7 @@ function ModelProfile({
           <dd>{currentRating}</dd>
         </div>
       </dl>
+      <SponsorshipRunway modelName={model.name} summary={sponsorship} t={t} />
     </aside>
   );
 }
@@ -1073,6 +1190,8 @@ function ModelDetailPage({
     return <EmptyState title={t.notFound} t={t} />;
   }
 
+  const sponsorship = getModelSponsorshipSummary(data, detail.model.id);
+
   return (
     <div className="page-stack">
       <section className="model-header">
@@ -1105,6 +1224,7 @@ function ModelDetailPage({
         <ModelProfile
           model={detail.model}
           currentRating={detail.currentRating}
+          sponsorship={sponsorship}
           t={t}
         />
       </section>
@@ -1499,156 +1619,13 @@ function MatchDetailPage({
   );
 }
 
-type SettingsMenuOption<T extends string> = {
-  label: string;
-  value: T;
-};
-
-function SettingsMenu<T extends string>({
-  ariaLabel,
-  controlLabel,
-  onSelect,
-  options,
-  selectedValue,
-  valueLabel,
-}: {
-  ariaLabel: string;
-  controlLabel: string;
-  onSelect: (value: T) => void;
-  options: SettingsMenuOption<T>[];
-  selectedValue: T;
-  valueLabel: string;
-}) {
-  const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-
-    function closeOnOutsidePointer(event: PointerEvent) {
-      if (!menuRef.current?.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    }
-
-    function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener("pointerdown", closeOnOutsidePointer);
-    document.addEventListener("keydown", closeOnEscape);
-
-    return () => {
-      document.removeEventListener("pointerdown", closeOnOutsidePointer);
-      document.removeEventListener("keydown", closeOnEscape);
-    };
-  }, [isOpen]);
-
-  return (
-    <div className="settings-menu" ref={menuRef}>
-      <button
-        aria-expanded={isOpen}
-        aria-haspopup="menu"
-        aria-label={ariaLabel}
-        className="settings-menu-button"
-        onClick={() => setIsOpen((current) => !current)}
-        type="button"
-      >
-        <span className="settings-menu-label">{controlLabel}</span>
-        <span className="settings-menu-value">{valueLabel}</span>
-        <ChevronDown aria-hidden="true" className="settings-menu-chevron" />
-      </button>
-      {isOpen ? (
-        <div className="settings-menu-overlay" role="menu" aria-label={controlLabel}>
-          {options.map((option) => (
-            <button
-              aria-checked={selectedValue === option.value}
-              className="settings-menu-option"
-              key={option.value}
-              onClick={() => {
-                onSelect(option.value);
-                setIsOpen(false);
-              }}
-              role="menuitemradio"
-              type="button"
-            >
-              <span>{option.label}</span>
-              {selectedValue === option.value ? (
-                <span aria-hidden="true" className="settings-menu-option-check" />
-              ) : null}
-            </button>
-          ))}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-function SettingsControls({
-  theme,
-  setTheme,
-  language,
-  setLanguage,
-  t,
-}: {
-  theme: ThemeMode;
-  setTheme: (theme: ThemeMode) => void;
-  language: Language;
-  setLanguage: (language: Language) => void;
-  t: Copy;
-}) {
-  const themeLabels: Record<ThemeMode, string> = {
-    system: t.themeSystem,
-    light: t.themeLight,
-    dark: t.themeDark,
-  };
-  const languageLabel = language === "ko" ? "KO" : "EN";
-
-  return (
-    <div className="topbar-actions">
-      <SettingsMenu
-        ariaLabel={`${t.themeControl}: ${themeLabels[theme]}`}
-        controlLabel={t.themeControl}
-        onSelect={setTheme}
-        options={themeModes.map((mode) => ({
-          label: themeLabels[mode],
-          value: mode,
-        }))}
-        selectedValue={theme}
-        valueLabel={themeLabels[theme]}
-      />
-      <SettingsMenu
-        ariaLabel={`${t.languageControl}: ${languageLabel}`}
-        controlLabel={t.languageControl}
-        onSelect={setLanguage}
-        options={[
-          { label: "English", value: "en" },
-          { label: "한국어", value: "ko" },
-        ]}
-        selectedValue={language}
-        valueLabel={languageLabel}
-      />
-    </div>
-  );
-}
-
 function AppShell({
   data,
   language,
-  setLanguage,
-  theme,
-  setTheme,
   t,
 }: {
   data: LeagueData;
   language: Language;
-  setLanguage: (language: Language) => void;
-  theme: ThemeMode;
-  setTheme: (theme: ThemeMode) => void;
   t: Copy;
 }) {
   return (
@@ -1662,13 +1639,6 @@ function AppShell({
           <Link to="/">{t.leaderboard}</Link>
           <Link to="/players">{t.aiPlayers}</Link>
         </nav>
-        <SettingsControls
-          theme={theme}
-          setTheme={setTheme}
-          language={language}
-          setLanguage={setLanguage}
-          t={t}
-        />
       </header>
       <main>
         <Routes>
@@ -1700,8 +1670,10 @@ function AppShell({
 }
 
 export default function App({ initialData }: AppProps) {
-  const [theme, setTheme] = useState<ThemeMode>(getInitialTheme);
-  const [language, setLanguage] = useState<Language>(getInitialLanguage);
+  const location = useLocation();
+  const [language, setLanguage] = useState<Language>(
+    () => getLanguageFromSearch(location.search) ?? getInitialLanguage(),
+  );
   const [data, setData] = useState<LeagueData | null>(initialData ?? null);
   const [error, setError] = useState<string | null>(() => {
     if (!initialData) {
@@ -1714,9 +1686,13 @@ export default function App({ initialData }: AppProps) {
   const t = translations[language];
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem(themeStorageKey, theme);
-  }, [theme]);
+    document.documentElement.setAttribute("data-theme", "system");
+    window.localStorage.removeItem(legacyThemeStorageKey);
+  }, []);
+
+  useEffect(() => {
+    setLanguage(getLanguageFromSearch(location.search) ?? getInitialLanguage());
+  }, [location.search]);
 
   useEffect(() => {
     document.documentElement.lang = language;
@@ -1747,11 +1723,9 @@ export default function App({ initialData }: AppProps) {
     );
   }
 
-  const primerColorMode = theme === "system" ? "auto" : theme;
-
   return (
     <ThemeProvider
-      colorMode={primerColorMode}
+      colorMode="auto"
       dayScheme="light"
       nightScheme="dark"
     >
@@ -1759,9 +1733,6 @@ export default function App({ initialData }: AppProps) {
         <AppShell
           data={data}
           language={language}
-          setLanguage={setLanguage}
-          theme={theme}
-          setTheme={setTheme}
           t={t}
         />
       </BaseStyles>

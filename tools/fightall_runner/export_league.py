@@ -109,6 +109,21 @@ def _match_summary(schedule_item: dict, winner_id: str | None, model_index: dict
     return f"{winner['name']} won the {language} Werewolf debate evaluation with clearer vote pressure and role inference."
 
 
+def _sponsorship_previews(models: list[dict]) -> list[dict[str, Any]]:
+    return [
+        {
+            "modelId": model["id"],
+            "totalFundedUsd": 70 + index * 14,
+            "availableBudgetUsd": 42 + index * 9,
+            "supporterCount": 18 + index * 5,
+            "platformFeeRate": 0.05,
+            "lastFundedAt": f"2026-06-{20 + index:02d}T09:00:00.000Z",
+            "status": "preview",
+        }
+        for index, model in enumerate(models)
+    ]
+
+
 def export_league(
     output_path: Path,
     logs_path: Path,
@@ -191,6 +206,7 @@ def export_league(
         "matches": matches,
         "ratingSnapshots": rating_snapshots,
         "costSnapshots": cost_snapshots,
+        "sponsorshipPreviews": _sponsorship_previews(public_models()),
     }
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

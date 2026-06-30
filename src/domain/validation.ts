@@ -6,6 +6,7 @@ const requiredTopLevelKeys = [
   "matches",
   "ratingSnapshots",
   "costSnapshots",
+  "sponsorshipPreviews",
 ] as const;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -176,6 +177,38 @@ export function validateLeagueData(value: unknown): string[] {
       if (!hasNumber(snapshot, key)) {
         errors.push(`costSnapshots[${index}].${key} must be numeric.`);
       }
+    }
+  });
+
+  data.sponsorshipPreviews.forEach((preview, index) => {
+    if (!isRecord(preview)) {
+      errors.push(`sponsorshipPreviews[${index}] must be an object.`);
+      return;
+    }
+
+    if (!hasString(preview, "modelId") || !modelIds.has(preview.modelId)) {
+      errors.push(
+        `sponsorshipPreviews[${index}].modelId references an unknown model.`,
+      );
+    }
+
+    for (const key of [
+      "totalFundedUsd",
+      "availableBudgetUsd",
+      "supporterCount",
+      "platformFeeRate",
+    ]) {
+      if (!hasNumber(preview, key)) {
+        errors.push(`sponsorshipPreviews[${index}].${key} must be numeric.`);
+      }
+    }
+
+    if (!hasString(preview, "lastFundedAt")) {
+      errors.push(`sponsorshipPreviews[${index}].lastFundedAt is required.`);
+    }
+
+    if (preview.status !== "preview") {
+      errors.push(`sponsorshipPreviews[${index}].status is invalid.`);
     }
   });
 

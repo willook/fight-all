@@ -25,6 +25,10 @@ def test_mock_export_produces_league_data_without_api_keys(monkeypatch):
     })
     assert data["ratingSnapshots"]
     assert data["costSnapshots"]
+    assert {preview["modelId"] for preview in data["sponsorshipPreviews"]} == {
+        "mock-pressure-tester",
+        "mock-context-keeper",
+    }
 
 
 def test_mock_export_writes_json(tmp_path):
@@ -40,4 +44,5 @@ def test_mock_export_writes_json(tmp_path):
         "matches",
         "models",
         "ratingSnapshots",
+        "sponsorshipPreviews",
     ]

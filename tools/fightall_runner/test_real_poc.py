@@ -180,6 +180,7 @@ class RealPocRunnerTest(unittest.TestCase):
             self.assertEqual(len(data["models"]), 2)
             self.assertEqual(len(data["matches"]), 4)
             self.assertEqual(len(data["costSnapshots"]), 8)
+            self.assertEqual(len(data["sponsorshipPreviews"]), 2)
             self.assertTrue(any(snapshot["rating"] != 1500 for snapshot in data["ratingSnapshots"]))
             self.assertEqual({game["id"] for game in data["games"]}, {"werewolf-en", "werewolf-ko"})
 
@@ -259,6 +260,7 @@ class RealPocRunnerTest(unittest.TestCase):
             self.assertEqual(len(data["models"]), 3)
             self.assertEqual(len(data["matches"]), 12)
             self.assertEqual(len(data["costSnapshots"]), 24)
+            self.assertEqual(len(data["sponsorshipPreviews"]), 3)
             self.assertEqual([match["id"] for match in data["matches"][:4]], [f"real-poc-{index:03d}" for index in range(1, 5)])
             self.assertEqual([match["id"] for match in data["matches"][4:]], [f"real-poc-{index:03d}" for index in range(5, 13)])
             self.assertIn("upstage-solar-mini", {model["id"] for model in data["models"]})

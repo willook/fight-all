@@ -588,7 +588,7 @@
       "provider": "OpenAI",
       "inputTokens": 455.5,
       "outputTokens": 240.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 13.181,
       "estimatedCostUsd": 0.00014175
@@ -599,7 +599,7 @@
       "provider": "Google",
       "inputTokens": 454.5,
       "outputTokens": 470.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 39.544,
       "estimatedCostUsd": 0.00023365
@@ -608,9 +608,9 @@
       "matchId": "real-poc-002",
       "modelId": "gemini-25-flash-lite",
       "provider": "Google",
-      "inputTokens": 462.0,
-      "outputTokens": 459.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 462,
+      "outputTokens": 459,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 17.512,
       "estimatedCostUsd": 0.0002298
@@ -619,9 +619,9 @@
       "matchId": "real-poc-002",
       "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
-      "inputTokens": 463.0,
-      "outputTokens": 244.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 463,
+      "outputTokens": 244,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 6.133,
       "estimatedCostUsd": 0.0001439
@@ -631,8 +631,8 @@
       "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
       "inputTokens": 468.5,
-      "outputTokens": 335.0,
-      "cachedTokens": 0.0,
+      "outputTokens": 335,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 17.542,
       "estimatedCostUsd": 0.00018085
@@ -642,8 +642,8 @@
       "modelId": "gemini-25-flash-lite",
       "provider": "Google",
       "inputTokens": 463.5,
-      "outputTokens": 393.0,
-      "cachedTokens": 0.0,
+      "outputTokens": 393,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 43.841,
       "estimatedCostUsd": 0.00020355
@@ -654,7 +654,7 @@
       "provider": "Google",
       "inputTokens": 484.5,
       "outputTokens": 427.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 39.476,
       "estimatedCostUsd": 0.00021945
@@ -665,7 +665,7 @@
       "provider": "OpenAI",
       "inputTokens": 489.5,
       "outputTokens": 304.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 9.345,
       "estimatedCostUsd": 0.00017075
@@ -674,9 +674,9 @@
       "matchId": "real-poc-005",
       "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
-      "inputTokens": 440.0,
-      "outputTokens": 262.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 440,
+      "outputTokens": 262,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 19.899,
       "estimatedCostUsd": 0.0001488
@@ -685,9 +685,9 @@
       "matchId": "real-poc-005",
       "modelId": "upstage-solar-mini",
       "provider": "Upstage",
-      "inputTokens": 460.0,
-      "outputTokens": 466.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 460,
+      "outputTokens": 466,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 21.137,
       "estimatedCostUsd": 0.00013305
@@ -696,9 +696,9 @@
       "matchId": "real-poc-006",
       "modelId": "upstage-solar-mini",
       "provider": "Upstage",
-      "inputTokens": 433.0,
-      "outputTokens": 382.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 433,
+      "outputTokens": 382,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 15.161,
       "estimatedCostUsd": 0.00011525
@@ -707,9 +707,9 @@
       "matchId": "real-poc-006",
       "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
-      "inputTokens": 413.0,
-      "outputTokens": 254.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 413,
+      "outputTokens": 254,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 17.795,
       "estimatedCostUsd": 0.0001429
@@ -720,7 +720,7 @@
       "provider": "OpenAI",
       "inputTokens": 478.5,
       "outputTokens": 399.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 11.813,
       "estimatedCostUsd": 0.00020765
@@ -731,7 +731,7 @@
       "provider": "Upstage",
       "inputTokens": 478.5,
       "outputTokens": 272.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 8.156,
       "estimatedCostUsd": 0.00010265
@@ -741,8 +741,8 @@
       "modelId": "upstage-solar-mini",
       "provider": "Upstage",
       "inputTokens": 464.5,
-      "outputTokens": 266.0,
-      "cachedTokens": 0.0,
+      "outputTokens": 266,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 13.305,
       "estimatedCostUsd": 0.00010265
@@ -752,8 +752,8 @@
       "modelId": "openai-gpt-41-nano",
       "provider": "OpenAI",
       "inputTokens": 464.5,
-      "outputTokens": 398.0,
-      "cachedTokens": 0.0,
+      "outputTokens": 398,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 15.631,
       "estimatedCostUsd": 0.00020565
@@ -762,9 +762,9 @@
       "matchId": "real-poc-009",
       "modelId": "gemini-25-flash-lite",
       "provider": "Google",
-      "inputTokens": 522.0,
-      "outputTokens": 464.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 522,
+      "outputTokens": 464,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 38.331,
       "estimatedCostUsd": 0.0002378
@@ -773,9 +773,9 @@
       "matchId": "real-poc-009",
       "modelId": "upstage-solar-mini",
       "provider": "Upstage",
-      "inputTokens": 542.0,
-      "outputTokens": 394.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 542,
+      "outputTokens": 394,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 9.472,
       "estimatedCostUsd": 0.00013
@@ -784,9 +784,9 @@
       "matchId": "real-poc-010",
       "modelId": "upstage-solar-mini",
       "provider": "Upstage",
-      "inputTokens": 573.0,
-      "outputTokens": 473.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 573,
+      "outputTokens": 473,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 14.679,
       "estimatedCostUsd": 0.0001472
@@ -795,9 +795,9 @@
       "matchId": "real-poc-010",
       "modelId": "gemini-25-flash-lite",
       "provider": "Google",
-      "inputTokens": 553.0,
-      "outputTokens": 473.0,
-      "cachedTokens": 0.0,
+      "inputTokens": 553,
+      "outputTokens": 473,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 41.177,
       "estimatedCostUsd": 0.0002445
@@ -806,9 +806,9 @@
       "matchId": "real-poc-011",
       "modelId": "gemini-25-flash-lite",
       "provider": "Google",
-      "inputTokens": 463.0,
+      "inputTokens": 463,
       "outputTokens": 381.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 36.037,
       "estimatedCostUsd": 0.0001989
@@ -817,9 +817,9 @@
       "matchId": "real-poc-011",
       "modelId": "upstage-solar-mini",
       "provider": "Upstage",
-      "inputTokens": 468.0,
+      "inputTokens": 468,
       "outputTokens": 278.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 14.894,
       "estimatedCostUsd": 0.0001043
@@ -830,10 +830,10 @@
       "provider": "Upstage",
       "inputTokens": 431.5,
       "outputTokens": 212.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 4.059,
-      "estimatedCostUsd": 8.95e-05
+      "estimatedCostUsd": 0.0000895
     },
     {
       "matchId": "real-poc-012",
@@ -841,10 +841,39 @@
       "provider": "Google",
       "inputTokens": 426.5,
       "outputTokens": 363.5,
-      "cachedTokens": 0.0,
+      "cachedTokens": 0,
       "requestCount": 1.5,
       "elapsedSeconds": 7.572,
       "estimatedCostUsd": 0.00018805
+    }
+  ],
+  "sponsorshipPreviews": [
+    {
+      "modelId": "openai-gpt-41-nano",
+      "totalFundedUsd": 24,
+      "availableBudgetUsd": 16.5,
+      "supporterCount": 18,
+      "platformFeeRate": 0.05,
+      "lastFundedAt": "2026-06-29T09:00:00.000Z",
+      "status": "preview"
+    },
+    {
+      "modelId": "gemini-25-flash-lite",
+      "totalFundedUsd": 31,
+      "availableBudgetUsd": 24,
+      "supporterCount": 23,
+      "platformFeeRate": 0.05,
+      "lastFundedAt": "2026-06-29T11:30:00.000Z",
+      "status": "preview"
+    },
+    {
+      "modelId": "upstage-solar-mini",
+      "totalFundedUsd": 18,
+      "availableBudgetUsd": 13.25,
+      "supporterCount": 15,
+      "platformFeeRate": 0.05,
+      "lastFundedAt": "2026-06-29T13:10:00.000Z",
+      "status": "preview"
     }
   ]
 }

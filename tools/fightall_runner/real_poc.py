@@ -469,6 +469,34 @@ def append_upstage_to_real_poc(
     )
 
 
+def _sponsorship_previews(models: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    preview_by_model = {
+        "openai-gpt-41-nano": (24, 16.5, 18, "2026-06-29T09:00:00.000Z"),
+        "gemini-25-flash-lite": (31, 24, 23, "2026-06-29T11:30:00.000Z"),
+        "upstage-solar-mini": (18, 13.25, 15, "2026-06-29T13:10:00.000Z"),
+    }
+
+    previews = []
+    for index, model in enumerate(models):
+        total, available, supporters, funded_at = preview_by_model.get(
+            model["id"],
+            (12 + index * 4, 8 + index * 3, 5 + index * 2, "2026-06-29T09:00:00.000Z"),
+        )
+        previews.append(
+            {
+                "modelId": model["id"],
+                "totalFundedUsd": total,
+                "availableBudgetUsd": available,
+                "supporterCount": supporters,
+                "platformFeeRate": 0.05,
+                "lastFundedAt": funded_at,
+                "status": "preview",
+            },
+        )
+
+    return previews
+
+
 def _write_real_poc_outputs(
     output_path: Path,
     logs_path: Path,
@@ -484,6 +512,7 @@ def _write_real_poc_outputs(
         "matches": matches,
         "ratingSnapshots": rating_snapshots,
         "costSnapshots": cost_snapshots,
+        "sponsorshipPreviews": _sponsorship_previews(models),
     }
     output_path.parent.mkdir(parents=True, exist_ok=True)
     logs_path.parent.mkdir(parents=True, exist_ok=True)

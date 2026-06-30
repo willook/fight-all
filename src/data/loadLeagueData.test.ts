@@ -21,6 +21,7 @@ describe("loadLeagueData", () => {
       matches: [],
       ratingSnapshots: [],
       costSnapshots: [],
+      sponsorshipPreviews: [],
     };
     const fetchMock = vi
       .spyOn(globalThis, "fetch")
@@ -37,6 +38,7 @@ describe("loadLeagueData", () => {
       matches: [],
       ratingSnapshots: [],
       costSnapshots: [],
+      sponsorshipPreviews: [],
     };
     const fetchMock = vi
       .spyOn(globalThis, "fetch")

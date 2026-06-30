@@ -281,6 +281,26 @@ def build_mock_league_data() -> dict[str, Any]:
                 "estimatedCostUsd": 0.0,
             },
         ],
+        "sponsorshipPreviews": [
+            {
+                "modelId": "mock-pressure-tester",
+                "totalFundedUsd": 5,
+                "availableBudgetUsd": 5,
+                "supporterCount": 1,
+                "platformFeeRate": 0.05,
+                "lastFundedAt": played_at,
+                "status": "preview",
+            },
+            {
+                "modelId": "mock-context-keeper",
+                "totalFundedUsd": 5,
+                "availableBudgetUsd": 5,
+                "supporterCount": 1,
+                "platformFeeRate": 0.05,
+                "lastFundedAt": played_at,
+                "status": "preview",
+            },
+        ],
     }
 
 

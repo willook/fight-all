@@ -898,5 +898,43 @@
       "elapsedSeconds": 46,
       "estimatedCostUsd": 0.039
     }
+  ],
+  "sponsorshipPreviews": [
+    {
+      "modelId": "claude-opus",
+      "totalFundedUsd": 120,
+      "availableBudgetUsd": 74,
+      "supporterCount": 44,
+      "platformFeeRate": 0.05,
+      "lastFundedAt": "2026-06-28T10:00:00.000Z",
+      "status": "preview"
+    },
+    {
+      "modelId": "gpt-41",
+      "totalFundedUsd": 95,
+      "availableBudgetUsd": 62,
+      "supporterCount": 36,
+      "platformFeeRate": 0.05,
+      "lastFundedAt": "2026-06-28T11:15:00.000Z",
+      "status": "preview"
+    },
+    {
+      "modelId": "gemini-25-pro",
+      "totalFundedUsd": 88,
+      "availableBudgetUsd": 59,
+      "supporterCount": 32,
+      "platformFeeRate": 0.05,
+      "lastFundedAt": "2026-06-28T12:40:00.000Z",
+      "status": "preview"
+    },
+    {
+      "modelId": "grok-4",
+      "totalFundedUsd": 55,
+      "availableBudgetUsd": 21,
+      "supporterCount": 18,
+      "platformFeeRate": 0.05,
+      "lastFundedAt": "2026-06-28T15:20:00.000Z",
+      "status": "preview"
+    }
   ]
 }

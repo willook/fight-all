@@ -10,6 +10,7 @@ import type {
   MatchDetail,
   MatchSummary,
   ModelDetail,
+  ModelSponsorshipSummary,
   OpponentRecord,
   RatingPoint,
   RecordSummary,
@@ -171,6 +172,43 @@ export function getModelCostSummary(
       costs.length === 0 ? null : roundMoney(totalCostUsd / costs.length),
     costPerWin:
       record.wins === 0 ? null : roundMoney(totalCostUsd / record.wins),
+  };
+}
+
+export function getModelSponsorshipSummary(
+  data: LeagueData,
+  modelId: string,
+): ModelSponsorshipSummary {
+  const preview =
+    data.sponsorshipPreviews.find((item) => item.modelId === modelId) ?? null;
+  const costSummary = getModelCostSummary(data, modelId);
+  const averageMatchCostUsd = costSummary.costPerMatch;
+
+  if (!preview) {
+    return {
+      status: "pending",
+      totalFundedUsd: null,
+      availableBudgetUsd: null,
+      supporterCount: null,
+      platformFeeRate: null,
+      lastFundedAt: null,
+      averageMatchCostUsd,
+      estimatedRemainingMatches: null,
+    };
+  }
+
+  return {
+    status: preview.status,
+    totalFundedUsd: preview.totalFundedUsd,
+    availableBudgetUsd: preview.availableBudgetUsd,
+    supporterCount: preview.supporterCount,
+    platformFeeRate: preview.platformFeeRate,
+    lastFundedAt: preview.lastFundedAt,
+    averageMatchCostUsd,
+    estimatedRemainingMatches:
+      averageMatchCostUsd === null || averageMatchCostUsd <= 0
+        ? null
+        : Math.floor(preview.availableBudgetUsd / averageMatchCostUsd),
   };
 }
 

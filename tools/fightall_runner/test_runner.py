@@ -57,6 +57,11 @@ class FightAllRunnerTest(unittest.TestCase):
             self.assertTrue(
                 any(snapshot["rating"] != 1500 for snapshot in data["ratingSnapshots"]),
             )
+            self.assertEqual(len(data["sponsorshipPreviews"]), len(data["models"]))
+            self.assertEqual(
+                {preview["modelId"] for preview in data["sponsorshipPreviews"]},
+                {model["id"] for model in data["models"]},
+            )
 
             persisted = json.loads(output_path.read_text())
             logs = json.loads(logs_path.read_text())
